@@ -5,12 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using YoutubeExtractor;
 
 namespace BetterNotes{
     class video_insert{
-        public static string getVideoLink(){
-
+        public static void download_video(){
+            
         }
-        public static 
+        public static string get_link(){
+            string video_link;
+
+            return video_link;
+        }
     }
 }
