@@ -8,6 +8,9 @@ using System.Text.RegularExpressions;
 
 namespace BetterNotes{
     class video_insert{
+        public static string getVideoLink(){
 
+        }
+        public static 
     }
 }
