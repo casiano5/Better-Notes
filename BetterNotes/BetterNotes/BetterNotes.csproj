@@ -9,6 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>BetterNotes</RootNamespace>
     <AssemblyName>BetterNotes</AssemblyName>
+    <TargetPlatformVersion>10.0.10586</TargetPlatformVersion>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,6 +56,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Windows.Data" />
+    <Reference Include="Windows.UI" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -64,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DesktopNotificationManagerCompat.cs" />
     <Compile Include="src\SpeechToText.cs" />
     <Compile Include="src\TextToSpeech.cs" />
     <Compile Include="src\VideoInsert.cs" />

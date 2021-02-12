@@ -6,5 +6,7 @@ using System.Linq;
 using System.Text;
 
 namespace BetterNotes{
-    
+    class VideoInsert {
+
+    }
 }
