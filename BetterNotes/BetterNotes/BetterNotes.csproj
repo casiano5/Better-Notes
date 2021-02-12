@@ -71,6 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="dependancies\EmailSMTPService.cs" />
     <Compile Include="dependancies\BetterNotesNotifActivator.cs" />
     <Compile Include="dependancies\DesktopNotificationManagerCompat.cs" />
     <Compile Include="src\SpeechToText.cs" />
