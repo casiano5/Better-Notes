@@ -36,7 +36,7 @@ namespace TextToSpeech
                 label2.Text = "SPEAKING";
                 button2.Enabled = true;
                 button4.Enabled = true;
-                reader.SpeakCompleted += new EventHandler<SpeakCompletedEventArgs /> reader_SpeakCompleted();
+                reader.SpeakCompleted += new EventHandler<SpeakCompletedEventArgs> (reader_SpeakCompleted);
             }
             else
             {
