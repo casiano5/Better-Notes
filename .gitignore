@@ -1,6 +1,7 @@
 **.DS_Store
 BetterNotes/BetterNotes/BetterNotes.csproj.user
-BetterNotes/.vs/
+BetterNotes/.vs/*
+BetterNotes/BetterNotes.sln.DotSettings.user
 BetterNotes/.vs/BetterNotes/v16/.suo
 BetterNotes/BetterNotes/bin/Debug/BetterNotes.exe.config
 BetterNotes/BetterNotes/bin/Debug/BetterNotes.pdb
