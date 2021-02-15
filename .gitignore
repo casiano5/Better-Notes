@@ -1,6 +1,6 @@
 **.DS_Store
 BetterNotes/BetterNotes/BetterNotes.csproj.user
-BetterNotes/.vs/*
+BetterNotes/.vs/
 BetterNotes/BetterNotes.sln.DotSettings.user
-BetterNotes/BetterNotes/bin/*
-BetterNotes/BetterNotes/obj/*
+BetterNotes/BetterNotes/bin/
+BetterNotes/BetterNotes/obj/
