@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
 using System.IO;
+using System.Windows;
 
 namespace TextToSpeech
 {
