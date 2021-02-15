@@ -9,7 +9,7 @@ using Windows.Data.Xml.Dom;
 namespace BetterNotes {
     public class NotesReminder {
         //Windows Toast Notification
-        void sendWindowsToastNotification(string toastTitleContent) {
+        public static void sendWindowsToastNotification(string toastTitleContent) {
 
             ToastContent toastContent = new ToastContent() {
                 Launch = "Action=viewConversation&conversationId=5",
@@ -40,7 +40,7 @@ namespace BetterNotes {
         }
 
         //Email notification
-        void sendPhoneEmailNotification(string contactInformation, string reminderTitle, string reminderBody) {
+        public static void sendPhoneEmailNotification(string contactInformation, string reminderTitle, string reminderBody) {
             if (isValidEmail(contactInformation)) {
                 var mailMessage = new MailMessage
                 {

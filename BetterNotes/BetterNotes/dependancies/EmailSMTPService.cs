@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+ SECURITY 
+
+ THIS FILE IS NOT TO BE STORED IN PRODUCTION VERSIONS 
+ This file is stricly for testing purposed, smtp credentials
+ should not be stored here.
+
+ SECURITY
+*/
+
+using System;
 using System.Net;
 using System.Net.Mail;
 
