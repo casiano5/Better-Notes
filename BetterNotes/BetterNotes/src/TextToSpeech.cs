@@ -1,14 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Speech.Synthesis;
 using System.IO;
+using System.Speech.Synthesis;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace TextToSpeech
 {
@@ -41,11 +36,11 @@ namespace TextToSpeech
                 label2.Text = "SPEAKING";
                 button2.Enabled = true;
                 button4.Enabled = true;
-                reader.SpeakCompleted += new EventHandler<speakcompletedeventargs /> (reader_SpeakCompleted);
+                reader.SpeakCompleted += new EventHandler<SpeakCompletedEventArgs /> reader_SpeakCompleted();
             }
             else
             {
-                object err = MessageBox.Show("Please enter some notes", "Message", MessageBoxButtons.OK);
+                object err = MessageBox.Show("Please enter some notes", "Message", MessageBoxButton.OK);
             }
         }
 
