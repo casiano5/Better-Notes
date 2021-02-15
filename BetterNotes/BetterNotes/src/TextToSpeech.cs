@@ -2,9 +2,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Speech.Synthesis;
-using System.Windows;
 using System.Windows.Forms;
-
 namespace TextToSpeech
 {
     public partial class Form1 : Form
@@ -40,7 +38,7 @@ namespace TextToSpeech
             }
             else
             {
-                object err = MessageBox.Show("Please enter some notes", "Message", MessageBoxButton.OK);
+                object err = MessageBox.Show("Please enter some notes", "Message", MessageBoxButtons.OK);
             }
         }
 
