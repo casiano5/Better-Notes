@@ -5,7 +5,7 @@
 ## Contributors
 
 - Shane Casiano
-- Seth Aitcheson
+- Seth Aitcheson <seth@pajamadev.com>
 - Alexis Jones
 - Jacob French
 - Jade Spahr
