@@ -23,6 +23,11 @@ namespace BetterNotes
         public MainWindow()
         {
             InitializeComponent();
+            start_process();
+        }
+        private void start_process()
+        {
+            //startup process
         }
     }
 }
