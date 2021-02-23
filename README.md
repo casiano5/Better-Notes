@@ -14,6 +14,6 @@
 
 ## License & copyright
 
-© Shane Casiano
+© Shane Casiano, Seth Aitcheson, Alexis Jones, Jacob French, Jade Spahr
 
 Licensed under the [MIT License](LICENSE)
