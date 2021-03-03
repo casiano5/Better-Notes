@@ -85,6 +85,7 @@
     <Compile Include="dependancies\EmailSMTPService.cs" />
     <Compile Include="dependancies\BetterNotesNotifActivator.cs" />
     <Compile Include="dependancies\DesktopNotificationManagerCompat.cs" />
+    <Compile Include="src\Archive.cs" />
     <Compile Include="src\Note.cs" />
     <Compile Include="src\SpeechToText.cs" />
     <Compile Include="src\TextToSpeech.cs">
