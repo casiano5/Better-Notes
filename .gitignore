@@ -3,12 +3,12 @@
 **.cache
 
 BetterNotes/BetterNotes/BetterNotes.csproj.user
-BetterNotes/HomePage/HomePage.csproj.user
-BetterNotes/HomePage/BetterNotes.sln.DotSettings.user
-BetterNotes/HomePage/HomePage.sln.DotSettings.user
+BetterNotes/BetterNotes/BetterNotes.sln.DotSettings.user
+BetterNotes/Homepage/Homepage.csproj.user
+BetterNotes/Homepage/Homepage.sln.DotSettings.user
 
 BetterNotes/.vs/**
 BetterNotes/BetterNotes/bin/**
 BetterNotes/BetterNotes/obj/**
-BetterNotes/HomePage/bin/**
-BetterNotes/HomePage/obj/**
+BetterNotes/Homepage/bin/**
+BetterNotes/Homepage/obj/**
