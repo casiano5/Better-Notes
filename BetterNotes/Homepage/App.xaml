@@ -5,9 +5,9 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style x:Key="RoundButtonTemplate" TargetType="Button">
-            <Setter Property="Background" Value="#FFAAB1BB" />
-            <Setter Property="Foreground" Value="#FF5C2599" />
-            <Setter Property="BorderBrush" Value="#FF003F6A" />
+            <Setter Property="Background" Value="#10AAB1BB" />
+            <Setter Property="Foreground" Value="#FFE0F500" />
+            <Setter Property="BorderBrush" Value="#10AAB1BB" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">

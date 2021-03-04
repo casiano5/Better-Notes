@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Homepage"
         mc:Ignorable="d"
-        Title="Homepage" Width="800" Height="470" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
+        Title="Homepage" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
     <Grid Background="#FF45474A" ShowGridLines="False">
 
-        <Grid Background="#FF393939" Width="340" Height="470" ShowGridLines="False" HorizontalAlignment="Left">
+        <Grid Background="#FF393939" Width="340" Height="1080" ShowGridLines="False" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="300"/>
@@ -54,7 +54,7 @@
         </Grid>
 
 
-        <Grid Background="#FF45474A" Width="450" Height="470" ShowGridLines="False" HorizontalAlignment="Right">
+        <Grid Background="#FF45474A" Width="450" Height="1080" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="300"/>
