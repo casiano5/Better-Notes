@@ -2,16 +2,16 @@ using System.Speech.Synthesis;
 namespace BetterNotes
 {
     public class TextToSpeech{
-        static void getSpeech(string input, SpeechSynthesizer reader){
-           reader = new SpeechSynthesizer();
+        static void getSpeech(string input){
+           SpeechSynthesizer reader = new SpeechSynthesizer();
            reader.SetOutputToDefaultAudioDevice();
-           reader.Speak(input.ToString());
+           reader.Speak(input);
         }//getspeech
 
-         static void putSpeechInFile(string input, SpeechSynthesizer reader){
-            reader = new SpeechSynthesizer();
-            reader.SetOutputToWaveFile(@"C:\textToSpeech.wav");
-            reader.Speak(input.ToString());
+         static void putSpeechInFile(string input, string path){
+            SpeechSynthesizer reader = new SpeechSynthesizer();
+            reader.SetOutputToWaveFile(path);
+            reader.Speak(input);
         }//file
     }//class 
 }//namespace
