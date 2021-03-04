@@ -54,7 +54,7 @@
         </Grid>
 
 
-        <Grid Background="#FF45474A" Width="450" Height="1080" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <Grid Background="#FF45474A" Width="440" Height="1080" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="300"/>
