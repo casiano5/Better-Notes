@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace Homepage
 {
@@ -24,6 +25,17 @@ namespace Homepage
         {
             //homepage
             InitializeComponent();
+            start_process();
+        }
+        private void start_process()
+        {
+            //startup process
+        }
+
+        private void OpenNotes(object sender, RoutedEventArgs e)
+        {
+            //open notes
+            System.Windows.Forms.MessageBox.Show("You're fat, boy.");
         }
     }
 }

@@ -5,8 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Homepage"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="testing"></Button>
+        Title="Homepage" Width="800" Height="470" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
+    <Grid Background="#FF45474A" ShowGridLines="False">
+
+        <Grid Background="#FF393939" Width="340" Height="470" ShowGridLines="False" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Recent"
+                   Grid.ColumnSpan="2" Margin="0,0,0,0" Foreground="#FFD4D4D4"/>
+
+            <Button x:Name="OpenRecent" Content="my notes 1" Grid.Row="2" Grid.Column="1" Visibility="Visible"
+                Width="300" Height="50" Style="{StaticResource SquareButtonTemplate}"
+                Margin="0,0,0,0" Click="OpenNotes"/>
+            <Button x:Name="OpenRecent2" Content="my notes 2" Grid.Row="3" Grid.Column="1" Visibility="Visible"
+                Width="300" Height="50" Style="{StaticResource SquareButtonTemplate}"
+                Margin="0,0,0,0" Click="OpenNotes"/>
+            <Button x:Name="OpenRecent3" Content="my notes 3" Grid.Row="4" Grid.Column="1" Visibility="Visible"
+                Width="300" Height="50" Style="{StaticResource SquareButtonTemplate}"
+                Margin="0,0,0,0" Click="OpenNotes"/>
+            <Button x:Name="OpenRecent4" Content="my notes 4" Grid.Row="5" Grid.Column="1" Visibility="Visible"
+                Width="300" Height="50" Style="{StaticResource SquareButtonTemplate}"
+                Margin="0,0,0,0" Click="OpenNotes"/>
+            <Button x:Name="OpenRecent5" Content="my notes 5" Grid.Row="6" Grid.Column="1" Visibility="Visible"
+                Width="300" Height="50" Style="{StaticResource SquareButtonTemplate}"
+                Margin="0,0,0,0" Click="OpenNotes"/>
+            <Button x:Name="OpenRecent6" Content="my notes 6" Grid.Row="7" Grid.Column="1" Visibility="Visible"
+                Width="300" Height="50" Style="{StaticResource SquareButtonTemplate}"
+                Margin="0,0,0,0" Click="OpenNotes"/>
+        </Grid>
+
+
+        <Grid Background="#FF45474A" Width="450" Height="470" ShowGridLines="False" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+        </Grid>
     </Grid>
+
 </Window>
