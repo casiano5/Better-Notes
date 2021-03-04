@@ -14,8 +14,8 @@ namespace BetterNotes {
         public string CreateUser { get; set; } 
         public DateTime CreatedDateTime { get; } //RONLY value, should not change after first creation
         public DateTime LastModifiedDateTime { get; set; }
-        public bool isReminder { get; set; }
-        public DateTime timeToRemind { get; set; }
+        public bool IsReminder { get; set; }
+        public DateTime TimeToRemind { get; set; }
 
         private string note; //PLACEHOLDER VALUE 
 
@@ -35,8 +35,8 @@ namespace BetterNotes {
             this.CreateUser = createUser;
             this.CreatedDateTime = DateTime.Now;
             this.LastModifiedDateTime = DateTime.Now;
-            this.isReminder = true;
-            this.timeToRemind = timeToRemind;
+            this.IsReminder = true;
+            this.TimeToRemind = timeToRemind;
         }
 
         //make a note/reminder object (existing file)
