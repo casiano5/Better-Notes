@@ -87,11 +87,9 @@
     <Compile Include="dependancies\BetterNotesNotifActivator.cs" />
     <Compile Include="dependancies\DesktopNotificationManagerCompat.cs" />
     <Compile Include="src\Archive.cs" />
+    <Compile Include="src\TextToSpeech.cs" />
     <Compile Include="src\Note.cs" />
     <Compile Include="src\SpeechToText.cs" />
-    <Compile Include="src\TextToSpeech.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\VideoInsert.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
