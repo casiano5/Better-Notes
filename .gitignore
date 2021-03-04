@@ -11,4 +11,4 @@ BetterNotes/.vs/**
 BetterNotes/BetterNotes/bin/**
 BetterNotes/BetterNotes/obj/**
 #BetterNotes/Homepage/bin/**
-BetterNotes/Homepage/obj/**
+#BetterNotes/Homepage/obj/**
