@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 
 
 //TODO CREATE STATIC FINAL ENV VAR FOR WORKING DIRECTORY OF BETTERNOTES AND STORE IT SOMEWHERE
@@ -40,9 +41,13 @@ namespace BetterNotes {
         }
 
         //make a note/reminder object (existing file)
-        public Note(string currentNoteDirectory) {
-            //TODO make constructor for note based on existing note file
-            //constructor will expect a directory 
+        public Note(string workDir, string currentBnotDir) {
+            Regex testRegex = new Regex(@"([^\\]*[.]*\.bnot)$", RegexOptions.Multiline);
+            string nameAndExt = testRegex.Match(currentBnotDir).Value;
+            string name = nameAndExt.Substring(0, nameAndExt.Length - 5);
+            string savePath = workDir + "\\" + name;
+            Archive.UnarchiveFile(currentBnotDir, savePath);
+
             //modify date time modified, read other info from possible metadata file
             //TODO design metadata file
         }

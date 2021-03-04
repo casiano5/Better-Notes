@@ -3,8 +3,8 @@ using System.IO;
 using System.IO.Compression;
 
 namespace BetterNotes {
-    class Archive {
-        static void ArchiveFile(string folder, string savePath)
+    public static class Archive {
+        public static void ArchiveFile(string folder, string savePath)
         {
             if (File.Exists(savePath))
             {
@@ -13,7 +13,7 @@ namespace BetterNotes {
             ZipFile.CreateFromDirectory(folder, savePath);
         }
 
-        static void UnarchiveFile(string archivePath, string extractPath)
+        public static void UnarchiveFile(string archivePath, string extractPath)
         {
             if (Directory.Exists(extractPath))
             {
@@ -22,14 +22,14 @@ namespace BetterNotes {
             ZipFile.ExtractToDirectory(archivePath, extractPath);
         }
 
-        static bool OverwriteFile()
+        public static bool OverwriteFile()
         {
             bool overwrite = false;
             //TODO: CALL A UI ELEMENT ASKING THE USER IF THEY WANT TO OVERWRITE THE CURRENT FILE
             return overwrite;
         }
 
-        static bool ErrorFolderExists(string notePath)
+        public static bool ErrorFolderExists(string notePath)
         {
             bool errorCorrected = false;
             //TODO: CHECK IF A NOTE OBJECT WITH A PATH MATCHING THE BNOT FILE IS OPEN IN EDITOR (if no, errorCorrected = true)
