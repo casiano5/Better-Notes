@@ -10,5 +10,5 @@ BetterNotes/Homepage/Homepage.sln.DotSettings.user
 BetterNotes/.vs/**
 BetterNotes/BetterNotes/bin/**
 BetterNotes/BetterNotes/obj/**
-#BetterNotes/Homepage/bin/**
-#BetterNotes/Homepage/obj/**
+BetterNotes/Homepage/bin/**
+BetterNotes/Homepage/obj/**
