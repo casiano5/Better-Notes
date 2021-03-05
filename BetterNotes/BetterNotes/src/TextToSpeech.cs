@@ -7,9 +7,9 @@ using System.Speech.Synthesis;
 
 namespace BetterNotes
 {
-    class TextToSpeech
+    public class TextToSpeech
     {
-            static void GetSpeech(string input)
+            public static void GetSpeech(string input)
             {
                 SpeechSynthesizer reader = new SpeechSynthesizer();
                 reader.SetOutputToDefaultAudioDevice();
@@ -17,7 +17,7 @@ namespace BetterNotes
                 reader.Dispose();
             }//getspeech
 
-            static void PutSpeechInFile(string input, string path)
+            public static void PutSpeechInFile(string input, string path)
             {
                 SpeechSynthesizer reader = new SpeechSynthesizer();
                 reader.SetOutputToWaveFile(path);
