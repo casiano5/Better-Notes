@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterNotes", "BetterNotes\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homepage", "Homepage\Homepage.csproj", "{B9EB8BD3-AB55-4242-9C30-7BA0C58F1856}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notes Page", "Notes Page\Notes Page.csproj", "{F81BBF34-719E-4EAA-8742-BEB50BA99637}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B9EB8BD3-AB55-4242-9C30-7BA0C58F1856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9EB8BD3-AB55-4242-9C30-7BA0C58F1856}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9EB8BD3-AB55-4242-9C30-7BA0C58F1856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F81BBF34-719E-4EAA-8742-BEB50BA99637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81BBF34-719E-4EAA-8742-BEB50BA99637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81BBF34-719E-4EAA-8742-BEB50BA99637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81BBF34-719E-4EAA-8742-BEB50BA99637}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
