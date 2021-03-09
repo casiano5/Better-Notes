@@ -36,7 +36,6 @@ namespace Homepage
         {
             //open notes
             System.Windows.Forms.MessageBox.Show("Note: " + sender.ToString().Substring(32));
-            
         }
 
         private void highlightButton(object sender, System.Windows.Input.MouseEventArgs e)
