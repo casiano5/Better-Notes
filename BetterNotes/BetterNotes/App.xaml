@@ -36,6 +36,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <SolidColorBrush x:Key="BrushButtonHighlight">#50612787</SolidColorBrush>
         
     </Application.Resources>
 </Application>
