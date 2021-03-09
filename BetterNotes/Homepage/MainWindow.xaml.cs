@@ -35,7 +35,68 @@ namespace Homepage
         private void OpenNotes(object sender, RoutedEventArgs e)
         {
             //open notes
-            System.Windows.Forms.MessageBox.Show("You're fat, boy.");
+            System.Windows.Forms.MessageBox.Show("Note: " + sender.ToString().Substring(32));
+            
+        }
+
+        private void OpenRecent1_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent1.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
+        }
+
+        private void OpenRecent2_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent2.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
+        }
+
+        private void OpenRecent3_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent3.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
+        }
+
+        private void OpenRecent4_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent4.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
+        }
+
+        private void OpenRecent5_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent5.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
+        }
+
+        private void OpenRecent6_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent6.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
+        }
+
+        private void OpenRecent1_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent1.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#10AAB1BB");
+        }
+
+        private void OpenRecent2_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent2.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#10AAB1BB");
+        }
+
+        private void OpenRecent3_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent3.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#10AAB1BB");
+        }
+
+        private void OpenRecent4_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent4.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#10AAB1BB");
+        }
+
+        private void OpenRecent5_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent5.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#10AAB1BB");
+        }
+
+        private void OpenRecent6_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            OpenRecent6.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#10AAB1BB");
         }
     }
 }
