@@ -22,15 +22,14 @@ namespace BetterNotes {
                         }
                     }
                 }
-            };
+           };
 
             /*Create XML Doc*/
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(toastContent.GetContent());
 
-            /*Populate toast based on XML Doc*/
+           /*Populate toast based on XML Doc*/
             var toast = new ToastNotification(xmlDoc);
-            //Option2 var toast = new ToastNotification(toastContent.GetXml());
 
             /*Send Notification*/
             ToastNotificationManager.CreateToastNotifier().Show(toast);
