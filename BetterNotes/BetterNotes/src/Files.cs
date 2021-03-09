@@ -9,6 +9,8 @@ using System.IO;
 using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Windows.Forms;
+
 namespace BetterNotes { 
     class Files
 {
@@ -23,7 +25,7 @@ namespace BetterNotes {
                 {
                     using (StreamWriter writer = new StreamWriter(stream))
                     {
-                        writer.Write(richTextBox1.Text);
+                        //writer.Write(richTextBox1.Text);
                     }
                 }
             }
@@ -35,21 +37,21 @@ namespace BetterNotes {
             using (OpenFileDialog file = new OpenFileDialog())
             {
                 file.ShowDialog();
-                textBox2.Text = file.FileName;
+                //textBox2.Text = file.FileName;
             }
-            textBox3.Text = (textBox2.Text).Replace(".txt", ".pdf");
+           // textBox3.Text = (textBox2.Text).Replace(".txt", ".pdf");
         }
 
         // Convert text file to PDF button Use the itextsharp library 
         private void Convert_button3_Click(object sender, EventArgs e)
         {
-            StreamReader reader = new StreamReader(textBox2.Text);
+            //StreamReader reader = new StreamReader(textBox2.Text);
             Document doc = new Document();
-            PdfWriter.GetInstance(doc, new FileStream(textBox3.Text, FileMode.Create));
+            //PdfWriter.GetInstance(doc, new FileStream(textBox3.Text, FileMode.Create));
             doc.Open();
-            doc.Add(new Paragraph(reader.ReadToEnd()));
+            //doc.Add(new Paragraph(reader.ReadToEnd()));
             doc.Close();
-            System.Diagnostics.Process.Start(textBox3.Text);
+            //System.Diagnostics.Process.Start(textBox3.Text);
         }
 
         // opens a text file into a rich text box
@@ -63,7 +65,7 @@ namespace BetterNotes {
                 {
                     string fileName = openFile.FileName;
                     String file = File.ReadAllText(fileName);
-                    richTextBox1.Text = file;
+                    //richTextBox1.Text = file;
                 }
             }
 

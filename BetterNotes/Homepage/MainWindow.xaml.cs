@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
+using BetterNotes;
 
 namespace Homepage
 {
@@ -40,12 +41,12 @@ namespace Homepage
 
         private void highlightButton(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            (sender as System.Windows.Controls.Button).Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
+            (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonHighLight;
         }
 
         private void unHighlightButton(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            (sender as System.Windows.Controls.Button).Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#10AAB1BB");
+            (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonUnHighLight;
         }
     }
 }
