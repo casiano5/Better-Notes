@@ -21,9 +21,6 @@ namespace Homepage
     /// </summary>
     public partial class MainWindow : Window
     {
-        static SolidColorBrush BrushButtonHighlight = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
-        static SolidColorBrush BrushButtonNormal = (SolidColorBrush)new BrushConverter().ConvertFromString("#10AAB1BB");
-
         public MainWindow()
         {
             //homepage
@@ -42,64 +39,14 @@ namespace Homepage
             
         }
 
-        private void OpenRecent1_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void highlightButton(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            OpenRecent1.Background = BrushButtonHighlight;
+            (sender as System.Windows.Controls.Button).Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
         }
 
-        private void OpenRecent2_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void unHighlightButton(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            OpenRecent2.Background = BrushButtonHighlight;
-        }
-
-        private void OpenRecent3_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent3.Background = BrushButtonHighlight;
-        }
-
-        private void OpenRecent4_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent4.Background = BrushButtonHighlight;
-        }
-
-        private void OpenRecent5_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent5.Background = BrushButtonHighlight;
-        }
-
-        private void OpenRecent6_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent6.Background = BrushButtonHighlight;
-        }
-
-        private void OpenRecent1_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent1.Background = BrushButtonNormal;
-        }
-
-        private void OpenRecent2_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent2.Background = BrushButtonNormal;
-        }
-
-        private void OpenRecent3_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent3.Background = BrushButtonNormal;
-        }
-
-        private void OpenRecent4_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent4.Background = BrushButtonNormal;
-        }
-
-        private void OpenRecent5_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent5.Background = BrushButtonNormal;
-        }
-
-        private void OpenRecent6_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            OpenRecent6.Background = BrushButtonNormal;
+            (sender as System.Windows.Controls.Button).Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#10AAB1BB");
         }
     }
 }
