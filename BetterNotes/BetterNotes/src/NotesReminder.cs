@@ -22,20 +22,17 @@ namespace BetterNotes {
                         }
                     }
                 }
-            };
-            /*Option2
-            ToastContent toastContent = new ToastContentBuilder().AddToastActivationInfo("action=viewConversation&conversationId=5", ToastActivationType.Foreground).AddText("Hello world!").GetToastContent();
-            */
+           };
+
             /*Create XML Doc*/
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(toastContent.GetContent());
 
-            /*Populate toast based on XML Doc*/
+           /*Populate toast based on XML Doc*/
             var toast = new ToastNotification(xmlDoc);
-            //Option2 var toast = new ToastNotification(toastContent.GetXml());
 
             /*Send Notification*/
-            DesktopNotificationManagerCompat.CreateToastNotifier().Show(toast);
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
 
         }
 
