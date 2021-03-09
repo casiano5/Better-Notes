@@ -12,14 +12,13 @@
             <RichTextBox Width="400" Height="400">
             </RichTextBox>
         </Grid>
+        <!--Panel for Media Insert. Will possibly be an Expanding panel-->
         <Grid Background="#FF393939" Width="329" Height="450" ShowGridLines="False" HorizontalAlignment="Right" Margin="0,10,-0.4,10.4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10.747"/>
+                <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="20"/>
+                  <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
@@ -30,21 +29,39 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <TabControl Background="#FF393939" Margin="9.6,10,10.4,0.6" Grid.Column="1" Grid.RowSpan="10" Grid.ColumnSpan="2">
-                <TabItem Header="Insert Video" IsSelected="True" Background="Gray">
+           
+                <TabControl x:Name="InsertMedia" Background="#FF393939" Margin="9.6,10,10.4,0.6" Grid.Column="1" Grid.RowSpan="10" Grid.ColumnSpan="2">
+                    <TabItem x:Name="InsertVideo" Header="Insert Video" IsSelected="True" 
+                         Style="{StaticResource SquareTabTemplate}">
+                    <!--Possible SearchBox, needs the C# implementation-->
+                    <Grid Background="#FF393939">
+                        <TextBox Name="VideoSearchBox" Height="20" Opacity=".7"
+                                 Grid.ColumnSpan="3" IsReadOnly="True" VerticalAlignment="Top"/>
+                        <Button Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
+                                HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                    </Grid>
+                </TabItem>
                 
-                </TabItem>
-                <TabItem Header="Insert Image" Background="Gray">
-                    
-                </TabItem>
+                    <TabItem x:Name="InsertImage" Header="Insert Image"
+                         Style="{StaticResource SquareTabTemplate}">
+                    <!--Possible SearchBox, needs the C# implementation-->
+                        <Grid Background="#FF393939">
+                            <TextBox Name="ImageSearchBox" Height="20" Opacity=".7"
+                                 Grid.ColumnSpan="3" IsReadOnly="True" VerticalAlignment="Top"/>
+                        <Button Name="SearchImage" Height="20" Width="20" Background="#5C2599"
+                                HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                    </Grid>
+                    </TabItem>
             </TabControl>
-        </Grid>
+       
+    </Grid>
 
         <DockPanel Grid.ColumnSpan="3" Margin="0,20,-0.4,-20.6">
-            <Menu Background="#5C2599" DockPanel.Dock="Top"  HorizontalAlignment="Left" Height="19" Margin="0,-22,-0.4,50" VerticalAlignment="Top" Width="794" FontWeight="Bold" RenderTransformOrigin="0.502,1.616">
+            <Menu DockPanel.Dock="Top"  HorizontalAlignment="Left" VerticalAlignment="Top" 
+                  Margin="0,-22,-0.4,50" Height="19" Width="794" Background="#5C2599"
+                  Foreground="#FFE0F500" FontWeight="Bold" RenderTransformOrigin="0.502,1.616">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Open"/>
                     <MenuItem Header="_Save"/>
