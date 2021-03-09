@@ -33,7 +33,14 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <TextBox Background="Yellow" Height="50" Grid.Column="1" Margin="94.6,10.2,101.4,39.8" Grid.RowSpan="2" Grid.Row="3"/>
+            <TabControl Background="#FF393939" Margin="9.6,10,10.4,0.6" Grid.Column="1" Grid.RowSpan="10" Grid.ColumnSpan="2">
+                <TabItem Header="Insert Video" IsSelected="True" Background="Gray">
+                
+                </TabItem>
+                <TabItem Header="Insert Image" Background="Gray">
+                    
+                </TabItem>
+            </TabControl>
         </Grid>
 
         <DockPanel Grid.ColumnSpan="3" Margin="0,20,-0.4,-20.6">
