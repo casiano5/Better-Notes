@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
-namespace BetterNotes
+namespace Notes_Page
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,13 +23,7 @@ namespace BetterNotes
     {
         public MainWindow()
         {
-            //main window
             InitializeComponent();
-            start_process();
-        }
-        private void start_process()
-        {
-            //startup process
         }
     }
 }
