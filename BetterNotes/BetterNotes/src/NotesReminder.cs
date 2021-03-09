@@ -32,7 +32,7 @@ namespace BetterNotes {
             var toast = new ToastNotification(xmlDoc);
 
             /*Send Notification*/
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+            ToastNotificationManager.CreateToastNotifier("BetterNotes").Show(toast); //CreateToastNotifier needs application ID or it throws an exception?
 
         }
 
