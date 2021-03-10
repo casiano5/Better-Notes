@@ -8,11 +8,11 @@ using System.Windows.Media;
 namespace BetterNotes {
     public static class GlobalVars {
         //Environment Variables
-        public readonly static string appdataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        public readonly static string userDir = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-        public readonly static string documentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        public readonly static string imageDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-        public readonly static string bnotTempDir = appdataDir + "\\BetterNotes";
+        public readonly static string AppdataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        public readonly static string UserDir = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+        public readonly static string DocumentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public readonly static string ImageDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+        public readonly static string BnotTempDir = AppdataDir + "\\BetterNotes";
 
         //Button highlighting
         public readonly static SolidColorBrush ButtonHighLight = (SolidColorBrush) new BrushConverter().ConvertFromString("#50612787");
