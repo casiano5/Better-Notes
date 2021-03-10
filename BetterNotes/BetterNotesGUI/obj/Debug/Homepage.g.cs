@@ -100,7 +100,7 @@ namespace BetterNotesGUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Homepage;component/homepage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BetterNotesGUI;component/homepage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\Homepage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
