@@ -78,6 +78,11 @@
                     <MenuItem Header="_Speech-To-Text"/>
                     <MenuItem Header="_ConvertPdf"/>
                 </MenuItem>
+                <MenuItem Header="_Test">
+                    <MenuItem Header="SendWindowsToastNotification" Click="testWTN"/>
+                    <MenuItem Header="SendEmailNotification" Click="testEM"/>
+                    <MenuItem Header="SendPhoneNotification" Click="testPN"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
     </Grid>

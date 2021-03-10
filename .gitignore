@@ -4,15 +4,11 @@
 
 BetterNotes/BetterNotes/BetterNotes.csproj.user
 BetterNotes/BetterNotes/BetterNotes.sln.DotSettings.user
-BetterNotes/Homepage/Homepage.csproj.user
-BetterNotes/Homepage/Homepage.sln.DotSettings.user
-BetterNotes/Notes Page/Notes Page.csproj.user
-BetterNotes/Notes Page/Notes Page.sln.DotSettings.user
+BetterNotes/BetterNotesGUI/BetterNotesGUI.csproj.user
+BetterNotes/BetterNotesGUI/BetterNotesGUI.sln.DotSettings.user
 
 BetterNotes/.vs/**
 BetterNotes/BetterNotes/bin/**
 BetterNotes/BetterNotes/obj/**
-BetterNotes/Homepage/bin/**
-BetterNotes/Homepage/obj/**
-BetterNotes/Notes Page/bin/**
-BetterNotes/Notes Page/obj/**
+BetterNotes/BetterNotesGUI/bin/**
+BetterNotes/BetterNotesGUI/obj/**

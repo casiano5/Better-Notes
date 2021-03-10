@@ -31,5 +31,14 @@ namespace BetterNotesGUI {
             parentWindow.Show();
             this.Close();
         }
+        private void testWTN(object sender, RoutedEventArgs e) {
+            NotesReminder.SendWindowsToastNotification("Test Notification");
+        }
+        private void testPN(object sender, RoutedEventArgs e) {
+            NotesReminder.SendPhoneEmailNotification("", "Test Reminder", "Test Reminder Body");
+        }
+        private void testEM(object sender, RoutedEventArgs e) {
+            NotesReminder.SendPhoneEmailNotification("", "Test Reminder", "Test Reminder Body");
+        }
     }
 }

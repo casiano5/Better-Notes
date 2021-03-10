@@ -9,7 +9,7 @@ using Windows.Data.Xml.Dom;
 namespace BetterNotes {
     public class NotesReminder {
         //Windows Toast Notification
-        public static void sendWindowsToastNotification(string toastTitleContent) {
+        public static void SendWindowsToastNotification(string toastTitleContent) {
 
             ToastContent toastContent = new ToastContent() {
                 Launch = "Action=viewConversation&conversationId=5",
@@ -32,13 +32,13 @@ namespace BetterNotes {
             var toast = new ToastNotification(xmlDoc);
 
             /*Send Notification*/
-            ToastNotificationManager.CreateToastNotifier("BetterNotes").Show(toast); //CreateToastNotifier needs application ID or it throws an exception?
+            ToastNotificationManager.CreateToastNotifier("MSEdge").Show(toast); //CreateToastNotifier needs application ID or it throws an exception?
 
         }
 
         //Email notification
-        public static void sendPhoneEmailNotification(string contactInformation, string reminderTitle, string reminderBody) {
-            if (isValidEmail(contactInformation)) {
+        public static void SendPhoneEmailNotification(string contactInformation, string reminderTitle, string reminderBody) {
+            if (IsValidEmail(contactInformation)) {
                 var mailMessage = new MailMessage
                 {
                     From = new MailAddress("betternotes@casiano.dev"),
@@ -51,8 +51,8 @@ namespace BetterNotes {
                 EmailSMTPService.sendMail(mailMessage);
             }
 
-            if (isValidPhoneNumber(contactInformation)) {
-                string email = convertPhoneToEmail(contactInformation);
+            if (IsValidPhoneNumber(contactInformation)) {
+                string email = ConvertPhoneToEmail(contactInformation);
                 var mailMessage = new MailMessage
                 {
                     From = new MailAddress("betternotes@casiano.dev"),
@@ -66,7 +66,7 @@ namespace BetterNotes {
             }
         }
         //Check for email func
-        public static bool isValidEmail(string email) {
+        public static bool IsValidEmail(string email) {
             if (string.IsNullOrWhiteSpace(email))
                 return false;
             try {
@@ -94,18 +94,17 @@ namespace BetterNotes {
         }
 
         //Check for phone func
-        public static bool isValidPhoneNumber(string number) {
-            int hold = 0;
-            return int.TryParse(number.Substring(4), out hold);
+        public static bool IsValidPhoneNumber(string number) {
+            return int.TryParse(number.Substring(3), out _);
 
         }
         //append email for carrier based on original string with character (eg: VZW8314786726 becomes 8314786726@vtext.com)
-        public static string convertPhoneToEmail(string phoneNumber) {
+        public static string ConvertPhoneToEmail(string phoneNumber) {
             string rtrn = "";
-            if (phoneNumber.Contains("VZW")) rtrn = phoneNumber.Substring(4) + "@vtext.com";
-            if (phoneNumber.Contains("ATT")) rtrn = phoneNumber.Substring(4) + "@txt.att.net";
-            if (phoneNumber.Contains("TMO")) rtrn = phoneNumber.Substring(4) + "@tmomail.net";
-            if (isValidEmail(rtrn)) return rtrn;
+            if (phoneNumber.Contains("VZW")) rtrn = phoneNumber.Substring(3) + "@vtext.com";
+            if (phoneNumber.Contains("ATT")) rtrn = phoneNumber.Substring(3) + "@txt.att.net";
+            if (phoneNumber.Contains("TMO")) rtrn = phoneNumber.Substring(3) + "@tmomail.net";
+            if (IsValidEmail(rtrn)) return rtrn;
             return "betternotesfailedphonetoemail@casiano.dev";
         }
     }
