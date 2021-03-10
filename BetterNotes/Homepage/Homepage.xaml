@@ -1,11 +1,11 @@
-﻿<Window x:Class="Homepage.MainWindow"
+﻿<Window x:Class="BetterNotesGUI.Homepage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Homepage"
+        xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="Homepage" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
+        Title="Better Notes" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
     <Grid Background="#FF45474A" ShowGridLines="False">
 
         <Grid Background="#FF393939" Width="340" Height="1080" ShowGridLines="False" HorizontalAlignment="Left" VerticalAlignment="Top">

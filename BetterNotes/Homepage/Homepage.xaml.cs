@@ -15,37 +15,33 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using BetterNotes;
 
-namespace Homepage
-{
+namespace BetterNotesGUI {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Homepage.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            //homepage
+    public partial class Homepage : Window {
+        BetterNotesMainView parentWindow;
+        public Homepage() {
             InitializeComponent();
             start_process();
         }
-        private void start_process()
-        {
+        public Homepage(BetterNotesMainView parentWindow) {
+            this.parentWindow = parentWindow;
+            InitializeComponent();
+            start_process();
+        }
+        private void start_process() {
             //startup process
         }
-
-        private void OpenNotes(object sender, RoutedEventArgs e)
-        {
-            //open notes
-            System.Windows.Forms.MessageBox.Show("Note: " + sender.ToString().Substring(32));
+        private void OpenNotes(object sender, RoutedEventArgs e) {
+            BetterNotesMainView bnotView = new BetterNotesMainView(this);
+            bnotView.Show();
+            this.Hide();
         }
-
-        private void highlightButton(object sender, System.Windows.Input.MouseEventArgs e)
-        {
+        private void highlightButton(object sender, System.Windows.Input.MouseEventArgs e) {
             (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonHighLight;
         }
-
-        private void unHighlightButton(object sender, System.Windows.Input.MouseEventArgs e)
-        {
+        private void unHighlightButton(object sender, System.Windows.Input.MouseEventArgs e) {
             (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonUnHighLight;
         }
     }

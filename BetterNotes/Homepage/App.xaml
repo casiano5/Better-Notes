@@ -1,8 +1,8 @@
 ﻿<Application x:Class="Homepage.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Homepage"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:BetterNotesGUI"
+             StartupUri="Homepage.xaml">
     <Application.Resources>
         <Style x:Key="RoundButtonTemplate" TargetType="Button">
             <Setter Property="Background" Value="#10AAB1BB" />
@@ -36,6 +36,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+        <!--Set up Tab colors, need to change current tab color-->
+        <Style x:Key="SquareTabTemplate" TargetType="TabItem">
+            <Setter Property="Background" Value="#FFE0F500"/>
+            <Setter Property="Foreground" Value="#5C2599"/>
+        </Style>
+
+        <SolidColorBrush x:Key="BrushButtonHighlight">#50612787</SolidColorBrush>
+
     </Application.Resources>
 </Application>

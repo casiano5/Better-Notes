@@ -52,11 +52,21 @@ namespace BetterNotes {
             //TODO design metadata file
         }
 
-        //TODO make a close note function that calls a object save/delete function based on user input
+        
         //TODO make a save function that calls a static save function
-        //TODO make a delete function that calls a static function to delete a note file
         //TODO make a destructor for note object after delete or save
-        //TODO make a function that saves note metadata to BetterNotes metadata files foe easy access (recent notes)
+
+        public static void ExitBetterNotes() {
+            CloseBetterNotes();
+        }
+
+        public static void CloseBetterNotes() {
+            //TODO: make a close note function that calls a object save/delete function based on user input
+            //TODO: make a delete function that calls a static function to delete a note file
+            //TODO: make a function that saves note metadata to BetterNotes metadata files foe easy access (recent notes)
+            //Call to GUI object to confirm exit/do you want to save (if yes call save on every note)
+            //Call destructors
+        }
 
     }
 
