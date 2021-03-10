@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 
-
-//TODO CREATE STATIC FINAL ENV VAR FOR WORKING DIRECTORY OF BETTERNOTES AND STORE IT SOMEWHERE
-
-
 namespace BetterNotes {
     public class Note {
         //private vars and get/sets
