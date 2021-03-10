@@ -10,27 +10,38 @@ using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Windows.Forms;
+using System.IO.Compression;
 
 namespace BetterNotes { 
     class Files
 {
         //Save button 
-        private void Save_button1_Click(object sender, EventArgs e)
+        public static void SaveFile(string fileName, string filePath)
         {
-
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //Showdialog() shows the form as a dialogbox
+            // call ArchiveFile(fileName, filePath) to archive the folder
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)// if the savefile is determined that the dialogResult is OK 
             {
-                using (Stream stream = File.Open(saveFileDialog.FileName, FileMode.Create))
+                if (!File.Exists(fileName))
                 {
-                    using (StreamWriter writer = new StreamWriter(stream))
+
+                    using (Stream stream = File.Open(saveFileDialog.FileName, FileMode.Create))
                     {
-                        //writer.Write(richTextBox1.Text);
+                        using (StreamWriter writer = new StreamWriter(fileName))
+                        {
+                            //TODO: Link this to a UI to recieve information
+                            
+                        }
                     }
                 }
+                else if (File.Exists(fileName))
+                {
+                    
+                }
             }
-        }
 
+        }
         // Select text File button 
         private void Select_File_button5_Click(object sender, EventArgs e)
         {
@@ -54,20 +65,43 @@ namespace BetterNotes {
             //System.Diagnostics.Process.Start(textBox3.Text);
         }
 
-        // opens a text file into a rich text box
-        private void Open_File_button6_Click(object sender, EventArgs e)
+        public static void OpenProgram(string archivepath, String dir)
         {
-            Stream stream;
-            OpenFileDialog openFile = new OpenFileDialog();
-            if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            using (ZipArchive archive = new ZipArchive(File.OpenRead(archivepath), ZipArchiveMode.Read))
             {
-                if ((stream = openFile.OpenFile()) != null)
+                foreach (ZipArchiveEntry entry in archive.Entries)
                 {
-                    string fileName = openFile.FileName;
-                    String file = File.ReadAllText(fileName);
-                    //richTextBox1.Text = file;
+                    UnarchiveFile(archivepath, dir);
                 }
+                //TODO: Create a Note object that returns on file open
+                //TODO: Create a Reminder object similar to the noteObject 
             }
+
+        }
+        // When the note is being closed it will show a message that will ask user if they want to save before they close the notes.
+        //TODO: Check for changes in the note
+        private static void CloseFile(string fileName, string filePath)
+        {
+
+            string directory = System.IO.Directory.GetCurrentDirectory();
+
+            DialogResult dialog = MessageBox.Show(" Do you want to save before closing", "BetterNotes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+
+            if (dialog == DialogResult.Yes)
+            {
+                SaveFile(fileName, filePath);
+                System.IO.Directory.GetParent(directory);
+
+            }
+            else if (dialog == DialogResult.No)
+            {
+                System.IO.Directory.GetParent(directory);
+
+            }
+        }
+        private static void Documentrecovery()
+        {
+
 
         }
 
