@@ -36,47 +36,61 @@
                     <TabItem x:Name="InsertVideo" Header="Insert Video" IsSelected="True" 
                          Style="{StaticResource SquareTabTemplate}">
                     <!--Possible SearchBox, needs the C# implementation-->
-                    <Grid Background="#FF393939">
-                        <TextBox Name="VideoSearchBox" Height="20" Opacity=".7"
-                                 Grid.ColumnSpan="3" IsReadOnly="True" VerticalAlignment="Top"/>
-                        <Button Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
-                                HorizontalAlignment="Right" VerticalAlignment="Top"/>
-                    </Grid>
-                </TabItem>
+                        <Grid Background="#FF393939">
+                            <TextBox Name="VideoSearchBox" Height="20" Opacity=".7"
+                                     Grid.ColumnSpan="3" IsReadOnly="True" VerticalAlignment="Top"/>
+                            <Button Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                        </Grid>
+                    </TabItem>
                 
                     <TabItem x:Name="InsertImage" Header="Insert Image"
                          Style="{StaticResource SquareTabTemplate}">
                     <!--Possible SearchBox, needs the C# implementation-->
                         <Grid Background="#FF393939">
                             <TextBox Name="ImageSearchBox" Height="20" Opacity=".7"
-                                 Grid.ColumnSpan="3" IsReadOnly="True" VerticalAlignment="Top"/>
-                        <Button Name="SearchImage" Height="20" Width="20" Background="#5C2599"
-                                HorizontalAlignment="Right" VerticalAlignment="Top"/>
-                    </Grid>
+                                     Grid.ColumnSpan="3" IsReadOnly="True" VerticalAlignment="Top"/>
+                            <Button Name="SearchImage" Height="20" Width="20" Background="#5C2599"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                        </Grid>
                     </TabItem>
+                <TabItem x:Name="Text_Speech" Header="Text-To-Speech" IsSelected="True"
+                         Style="{StaticResource SquareTabTemplate}">
+                    <Grid Background="#FF393939">
+                        <TextBox Name="TextTrans" Height="200" Background="#FFF8F9E6"
+                                 Grid.ColumnSpan="3" VerticalAlignment="Top"/>
+                        <Button x:Name="PlayText" Content="Play" Foreground="#FFF7F9CA" RenderTransformOrigin="2.153,0.467"
+                                Background="#5C2599" Margin="71,205,181.4,99.6"/>
+                        <Button x:Name="StopPlay" Content="Stop" Background="Red" RenderTransformOrigin="2.153,0.467"
+                                Foreground="#FFF7F9CA" Margin="184,205,68.4,99.6"/>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="Speech_Text" Header="Speech-To-Text" IsSelected="True"
+                         Style="{StaticResource SquareTabTemplate}">
+                    <Grid>
+                        <Button x:Name="RecordSpeech"  Margin="23,26,213.4,278.6"
+                                Content="Record" Foreground="#FFF7F9CA" Background="#5C2599"/>
+                        <Button x:Name="PlaySpeech" Content="Play" Margin="119,26,133.4,278.6"
+                                Foreground="#FFF7F9CA" Background="#5C2599" RenderTransformOrigin="2.153,0.467"/>
+                        <Button x:Name="StopRecord" Margin="201,26,51.4,278.6" RenderTransformOrigin="2.153,0.467"
+                                Content="Stop" Background="Red" Foreground="#FFF7F9CA"/>
+                        <TextBox x:Name="TransText" Margin="0,83,-0.6,34.6"
+                                 Background="#FFF8F9E6" IsReadOnly="True"/>
+                    </Grid>
+                </TabItem>
             </TabControl>
        
     </Grid>
 
         <DockPanel Grid.ColumnSpan="3" Margin="0,20,-0.4,-20.6">
             <Menu DockPanel.Dock="Top"  HorizontalAlignment="Left" VerticalAlignment="Top" 
-                  Margin="0,-22,-0.4,50" Height="19" Width="794" Background="#5C2599"
-                  Foreground="#FFE0F500" FontWeight="Bold" RenderTransformOrigin="0.502,1.616">
+                  Margin="0,-22,-0.4,50" Height="19" Width="794" Background="#FFF7F9CA"
+                  Foreground="#5C2599" FontWeight="Bold" RenderTransformOrigin="0.502,1.616">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Open"/>
                     <MenuItem Header="_Save"/>
-                    <MenuItem Header="_Edit"/>
-                    <MenuItem Header="_Exit" Click="ExitToOpen"/>
-                </MenuItem>
-                <MenuItem Header="_Reminder">
-                    <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Save"/>
-                    <MenuItem Header="_Edit"/>
-                </MenuItem>
-                <MenuItem Header="_Resources">
-                    <MenuItem Header="_Text-To-Speech"/>
-                    <MenuItem Header="_Speech-To-Text"/>
                     <MenuItem Header="_ConvertPdf"/>
+                    <MenuItem Header="_Exit" Click="ExitToOpen"/>
                 </MenuItem>
                 <MenuItem Header="_Test">
                     <MenuItem Header="SendWindowsToastNotification" Click="testWTN"/>
