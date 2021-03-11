@@ -67,11 +67,11 @@ namespace BetterNotes {
 
         public static void OpenProgram(string archivepath, String dir)
         {
-            using (ZipArchive archive = new ZipArchive(File.OpenRead(archivepath), ZipArchiveMode.Read))
+            //using (ZipArchive archive = new ZipArchive(File.OpenRead(archivepath), ZipArchiveMode.Read))
             {
-                foreach (ZipArchiveEntry entry in archive.Entries)
+                //foreach (ZipArchiveEntry entry in archive.Entries)
                 {
-                    UnarchiveFile(archivepath, dir);
+                    //UnarchiveFile(archivepath, dir);
                 }
                 //TODO: Create a Note object that returns on file open
                 //TODO: Create a Reminder object similar to the noteObject 
