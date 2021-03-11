@@ -2,7 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:BetterNotesGUI"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="Homepage.xaml">
     <Application.Resources>
         <Style x:Key="RoundButtonTemplate" TargetType="Button">
@@ -41,9 +40,8 @@
         <Style x:Key="SquareTabTemplate" TargetType="TabItem">
             <Setter Property="Background" Value="#FFF3F794"/>
             <Setter Property="Foreground" Value="#5C2599"/>
-        </Style>z
-
-        <SolidColorBrush x:Key="BrushButtonHighlight">#50612787</SolidColorBrush>
+        </Style>
+        <SolidColorBrush x:Key="BrushButtonHighlight"> #50612787 </SolidColorBrush>
 
     </Application.Resources>
 </Application>
