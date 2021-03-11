@@ -11,7 +11,7 @@ namespace BetterNotes
     {
             public static void GetSpeech(string input)
             {
-                SpeechSynthesizer reader = new SpeechSynthesizer();
+                var reader = new SpeechSynthesizer();
                 reader.SetOutputToDefaultAudioDevice();
                 reader.Speak(input);
                 reader.Dispose();
@@ -19,7 +19,7 @@ namespace BetterNotes
 
             public static void PutSpeechInFile(string input, string path)
             {
-                SpeechSynthesizer reader = new SpeechSynthesizer();
+                var reader = new SpeechSynthesizer();
                 reader.SetOutputToWaveFile(path);
                 reader.Speak(input);
                 reader.Dispose();
