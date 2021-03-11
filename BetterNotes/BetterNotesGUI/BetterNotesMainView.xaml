@@ -6,15 +6,42 @@
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
         Title="Better Notes" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
+   
     <Grid Background="#FF45474A" ShowGridLines="False">
 
-        <Grid Background="#FF45474A" Width="511" Height="491" HorizontalAlignment="Left" ShowGridLines="False" VerticalAlignment="Top" Margin="0,0,0,-20.6">
+        <Grid Background="#FF45474A" Width="511" Height="491" HorizontalAlignment="Left" 
+              ShowGridLines="False" VerticalAlignment="Top" Margin="0,0,0,-20.6">
             <RichTextBox Margin="158,58,-39,79" HorizontalAlignment="Center" VerticalAlignment="Center" Height="354" Width="392"/>
         </Grid>
         <!--Reminder Panel-->
-        <Expander HorizontalAlignment="Left" Height="450" Margin="0,20,0,0" VerticalAlignment="Top" Width="172" ExpandDirection="Down"
+        <Expander HorizontalAlignment="Left" Height="258" Width="172" 
+                  Margin="0,20,0,0" VerticalAlignment="Top" ExpandDirection="Down"
                   Header="Reminder" IsExpanded="True" Foreground="White">
-            <Grid  Background="#FF393939" Width="162" HorizontalAlignment="Left" VerticalAlignment="Top" Height="223" Margin="10,0,-1.6,0">
+            
+            <Grid Width="162"  Height="223" Margin="10,0,-1.6,0" HorizontalAlignment="Left"
+                  Background="#5C2599" VerticalAlignment="Top">
+                
+                <!--User Email-->
+                <TextBlock Margin="-10,0,9.6,0" Grid.Column="1"
+                           Foreground="#FFF7F9CA">
+                    Email
+                </TextBlock>
+                <TextBox x:Name="RemEmail" Grid.Row="1" Grid.Column="1"
+                         Margin="0,0,19.6,20" Grid.ColumnSpan="2"/>
+                <!--User Phone-->
+                <TextBlock Margin="-10,20,0,0" Grid.Row="1"
+                           Grid.Column="1" Foreground="#FFF7F9CA">
+                    Phone Number
+                </TextBlock>
+                <TextBox x:Name="RemPhone" Grid.ColumnSpan="2" Grid.Row="2"
+                         Margin="0,0,19.6,20" Grid.Column="1"/>
+                <!--Notification Date-->
+                <DatePicker x:Name="RemDate" Margin="10,0,-0.4,10.2" Grid.Row="3" 
+                            IsDropDownOpen="True" Text="" Grid.ColumnSpan="3"/>
+                <!--Set Notification Button-->
+                <Button x:Name="Set_Rem" Grid.Column="1" Margin="0,65,-1,26.2" Grid.Row="3" 
+                        Background="#FF393939" Foreground="#FFF7F9CA" Content="Set"/>
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="40"/>
@@ -26,19 +53,15 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="-10,0,9.6,0" Foreground="White" Grid.Column="1">Email</TextBlock>
-                <TextBox x:Name="RemEmail" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,0,19.6,20" Grid.Column="1"/>
-                <TextBlock Grid.Column="1" Foreground="White" Margin="-10,20,0,0" Grid.Row="1">Phone Number</TextBlock>
-                <TextBox x:Name="RemPhone" Grid.ColumnSpan="2" Grid.Row="2" Margin="0,0,19.6,20" Grid.Column="1"/>
-                <DatePicker x:Name="RemDate" Grid.Column="1" Margin="-10,0,-20,86.2" Grid.Row="3" IsDropDownOpen="True" Text=""/>
-
-                <Button x:Name="Set_Rem" Content="Set" Grid.Column="1" Margin="0,65,-1,26.2" RenderTransformOrigin="0.502,0.502" Grid.Row="3"/>
             </Grid>
         </Expander>
+
+        <!--Panel for Media Insert and Text to speech and speech to Text.-->
         <Expander Header="" IsExpanded="False" HorizontalAlignment="Right" Width="283" Height="430" VerticalAlignment="Top" Margin="0,20,-0.4,0" ExpandDirection="Left">
-            <!--Panel for Media Insert and Text to speech and speech to Text. Will possibly be an Expanding panel-->
+            
             <Grid Background="#FF393939" Width="278" Height="430" ShowGridLines="False" HorizontalAlignment="Right" Margin="0,0,-0.4,0">
-                <TabControl x:Name="InsertMedia" Background="#FF393939" Margin="9.6,2,37.4,-16.6" Grid.Column="1" Grid.RowSpan="9">
+                <TabControl x:Name="InsertMedia" Margin="9.6,2,37.4,-16.6" Grid.Column="1"
+                            Grid.RowSpan="9" Background="#FF393939">
                     <TabItem x:Name="InsertVideo" Header="Insert Video" IsSelected="True" 
                          Style="{StaticResource SquareTabTemplate}">
                         <!--Possible SearchBox, needs the C# implementation-->
