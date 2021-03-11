@@ -38,7 +38,7 @@
         </Style>
         <!--Set up Tab colors, need to change current tab color-->
         <Style x:Key="SquareTabTemplate" TargetType="TabItem">
-            <Setter Property="Background" Value="#FFE0F500"/>
+            <Setter Property="Background" Value="#FFF3F794"/>
             <Setter Property="Foreground" Value="#5C2599"/>
         </Style>
 
