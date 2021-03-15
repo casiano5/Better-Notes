@@ -115,7 +115,7 @@ namespace BetterNotes {
             TextRange range;
             FileStream fStream;
             range = new TextRange(noteContent.Document.ContentStart, noteContent.Document.ContentEnd);
-            fStream = new FileStream(this.FilePath + "\\" + this.Name, FileMode.Create);
+            fStream = new FileStream(this.FilePath + "\\note\\note", FileMode.Create);
             range.Save(fStream, DataFormats.XamlPackage);
             fStream.Close();
         }
