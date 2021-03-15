@@ -41,6 +41,7 @@ namespace BetterNotes {
             this.RemindToast = remindToast;
             this.RemindPhone = remindPhone;
             this.RemindEmail = remindEmail;
+            AddReminderMetadata();
         }
 
         //make a note/reminder object (existing file)
@@ -77,14 +78,22 @@ namespace BetterNotes {
 
         //Save note based on all values, then archive
         public void SaveNote(RichTextBox noteContent, string savePath) {
-            SaveCurrentNoteMetadata();
-            if (this.IsReminder) SaveCurrentNoteReminderMetadata();
+            SaveNoteMetadata();
+            if (this.IsReminder) SaveReminderMetadata();
             SaveRichTexBox(noteContent);
+            SaveRecentMetadata(savePath);
             Archive.ArchiveFile(this.FilePath, savePath);
         }
 
+        //Delete Note
+        public void DeleteNote() {
+            DeleteReminderMetadata();
+            DeleteRecentMetadata();
+            Directory.Delete(this.FilePath);
+        }
+
         //Save only the current note's metadata
-        public void SaveCurrentNoteMetadata() {
+        public void SaveNoteMetadata() {
             string noteMetadata =
                 this.Name + "," +
                 this.CreateUser + "," +
@@ -98,8 +107,17 @@ namespace BetterNotes {
             File.WriteAllText(this.FilePath + "\\NoteMetadata.properties", noteMetadata);
         }
 
-        //Save only the current reminder information to bnot metadata
-        public void SaveCurrentNoteReminderMetadata() {
+        //Add current reminder
+        public void AddReminderMetadata() {
+            string remindMetadata =
+                this.TimeToRemind.ToString("yyyy-MM-dd") + "," +
+                this.Name + "," +
+                Environment.NewLine;
+            File.AppendAllText(GlobalVars.BnotReminderCsv, remindMetadata);
+        }
+
+        //Edit only the current reminder information to bnot metadata
+        public void SaveReminderMetadata() {
             string remindMetadata =
                 this.TimeToRemind.ToString("yyyy-MM-dd") + "," +
                 this.Name;
@@ -107,11 +125,69 @@ namespace BetterNotes {
             using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
                 while (!reader.EndOfStream) {
                     string line = reader.ReadLine();
-                    if (line.Contains("," + this.Name)) remindCsv += remindMetadata + Environment.NewLine;
+                    if (line.Split(',')[1].Equals(this.Name)) remindCsv += remindMetadata + Environment.NewLine;
                     else { remindCsv += line + Environment.NewLine; }
                 }
             }
             File.WriteAllText(GlobalVars.BnotReminderCsv, remindCsv);
+        }
+
+        //Delete note from reminder
+        public void DeleteReminderMetadata() {
+            string remindCsv = "";
+            using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
+                while (!reader.EndOfStream) {
+                    string line = reader.ReadLine();
+                    if (!line.Split(',')[1].Equals(this.Name)) remindCsv += line + Environment.NewLine;
+                }
+            }
+            File.WriteAllText(GlobalVars.BnotReminderCsv, remindCsv);
+        }
+
+        //Add to Recent Note
+        public void AddRecentMetadata(string bnotPath) {
+            string recentMetadata =
+                this.LastModifiedDateTime.ToString("yyyy-MM-dd") + "," +
+                this.CreatedDateTime.ToString("yyyy-MM-dd") + "," +
+                this.Name + "," +
+                bnotPath + "," +
+            Environment.NewLine;
+            File.AppendAllText(GlobalVars.BnotReminderCsv, recentMetadata);
+        }
+
+        //Edit Recent Note metadata to contain current note information
+        public void SaveRecentMetadata(string bnotPath) {
+            string recentMetadata =
+                this.LastModifiedDateTime.ToString("yyyy-MM-dd") + "," +
+                this.CreatedDateTime.ToString("yyyy-MM-dd") + "," +
+                this.Name + "," +
+                bnotPath;
+            string recentCsv = "";
+            using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
+                int count = 0;
+                while (!reader.EndOfStream) {
+                    string line = reader.ReadLine();
+                    if (line.Split(',')[2].Equals(this.Name)) {
+                        recentCsv += recentMetadata + Environment.NewLine;
+                        count++;
+                    }
+                    else { recentCsv += line + Environment.NewLine; }
+                    if (count == 0) AddRecentMetadata(bnotPath);
+                }
+            }
+            File.WriteAllText(GlobalVars.BnotReminderCsv, recentCsv);
+        }
+
+        //Delete Note from recent
+        public void DeleteRecentMetadata() {
+            string recentCsv = "";
+            using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
+                while (!reader.EndOfStream) {
+                    string line = reader.ReadLine();
+                    if (!line.Split(',')[2].Equals(this.Name)) recentCsv += line + Environment.NewLine; ;
+                }
+            }
+            File.WriteAllText(GlobalVars.BnotReminderCsv, recentCsv);
         }
 
         //save only the current rtb to xaml

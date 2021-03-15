@@ -71,6 +71,7 @@
     <Compile Include="src\TextToSpeech.cs" />
     <Compile Include="src\Note.cs" />
     <Compile Include="src\SpeechToText.cs" />
+    <Compile Include="src\UserHandler.cs" />
     <Compile Include="src\Users.cs" />
     <Compile Include="src\VideoInsert.cs" />
     <Page Include="MainWindow.xaml">
