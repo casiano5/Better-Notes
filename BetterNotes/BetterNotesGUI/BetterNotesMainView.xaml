@@ -5,29 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="Better Notes" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
+        Title="Better Notes" Name="MainWindowResolution" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" SizeChanged="MainWindowResolution_SizeChanged">
+    <!-- Width= "{Binding ElementName=MainWindowResolution, Path=Width}" -->
+    <!-- <TextBox Height={Binding RelativeSource={RelativeSource FindAncestor, 
+           AncestorType={x:Type Window}}, Path=Height} /> -->
 
     <Grid Background="#FF45474A" ShowGridLines="False">
 
-        <Grid Background="#FF45474A" Width="741" Height="491" HorizontalAlignment="Left" 
-              VerticalAlignment="Top" Margin="0,0,0,-20.6">
-            <DockPanel VerticalAlignment="Center" Height="481" Margin="10,0,0.2,10" Grid.Column="1" Grid.ColumnSpan="3">
-                <RichTextBox x:Name="NoteBox" DockPanel.Dock="Left" VerticalAlignment="Center" Height="409" Margin="10,34,114.4,48" Grid.Column="1" Grid.ColumnSpan="2"/>
-            </DockPanel>
+        <!--Menu Bar-->
+        <DockPanel Margin="0,20,-0.4,-20.6">
+            <Menu x:Name="Menubar" DockPanel.Dock="Top"  HorizontalAlignment="Left" VerticalAlignment="Top" 
+                  Margin="0,-22,-0.4,50" Height="20" Width="{Binding ElementName=MainWindowResolution, Path=Width}" Background="#FFF7F9CA"
+                  Foreground="#5C2599" FontWeight="Bold" RenderTransformOrigin="0.502,1.616">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open"/>
+                    <MenuItem Header="_Save"/>
+                    <MenuItem Header="_Export (PDF)"/>
+                    <MenuItem Header="_Exit" Click="ExitToOpen"/>
+                </MenuItem>
+                <MenuItem Header="_User">
+                    <MenuItem Header="Manage Users"/>
+                </MenuItem>
+                <MenuItem Header="_Test">
+                    <MenuItem Header="SendWindowsToastNotification" Click="testWTN"/>
+                    <MenuItem Header="SendEmailNotification" Click="testEM"/>
+                    <MenuItem Header="SendPhoneNotification" Click="testPN"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <Grid HorizontalAlignment="Left" ShowGridLines="False" VerticalAlignment="Top" Margin="0,0,0,-20.6">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="137.589"/>
-                <ColumnDefinition Width="12.411"/>
+                <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
+
+            <!--HorizontalAlignment="Center" VerticalAlignment="Center"-->
+            <RichTextBox x:Name="RichNote" Margin="0,0,0,0" Width="730" Height="370"
+                         Grid.Row="1" Grid.Column="1"
+                         Grid.RowSpan="1" Grid.ColumnSpan="1"/>
+
         </Grid>
+
         <!--Reminder Panel-->
         <Expander HorizontalAlignment="Left" Height="388" Width="172" 
                   Margin="0,20,0,0" VerticalAlignment="Top" ExpandDirection="Down"
-                  Header="Reminder" IsExpanded="True" Foreground="White">
+                  Header="Reminder" IsExpanded="False" Foreground="White">
 
             <Grid Width="162"  Height="360" Margin="10,0,-1.6,0" HorizontalAlignment="Left"
-                  Background="#5C2599"  VerticalAlignment="Top">
+                  Background="#FF393939"  VerticalAlignment="Top">
                 <!--Verison
                 At&t
                 T-Mobile
@@ -76,15 +111,15 @@
                 <DatePicker x:Name="RemDate"  Margin="10,0,-0.4,10.2" Grid.Row="5" 
                              IsDropDownOpen="False" Text="" Grid.ColumnSpan="3"/>
                 <!--Reminders to Send-->
-                <TextBlock Grid.Row="6" Margin="10,0.4,19.6,110" Grid.ColumnSpan="3">
+                <TextBlock Grid.Row="6" Margin="10,0.4,19.6,110" Grid.ColumnSpan="3" Foreground="#FFF7F9CA">
                     Reminders To Set:
                 </TextBlock>
-                <CheckBox Grid.Column="1" Grid.Row="6" Content="Email" Grid.ColumnSpan="2" Margin="0,20.4,19.6,90"/>
-                <CheckBox Grid.Column="1" Grid.Row="6" Content="Phone" Grid.ColumnSpan="2" Margin="0,40.4,18.6,70"/>
-                <CheckBox Grid.Column="1" Grid.Row="6" Content="Notification" Grid.ColumnSpan="2" Margin="0,60.4,19.6,45"/>
+                <CheckBox Foreground="#FFF7F9CA" Grid.Column="1" Grid.Row="6" Content="Email" Grid.ColumnSpan="2" Margin="0,20.4,19.6,90"/>
+                <CheckBox Foreground="#FFF7F9CA" Grid.Column="1" Grid.Row="6" Content="Phone" Grid.ColumnSpan="2" Margin="0,40.4,18.6,70"/>
+                <CheckBox Foreground="#FFF7F9CA" Grid.Column="1" Grid.Row="6" Content="Notification" Grid.ColumnSpan="2" Margin="0,60.4,19.6,45"/>
                 <!--Set Notification Button-->
                 <Button x:Name="Set_Rem" Grid.Row="6" 
-                        Background="#FF393939" Foreground="#FFF7F9CA"
+                        Background="#FF45474A" Foreground="#FFF7F9CA"
                         Content="Set" Grid.ColumnSpan="2" Margin="0,85.4,9.6,10" Grid.Column="1"/>
 
 
@@ -116,10 +151,14 @@
                          Style="{StaticResource SquareTabTemplate}">
                         <!--Possible SearchBox, needs the C# implementation-->
                         <Grid Background="#FF393939" Grid.RowSpan="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="165*"/>
+                                <ColumnDefinition Width="82*"/>
+                            </Grid.ColumnDefinitions>
                             <TextBox Name="VideoSearchBox" Height="20" Opacity=".7"
-                                     Grid.ColumnSpan="3" IsReadOnly="True" VerticalAlignment="Top"/>
+                                     Grid.ColumnSpan="2" IsReadOnly="False" VerticalAlignment="Top"/>
                             <Button Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
-                                    HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                                    HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1"/>
                         </Grid>
                     </TabItem>
 
@@ -128,7 +167,7 @@
                         <!--Possible SearchBox, needs the C# implementation-->
                         <Grid Background="#FF393939">
                             <TextBox Name="ImageSearchBox" Height="20" Opacity=".7"
-                                     Grid.ColumnSpan="3" IsReadOnly="True" VerticalAlignment="Top"/>
+                                     Grid.ColumnSpan="3" IsReadOnly="False" VerticalAlignment="Top"/>
                             <Button Name="SearchImage" Height="20" Width="20" Background="#5C2599"
                                     HorizontalAlignment="Right" VerticalAlignment="Top"/>
                         </Grid>
@@ -187,28 +226,6 @@
 
             </Grid>
         </Expander>
-
-        <!--Menu Bar-->
-        <DockPanel Grid.ColumnSpan="3" Margin="0,20,-0.4,-20.6">
-            <Menu DockPanel.Dock="Top"  HorizontalAlignment="Left" VerticalAlignment="Top" 
-                  Margin="0,-22,-0.4,50" Height="19" Width="794" Background="#FFF7F9CA"
-                  Foreground="#5C2599" FontWeight="Bold" RenderTransformOrigin="0.502,1.616">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Save"/>
-                    <MenuItem Header="_ConvertPdf"/>
-                    <MenuItem Header="_Exit" Click="ExitToOpen"/>
-                </MenuItem>
-                <MenuItem Header="_User">
-                    <MenuItem Header="Test_User"/>
-                </MenuItem>
-                <MenuItem Header="_Test">
-                    <MenuItem Header="SendWindowsToastNotification" Click="testWTN"/>
-                    <MenuItem Header="SendEmailNotification" Click="testEM"/>
-                    <MenuItem Header="SendPhoneNotification" Click="testPN"/>
-                </MenuItem>
-            </Menu>
-        </DockPanel>
 
     </Grid>
 </Window>

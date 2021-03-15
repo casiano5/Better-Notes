@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using BetterNotes;
-
+using System.IO;
 
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
@@ -31,6 +31,7 @@ namespace BetterNotesGUI {
             parentWindow.Show();
             this.Close();
         }
+        
         // Add a button to a form and set some of its common properties.
         public virtual System.Windows.Forms.AnchorStyles Anchor { get; set; }
         public object Controls { get; private set; }
@@ -39,6 +40,7 @@ namespace BetterNotesGUI {
         {
             (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonUnHighLight;
         }
+        
         private void testWTN(object sender, RoutedEventArgs e) {
             NotesReminder.SendWindowsToastNotification("Test Notification");
         }
@@ -47,6 +49,21 @@ namespace BetterNotesGUI {
         }
         private void testEM(object sender, RoutedEventArgs e) {
             NotesReminder.SendPhoneEmailNotification("", "Test Reminder", "Test Reminder Body");
+        }
+
+        private void MainWindowResolution_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (MainWindowResolution.Width <= 70) RichNote.Width = 0;
+            else RichNote.Width = MainWindowResolution.Width - 70;
+
+            if (MainWindowResolution.Height <= 130) RichNote.Height = 0;
+            else RichNote.Height = MainWindowResolution.Height - 130;
+
+            Menubar.Width = MainWindowResolution.Width;
+
+            /*StreamWriter sw = new StreamWriter(@"C:\Users\Stickers\Stickers\[Downloads]\\text.txt");
+            sw.WriteLine(MainWindowResolution.Height.ToString());
+            sw.Close();*/
         }
     }
 }
