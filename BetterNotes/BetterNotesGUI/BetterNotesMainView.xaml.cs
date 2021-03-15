@@ -19,10 +19,8 @@ using System.IO;
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
         private Homepage parentWindow;
-        private UserManagement ManageUserWindow;
         public BetterNotesMainView() {
             this.parentWindow = new Homepage();
-            this.ManageUserWindow = new UserManagement();
             InitializeComponent();
         }
         public BetterNotesMainView(Homepage parentWindow) {
@@ -66,7 +64,8 @@ namespace BetterNotesGUI {
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            ManageUserWindow.Show();
+            UserManagement manageUserWindow = new UserManagement();
+            manageUserWindow.Show();
         }
     }
 }
