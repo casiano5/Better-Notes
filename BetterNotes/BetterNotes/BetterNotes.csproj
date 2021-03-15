@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Runtime" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Windows.Forms" />
@@ -66,6 +67,7 @@
     <Compile Include="dependancies\BetterNotesNotifActivator.cs" />
     <Compile Include="dependancies\GlobalVars.cs" />
     <Compile Include="src\Archive.cs" />
+    <Compile Include="src\ConvertToPdf.cs" />
     <Compile Include="src\TextToSpeech.cs" />
     <Compile Include="src\Note.cs" />
     <Compile Include="src\SpeechToText.cs" />
