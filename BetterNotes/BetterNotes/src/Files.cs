@@ -20,7 +20,7 @@ namespace BetterNotes {
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             //Showdialog() shows the form as a dialogbox
-            // call ArchiveFile(fileName, filePath) to archive the folder
+            //call ArchiveFile(fileName, filePath) to archive the folder
             if (saveFileDialog.ShowDialog() == DialogResult.OK)// if the savefile is determined that the dialogResult is OK 
             {
                 if (!File.Exists(fileName))
@@ -50,18 +50,18 @@ namespace BetterNotes {
                 file.ShowDialog();
                 //textBox2.Text = file.FileName;
             }
-           // textBox3.Text = (textBox2.Text).Replace(".txt", ".pdf");
+           //textBox3.Text = (textBox2.Text).Replace(".txt", ".pdf");
         }
 
         // Convert text file to PDF button Use the itextsharp library 
         private void Convert_button3_Click(object sender, EventArgs e)
         {
             //StreamReader reader = new StreamReader(textBox2.Text);
-            Document doc = new Document();
+            //Document doc = new Document();
             //PdfWriter.GetInstance(doc, new FileStream(textBox3.Text, FileMode.Create));
-            doc.Open();
+            //doc.Open();
             //doc.Add(new Paragraph(reader.ReadToEnd()));
-            doc.Close();
+            //doc.Close();
             //System.Diagnostics.Process.Start(textBox3.Text);
         }
 
@@ -69,7 +69,7 @@ namespace BetterNotes {
         {
             //using (ZipArchive archive = new ZipArchive(File.OpenRead(archivepath), ZipArchiveMode.Read))
             {
-                //foreach (ZipArchiveEntry entry in archive.Entries)
+               // foreach (ZipArchiveEntry entry in archive.Entries)
                 {
                     //UnarchiveFile(archivepath, dir);
                 }

@@ -1,2 +1,2 @@
-﻿Name,CreateUser,CreatedDateTime,LastModifiedDateTime,IsReminder,TimeToRemind
-SampleReminderActual,Shane,2021-01-01,2021-01-02,true,2021-03-25
+﻿Name,CreateUser,CreatedDateTime,LastModifiedDateTime,IsReminder,TimeToRemind,RemindToast,RemindPhone,RemindEmail
+SampleReminderActual,Shane,2021-01-01,2021-01-02,true,2021-03-25,true,null,null

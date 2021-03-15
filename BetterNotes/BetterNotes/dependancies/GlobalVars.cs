@@ -12,7 +12,10 @@ namespace BetterNotes {
         public readonly static string UserDir = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
         public readonly static string DocumentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public readonly static string ImageDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-        public readonly static string BnotTempDir = AppdataDir + "\\BetterNotes";
+        public readonly static string BnotWorkDir = AppdataDir + "\\BetterNotes";
+        public readonly static string BnotReminderCsv = BnotWorkDir + "\\ReminderListMetadata.properties";
+        public readonly static string BnotRecentNoteCsv = BnotWorkDir + "\\RecentNoteMetaData.properties";
+        public readonly static string BnotUsersCsv = BnotWorkDir + "\\Users.properties";
 
         //Button highlighting
         public readonly static SolidColorBrush ButtonHighLight = (SolidColorBrush) new BrushConverter().ConvertFromString("#50612787");
