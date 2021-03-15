@@ -60,10 +60,6 @@ namespace BetterNotesGUI {
             else RichNote.Height = MainWindowResolution.Height - 130;
 
             Menubar.Width = MainWindowResolution.Width;
-
-            /*StreamWriter sw = new StreamWriter(@"C:\Users\Stickers\Stickers\[Downloads]\\text.txt");
-            sw.WriteLine(MainWindowResolution.Height.ToString());
-            sw.Close();*/
         }
     }
 }
