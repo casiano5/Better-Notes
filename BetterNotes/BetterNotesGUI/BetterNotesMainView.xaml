@@ -6,47 +6,97 @@
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
         Title="Better Notes" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
-   
+
     <Grid Background="#FF45474A" ShowGridLines="False">
 
-        <Grid Background="#FF45474A" Width="511" Height="491" HorizontalAlignment="Left" 
-              ShowGridLines="False" VerticalAlignment="Top" Margin="0,0,0,-20.6">
-            <RichTextBox Margin="158,58,-39,79" HorizontalAlignment="Center" VerticalAlignment="Center" Height="354" Width="392"/>
+        <Grid Background="#FF45474A" Width="741" Height="491" HorizontalAlignment="Left" 
+              VerticalAlignment="Top" Margin="0,0,0,-20.6">
+            <DockPanel VerticalAlignment="Center" Height="481" Margin="10,0,0.2,10" Grid.Column="1" Grid.ColumnSpan="3">
+                <RichTextBox x:Name="NoteBox" DockPanel.Dock="Left" VerticalAlignment="Center" Height="409" Margin="10,34,114.4,48" Grid.Column="1" Grid.ColumnSpan="2"/>
+            </DockPanel>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="137.589"/>
+                <ColumnDefinition Width="12.411"/>
+            </Grid.ColumnDefinitions>
         </Grid>
         <!--Reminder Panel-->
-        <Expander HorizontalAlignment="Left" Height="258" Width="172" 
+        <Expander HorizontalAlignment="Left" Height="388" Width="172" 
                   Margin="0,20,0,0" VerticalAlignment="Top" ExpandDirection="Down"
                   Header="Reminder" IsExpanded="True" Foreground="White">
-            
-            <Grid Width="162"  Height="223" Margin="10,0,-1.6,0" HorizontalAlignment="Left"
-                  Background="#5C2599" VerticalAlignment="Top">
-                
+
+            <Grid Width="162"  Height="360" Margin="10,0,-1.6,0" HorizontalAlignment="Left"
+                  Background="#5C2599"  VerticalAlignment="Top">
+                <!--Verison
+                At&t
+                T-Mobile
+                Time
+                User selecter
+                user menu tab
+                //3 boxes phone email toast
+                Default font
+                text functions for uusers including checkboxes
+                global colors-->
+                <TextBlock Grid.Column="1" Foreground="#FFF7F9CA" Margin="-10,0,0,0">
+                User
+                </TextBlock>
+                <ComboBox x:Name="GetUser" Grid.ColumnSpan="2" Grid.Row="1"
+                         Margin="0,0,18.6,24.6" Grid.Column="1" FontSize="15">
+                    <ComboBoxItem Content="Select User" IsSelected="True"/>
+                </ComboBox>
                 <!--User Email-->
-                <TextBlock Margin="-10,0,9.6,0" Grid.Column="1"
-                           Foreground="#FFF7F9CA">
+                <TextBlock Margin="-10,30,0,0" Grid.Column="1"
+                           Foreground="#FFF7F9CA" Grid.Row="1">
                     Email
                 </TextBlock>
-                <TextBox x:Name="RemEmail" Grid.Row="1" Grid.Column="1"
-                         Margin="0,0,19.6,20" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="RemEmail" Grid.Row="2" Grid.Column="1"
+                         Margin="0,0,19.5,20" Grid.ColumnSpan="2"/>
                 <!--User Phone-->
-                <TextBlock Margin="-10,20,0,0" Grid.Row="1"
+                <TextBlock Margin="-10,20,0,0" Grid.Row="2"
                            Grid.Column="1" Foreground="#FFF7F9CA">
                     Phone Number
                 </TextBlock>
-                <TextBox x:Name="RemPhone" Grid.ColumnSpan="2" Grid.Row="2"
-                         Margin="0,0,19.6,20" Grid.Column="1"/>
+                <TextBox x:Name="RemPhone" Grid.ColumnSpan="2" Grid.Row="3"
+                         Margin="0,0,19.5,20" Grid.Column="1"/>
+                <!--Types of Services-->
+                <TextBlock Margin="-10,20,0,0" Grid.Row="3"
+                           Grid.Column="1" Foreground="#FFF7F9CA">
+                    Service type
+                </TextBlock>
+                <ComboBox x:Name="SerSel" Grid.ColumnSpan="2" Grid.Row="4"
+                         Margin="0,0,19,20" Grid.Column="1" FontSize="15">
+                    <ComboBoxItem Content="Select Service" IsSelected="True"/>
+                    <ComboBoxItem Content="Verison"/>
+                    <ComboBoxItem Content='Att'/>
+                    <ComboBoxItem Content="TMobile"/>
+
+                </ComboBox>
                 <!--Notification Date-->
-                <DatePicker x:Name="RemDate" Margin="10,0,-0.4,10.2" Grid.Row="3" 
-                            IsDropDownOpen="True" Text="" Grid.ColumnSpan="3"/>
+                <DatePicker x:Name="RemDate"  Margin="10,0,-0.4,10.2" Grid.Row="5" 
+                             IsDropDownOpen="False" Text="" Grid.ColumnSpan="3"/>
+                <!--Reminders to Send-->
+                <TextBlock Grid.Row="6" Margin="10,0.4,19.6,110" Grid.ColumnSpan="3">
+                    Reminders To Set:
+                </TextBlock>
+                <CheckBox Grid.Column="1" Grid.Row="6" Content="Email" Grid.ColumnSpan="2" Margin="0,20.4,19.6,90"/>
+                <CheckBox Grid.Column="1" Grid.Row="6" Content="Phone" Grid.ColumnSpan="2" Margin="0,40.4,18.6,70"/>
+                <CheckBox Grid.Column="1" Grid.Row="6" Content="Notification" Grid.ColumnSpan="2" Margin="0,60.4,19.6,45"/>
                 <!--Set Notification Button-->
-                <Button x:Name="Set_Rem" Grid.Column="1" Margin="0,65,-1,26.2" Grid.Row="3" 
-                        Background="#FF393939" Foreground="#FFF7F9CA" Content="Set"/>
+                <Button x:Name="Set_Rem" Grid.Row="6" 
+                        Background="#FF393939" Foreground="#FFF7F9CA"
+                        Content="Set" Grid.ColumnSpan="2" Margin="0,85.4,9.6,10" Grid.Column="1"/>
+
+
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
@@ -57,15 +107,15 @@
         </Expander>
 
         <!--Panel for Media Insert and Text to speech and speech to Text.-->
-        <Expander Header="" IsExpanded="False" HorizontalAlignment="Right" Width="283" Height="430" VerticalAlignment="Top" Margin="0,20,-0.4,0" ExpandDirection="Left">
-            
-            <Grid Background="#FF393939" Width="278" Height="430" ShowGridLines="False" HorizontalAlignment="Right" Margin="0,0,-0.4,0">
+        <Expander Header="" IsExpanded="False" HorizontalAlignment="Right" Width="283" Height="1118" VerticalAlignment="Top" Margin="0,20,-0.4,-667.6" ExpandDirection="Left">
+
+            <Grid VerticalAlignment="Top" Background="#FF393939" Width="278" Height="439" ShowGridLines="False" HorizontalAlignment="Right">
                 <TabControl x:Name="InsertMedia" Margin="9.6,2,37.4,-16.6" Grid.Column="1"
-                            Grid.RowSpan="9" Background="#FF393939">
+                            Grid.RowSpan="10" Background="#FF393939">
                     <TabItem x:Name="InsertVideo" Header="Insert Video" IsSelected="True" 
                          Style="{StaticResource SquareTabTemplate}">
                         <!--Possible SearchBox, needs the C# implementation-->
-                        <Grid Background="#FF393939">
+                        <Grid Background="#FF393939" Grid.RowSpan="1">
                             <TextBox Name="VideoSearchBox" Height="20" Opacity=".7"
                                      Grid.ColumnSpan="3" IsReadOnly="True" VerticalAlignment="Top"/>
                             <Button Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
@@ -128,6 +178,10 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
 
@@ -144,6 +198,9 @@
                     <MenuItem Header="_Save"/>
                     <MenuItem Header="_ConvertPdf"/>
                     <MenuItem Header="_Exit" Click="ExitToOpen"/>
+                </MenuItem>
+                <MenuItem Header="_User">
+                    <MenuItem Header="Test_User"/>
                 </MenuItem>
                 <MenuItem Header="_Test">
                     <MenuItem Header="SendWindowsToastNotification" Click="testWTN"/>

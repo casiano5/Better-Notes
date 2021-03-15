@@ -31,6 +31,14 @@ namespace BetterNotesGUI {
             parentWindow.Show();
             this.Close();
         }
+        // Add a button to a form and set some of its common properties.
+        public virtual System.Windows.Forms.AnchorStyles Anchor { get; set; }
+        public object Controls { get; private set; }
+
+        private void unHighlightButton(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonUnHighLight;
+        }
         private void testWTN(object sender, RoutedEventArgs e) {
             NotesReminder.SendWindowsToastNotification("Test Notification");
         }
