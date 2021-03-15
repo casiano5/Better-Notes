@@ -75,6 +75,7 @@ namespace BetterNotes {
             this.RemindEmail = csvIn[8];
         }
 
+        //Save note based on all values, then archive
         public void SaveNote(RichTextBox noteContent, string savePath) {
             SaveCurrentNoteMetadata();
             if (this.IsReminder) SaveCurrentNoteReminderMetadata();
@@ -82,6 +83,7 @@ namespace BetterNotes {
             Archive.ArchiveFile(this.FilePath, savePath);
         }
 
+        //Save only the current note's metadata
         public void SaveCurrentNoteMetadata() {
             string noteMetadata =
                 this.Name + "," +
@@ -96,6 +98,7 @@ namespace BetterNotes {
             File.WriteAllText(this.FilePath + "\\NoteMetadata.properties", noteMetadata);
         }
 
+        //Save only the current reminder information to bnot metadata
         public void SaveCurrentNoteReminderMetadata() {
             string remindMetadata =
                 this.TimeToRemind.ToString("yyyy-MM-dd") + "," +
@@ -111,6 +114,7 @@ namespace BetterNotes {
             File.WriteAllText(GlobalVars.BnotReminderCsv, remindCsv);
         }
 
+        //save only the current rtb to xaml
         public void SaveRichTexBox(RichTextBox noteContent) {
             TextRange range;
             FileStream fStream;
