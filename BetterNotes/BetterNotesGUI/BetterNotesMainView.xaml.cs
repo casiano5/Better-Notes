@@ -15,20 +15,25 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using BetterNotes;
 using System.IO;
+using System.ComponentModel;
+
+//TODO: Connect the buttons
+//TODO: Add an event listener, on change of richtextbox, set bool to false and prompt user if they want to save on close event.
+//TODO: Add an interrupt to normal close of the application, do not close, insetad, minimize to taskbar (for checking timer for reminders) (see minimizedview.xaml for this interaction).
 
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
-        private Homepage parentWindow;
         public BetterNotesMainView() {
-            this.parentWindow = new Homepage();
             InitializeComponent();
+            if (!WindowExists()) _ = new MinimizedView();
         }
-        public BetterNotesMainView(Homepage parentWindow) {
-            this.parentWindow = parentWindow;
-            InitializeComponent();
+        private bool WindowExists() {
+            foreach (Window element in System.Windows.Application.Current.Windows) if (element.GetType() == typeof(MinimizedView)) return true;
+            return false;
         }
         private void ExitToOpen(object sender, RoutedEventArgs e) {
-            parentWindow.Show();
+            Homepage homepageView = new Homepage();
+            homepageView.Show();
             this.Close();
         }
         
@@ -42,7 +47,7 @@ namespace BetterNotesGUI {
         }
         
         private void testWTN(object sender, RoutedEventArgs e) {
-            NotesReminder.SendWindowsToastNotification("Test Notification");
+            NotesReminder.SendWindowsToastNotification("Test Notification", "Here is some content");
         }
         private void testPN(object sender, RoutedEventArgs e) {
             NotesReminder.SendPhoneEmailNotification("", "Test Reminder", "Test Reminder Body");
@@ -61,9 +66,7 @@ namespace BetterNotesGUI {
 
             Menubar.Width = MainWindowResolution.Width;
         }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
+        private void MenuItem_Click(object sender, RoutedEventArgs e) {
             UserManagement manageUserWindow = new UserManagement();
             manageUserWindow.Show();
         }

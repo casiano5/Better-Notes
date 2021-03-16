@@ -14,29 +14,22 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using BetterNotes;
+using System.ComponentModel;
 
 namespace BetterNotesGUI {
-    /// <summary>
-    /// Interaction logic for Homepage.xaml
-    /// </summary>
     public partial class Homepage : Window {
-        BetterNotesMainView parentWindow;
         public Homepage() {
             InitializeComponent();
-            start_process();
+            if (!WindowExists()) _ = new MinimizedView();
         }
-        public Homepage(BetterNotesMainView parentWindow) {
-            this.parentWindow = parentWindow;
-            InitializeComponent();
-            start_process();
-        }
-        private void start_process() {
-            //startup process
+        private bool WindowExists() {
+            foreach (Window element in System.Windows.Application.Current.Windows) if (element.GetType() == typeof(MinimizedView)) return true;
+            return false;
         }
         private void OpenNotes(object sender, RoutedEventArgs e) {
-            BetterNotesMainView bnotView = new BetterNotesMainView(this);
+            BetterNotesMainView bnotView = new BetterNotesMainView();
             bnotView.Show();
-            this.Hide();
+            this.Close();
         }
         private void highlightButton(object sender, System.Windows.Input.MouseEventArgs e) {
             (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonHighLight;

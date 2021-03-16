@@ -2,38 +2,16 @@ using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
-using Windows.UI.Notifications;
-using Microsoft.Toolkit.Uwp.Notifications;
-using Windows.Data.Xml.Dom;
 
 namespace BetterNotes {
-    public class NotesReminder {
+    public static class NotesReminder {
+        public static System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
+
         //Windows Toast Notification
-        public static void SendWindowsToastNotification(string toastTitleContent) {
-
-            ToastContent toastContent = new ToastContent() {
-                Launch = "Action=viewConversation&conversationId=5",
-                Visual = new ToastVisual() {
-                    BindingGeneric = new ToastBindingGeneric() {
-                        Children = {
-                            new AdaptiveText() {
-                                Text = toastTitleContent
-                            }
-                        }
-                    }
-                }
-           };
-
-            /*Create XML Doc*/
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(toastContent.GetContent());
-
-           /*Populate toast based on XML Doc*/
-            var toast = new ToastNotification(xmlDoc);
-
-            /*Send Notification*/
-            ToastNotificationManager.CreateToastNotifier("MSEdge").Show(toast); //CreateToastNotifier needs application ID or it throws an exception?
-
+        public static void SendWindowsToastNotification(string title, string content) {
+            notifyIcon.BalloonTipTitle = title;
+            notifyIcon.BalloonTipText = content;
+            notifyIcon.ShowBalloonTip(10000);
         }
 
         //Email notification
@@ -65,6 +43,7 @@ namespace BetterNotes {
                 EmailSMTPService.sendMail(mailMessage);
             }
         }
+
         //Check for email func
         public static bool IsValidEmail(string email) {
             if (string.IsNullOrWhiteSpace(email))
