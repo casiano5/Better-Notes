@@ -3,19 +3,6 @@ using System.Windows;
 using BetterNotes;
 using System.IO;
 using Microsoft.Win32;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
 
 //TODO: Connect the buttons
 //TODO: Add an event listener, on change of richtextbox, set bool to false and prompt user if they want to save on close event.
@@ -86,10 +73,21 @@ namespace BetterNotesGUI {
 
         }
 
+        private void SaveCurrentNote(object sender, RoutedEventArgs e) {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.InitialDirectory = GlobalVars.DocumentDir;
+            saveFileDialog.Filter = "Better Notes Note (*.bnot)|*.bnot|All files (*.*)|*.*";
+            saveFileDialog.FilterIndex = 1;
+            saveFileDialog.RestoreDirectory = true;
+            if (saveFileDialog.ShowDialog() == true) {
+                openNote.SaveNote(RichNote, Path.GetFullPath(saveFileDialog.FileName));
+            }
+        }
+
         private void OpenExistingNote(object sender, RoutedEventArgs e) {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = GlobalVars.DocumentDir;
-            openFileDialog.Filter = "Better Notes files (*.bnot)|*.bnot|All files (*.*)|*.*";
+            openFileDialog.Filter = "Better Notes Note (*.bnot)|*.bnot|All files (*.*)|*.*";
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
             BetterNotesMainView bnotView = null;

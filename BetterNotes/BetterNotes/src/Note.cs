@@ -114,7 +114,7 @@ namespace BetterNotes {
                 this.Name + "," +
                 this.RemindPhone + "," +
                 this.RemindEmail + "," +
-                this.RemindToast.ToString() + "," +
+                this.RemindToast.ToString() +
                 Environment.NewLine;
             File.AppendAllText(GlobalVars.BnotReminderCsv, remindMetadata);
         }
@@ -134,6 +134,7 @@ namespace BetterNotes {
                     if (line.Split(',')[1].Equals(this.Name)) remindCsv += remindMetadata + Environment.NewLine;
                     else { remindCsv += line + Environment.NewLine; }
                 }
+                reader.Close();
             }
             File.WriteAllText(GlobalVars.BnotReminderCsv, remindCsv);
         }
@@ -146,6 +147,7 @@ namespace BetterNotes {
                     string line = reader.ReadLine();
                     if (!line.Split(',')[1].Equals(this.Name)) remindCsv += line + Environment.NewLine;
                 }
+                reader.Close();
             }
             File.WriteAllText(GlobalVars.BnotReminderCsv, remindCsv);
         }
@@ -156,9 +158,9 @@ namespace BetterNotes {
                 this.LastModifiedDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "," +
                 this.CreatedDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "," +
                 this.Name + "," +
-                bnotPath + "," +
+                bnotPath +
             Environment.NewLine;
-            File.AppendAllText(GlobalVars.BnotReminderCsv, recentMetadata);
+            File.AppendAllText(GlobalVars.BnotRecentNoteCsv, recentMetadata);
         }
 
         //Edit Recent Note metadata to contain current note information
@@ -169,7 +171,7 @@ namespace BetterNotes {
                 this.Name + "," +
                 bnotPath;
             string recentCsv = "";
-            using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
+            using (var reader = new StreamReader(GlobalVars.BnotRecentNoteCsv)) {
                 int count = 0;
                 while (!reader.EndOfStream) {
                     string line = reader.ReadLine();
@@ -178,8 +180,9 @@ namespace BetterNotes {
                         count++;
                     }
                     else { recentCsv += line + Environment.NewLine; }
-                    if (count == 0) AddRecentMetadata(bnotPath);
                 }
+                reader.Close();
+                if (count == 0) AddRecentMetadata(bnotPath);
             }
             File.WriteAllText(GlobalVars.BnotReminderCsv, recentCsv);
         }
@@ -192,8 +195,9 @@ namespace BetterNotes {
                     string line = reader.ReadLine();
                     if (!line.Split(',')[2].Equals(this.Name)) recentCsv += line + Environment.NewLine; ;
                 }
+                reader.Close();
             }
-            File.WriteAllText(GlobalVars.BnotReminderCsv, recentCsv);
+            File.WriteAllText(GlobalVars.BnotRecentNoteCsv, recentCsv);
         }
 
         //save only the current rtb to xaml

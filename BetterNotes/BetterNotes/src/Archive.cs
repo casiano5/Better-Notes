@@ -6,10 +6,7 @@ namespace BetterNotes {
     public static class Archive {
         public static void ArchiveFile(string folder, string savePath)
         {
-            if (File.Exists(savePath))
-            {
-                if (OverwriteFile()) File.Delete(savePath);
-            }
+            File.Delete(savePath);
             ZipFile.CreateFromDirectory(folder, savePath);
         }
 
@@ -20,13 +17,6 @@ namespace BetterNotes {
                 if (ErrorFolderExists(extractPath)) Directory.Delete(extractPath, true);
             }
             ZipFile.ExtractToDirectory(archivePath, extractPath);
-        }
-
-        public static bool OverwriteFile()
-        {
-            bool overwrite = false;
-            //TODO: CALL A UI ELEMENT ASKING THE USER IF THEY WANT TO OVERWRITE THE CURRENT FILE
-            return overwrite;
         }
 
         public static bool ErrorFolderExists(string notePath)
