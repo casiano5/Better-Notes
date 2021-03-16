@@ -18,7 +18,8 @@
                   Margin="0,-22,-0.4,50" Height="20" Width="{Binding ElementName=MainWindowResolution, Path=Width}" Background="#FFF7F9CA"
                   Foreground="#5C2599" FontWeight="Bold" RenderTransformOrigin="0.502,1.616">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Open"/>
+                    <MenuItem Header="_New" Click="NewNote"/>
+                    <MenuItem Header="_Open" Click="OpenExistingNote"/>
                     <MenuItem Header="_Save"/>
                     <MenuItem Header="_Export (PDF)" Click="ConvertToPDF"/>
                     <MenuItem Header="_Exit" Click="ExitToOpen"/>

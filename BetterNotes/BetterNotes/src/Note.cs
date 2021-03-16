@@ -50,7 +50,7 @@ namespace BetterNotes {
             string nameAndExt = testRegex.Match(currentBnotDir).Value;
             this.Name = nameAndExt.Substring(0, nameAndExt.Length - 5);
             this.FilePath = GlobalVars.BnotWorkDir + "\\" + this.Name;
-            Archive.UnarchiveFile(currentBnotDir, this.FilePath);
+            Archive.UnarchiveFile(currentBnotDir, GlobalVars.BnotWorkDir);
             List<string> csvIn = new List<string>();
             using (var reader = new StreamReader(this.FilePath + "\\NoteMetaData.properties")) {
                 while (!reader.EndOfStream) {

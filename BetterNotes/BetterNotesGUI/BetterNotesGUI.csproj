@@ -64,6 +64,9 @@
     <Compile Include="MinimizedView.xaml.cs">
       <DependentUpon>MinimizedView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewNoteDialog.xaml.cs">
+      <DependentUpon>NewNoteDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserManagement.xaml.cs">
       <DependentUpon>UserManagement.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MinimizedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewNoteDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
