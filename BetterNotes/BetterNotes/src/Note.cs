@@ -59,19 +59,15 @@ namespace BetterNotes {
                 }
             }
             this.CreateUser = csvIn[1];
-            DateTime tryCreateDate = DateTime.Now;
-            DateTime.TryParse(csvIn[2], out tryCreateDate);
+            DateTime.TryParse(csvIn[2], out DateTime tryCreateDate);
             this.CreatedDateTime = tryCreateDate;
             this.LastModifiedDateTime = DateTime.Now;
-            bool tryIsReminder = false;
-            Boolean.TryParse(csvIn[4], out tryIsReminder);
+            Boolean.TryParse(csvIn[4], out bool tryIsReminder);
             this.IsReminder = tryIsReminder;
-            DateTime tryRemindDate = DateTime.Now;
-            DateTime.TryParse(csvIn[5], out tryRemindDate);
+            DateTime.TryParse(csvIn[5], out DateTime tryRemindDate);
             this.TimeToRemind = tryRemindDate;
-            bool tryRemindToast = false;
-            Boolean.TryParse(csvIn[6], out tryRemindToast);
-            this.IsReminder = tryRemindToast;
+            Boolean.TryParse(csvIn[6], out bool tryRemindToast);
+            this.RemindToast = tryRemindToast;
             this.RemindPhone = csvIn[7];
             this.RemindEmail = csvIn[8];
         }
