@@ -97,10 +97,10 @@ namespace BetterNotes {
             string noteMetadata =
                 this.Name + "," +
                 this.CreateUser + "," +
-                this.CreatedDateTime.ToString("yyyy-MM-dd") + "," +
-                DateTime.Now.ToString("yyyy-MM-dd") + "," +
+                this.CreatedDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "," +
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "," +
                 this.IsReminder.ToString() + "," +
-                this.TimeToRemind.ToString("yyyy-MM-dd") + "," +
+                this.TimeToRemind.ToString("yyyy-MM-dd HH:mm:ss") + "," +
                 this.RemindToast.ToString() + "," +
                 this.RemindPhone + "," +
                 this.RemindEmail;
@@ -110,8 +110,11 @@ namespace BetterNotes {
         //Add current reminder
         public void AddReminderMetadata() {
             string remindMetadata =
-                this.TimeToRemind.ToString("yyyy-MM-dd") + "," +
+                this.TimeToRemind.ToString("yyyy-MM-dd HH:mm:ss") + "," +
                 this.Name + "," +
+                this.RemindPhone + "," +
+                this.RemindEmail + "," +
+                this.RemindToast.ToString() + "," +
                 Environment.NewLine;
             File.AppendAllText(GlobalVars.BnotReminderCsv, remindMetadata);
         }
@@ -119,8 +122,11 @@ namespace BetterNotes {
         //Edit only the current reminder information to bnot metadata
         public void SaveReminderMetadata() {
             string remindMetadata =
-                this.TimeToRemind.ToString("yyyy-MM-dd") + "," +
-                this.Name;
+                this.TimeToRemind.ToString("yyyy-MM-dd HH:mm:ss") + "," +
+                this.Name + "," +
+                this.RemindPhone + "," +
+                this.RemindEmail + "," +
+                this.RemindToast.ToString();
             string remindCsv = "";
             using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
                 while (!reader.EndOfStream) {
@@ -147,8 +153,8 @@ namespace BetterNotes {
         //Add to Recent Note
         public void AddRecentMetadata(string bnotPath) {
             string recentMetadata =
-                this.LastModifiedDateTime.ToString("yyyy-MM-dd") + "," +
-                this.CreatedDateTime.ToString("yyyy-MM-dd") + "," +
+                this.LastModifiedDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "," +
+                this.CreatedDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "," +
                 this.Name + "," +
                 bnotPath + "," +
             Environment.NewLine;
@@ -158,8 +164,8 @@ namespace BetterNotes {
         //Edit Recent Note metadata to contain current note information
         public void SaveRecentMetadata(string bnotPath) {
             string recentMetadata =
-                this.LastModifiedDateTime.ToString("yyyy-MM-dd") + "," +
-                this.CreatedDateTime.ToString("yyyy-MM-dd") + "," +
+                this.LastModifiedDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "," +
+                this.CreatedDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "," +
                 this.Name + "," +
                 bnotPath;
             string recentCsv = "";

@@ -9,7 +9,7 @@ namespace BetterNotes {
 
         //Windows Toast Notification
         public static void SendWindowsToastNotification(string title, string content) {
-            notifyIcon.BalloonTipTitle = title;
+            notifyIcon.BalloonTipTitle = "Reminder: " + title;
             notifyIcon.BalloonTipText = content;
             notifyIcon.ShowBalloonTip(10000);
         }
