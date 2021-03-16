@@ -1,8 +1,8 @@
 ﻿TimeToRemind,Name,phoneContact,emailContact,sendToast
 01/01/2021,SampleReminder0,null,null,false
 01/10/2021,SampleReminder1,null,null,true
-01/20/2021,SampleReminder2,null,VZW1234567890,false
+01/20/2021,SampleReminder2,VZW1234567890,null,false
 01/30/2021,SampleReminder3,null,null,true
-02/01/2021,SampleReminder4,email@domain.com,null,false
+02/01/2021,SampleReminder4,null,email@domain.com,false
 02/10/2021,SampleReminder5,null,null,true
 02/20/2021,SampleReminder6,null,null,true
