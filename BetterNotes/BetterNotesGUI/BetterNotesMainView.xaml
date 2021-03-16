@@ -5,18 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="Better Notes" Name="MainWindowResolution" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" SizeChanged="MainWindowResolution_SizeChanged">
+        Title="Better Notes" Name="MainWindowResolution" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
     <!-- Width= "{Binding ElementName=MainWindowResolution, Path=Width}" -->
     <!-- <TextBox Height={Binding RelativeSource={RelativeSource FindAncestor, 
            AncestorType={x:Type Window}}, Path=Height} /> -->
 
     <Grid Background="#FF45474A" ShowGridLines="False">
-
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
         <!--Menu Bar-->
-        <DockPanel Margin="0,20,-0.4,-20.6">
-            <Menu x:Name="Menubar" DockPanel.Dock="Top"  HorizontalAlignment="Left" VerticalAlignment="Top" 
-                  Margin="0,-22,-0.4,50" Height="20" Width="{Binding ElementName=MainWindowResolution, Path=Width}" Background="#FFF7F9CA"
-                  Foreground="#5C2599" FontWeight="Bold" RenderTransformOrigin="0.502,1.616">
+        <DockPanel>
+            <Menu x:Name="Menubar" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Height="20" Width="Auto" Background="#FFF7F9CA"
+                  Foreground="#5C2599" FontWeight="Bold">
                 <MenuItem Header="_File">
                     <MenuItem Header="_New" Click="NewNote"/>
                     <MenuItem Header="_Open" Click="OpenExistingNote"/>
@@ -26,6 +32,7 @@
                 </MenuItem>
                 <MenuItem Header="_User" Click="MenuItem_Click">
                     <MenuItem Header="Manage Users"/>
+                    <MenuItem Header="Preferences"/>
                 </MenuItem>
                 <MenuItem Header="_Test">
                     <MenuItem Header="SendWindowsToastNotification" Click="testWTN"/>
@@ -34,36 +41,94 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
+        
 
+        <DockPanel Grid.Row="1">
+            <Grid DockPanel.Dock="Top" Background="#FF45474A" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="125"/>
+                </Grid.ColumnDefinitions>
+                <RichTextBox x:Name="RichNote" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                             Grid.Row="1" Grid.Column="1" Height="Auto" Width="Auto" 
+                             SpellCheck.IsEnabled="True"/>
+                
+                <!--Select Font-->
+                <!--
+                <ComboBox x:Name="FontSelect" Grid.Column="1" Grid.Row="2" Height="30" VerticalAlignment="Top" Margin="28.6,10.2,214.6,0">
+                    <ComboBoxItem Content="Select Font"/>
+                </ComboBox>
+                -->
+                <!--Select Size-->
+                <!--
+                <ComboBox x:Name="SizeSelect" Grid.Column="1" Grid.Row="2" Height="30" 
+                          VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10.2,62.6,0" Width="60">
+                    <ComboBoxItem Content="12"/>
+                </ComboBox>
+                -->
+            </Grid>
+        </DockPanel>
+
+
+        <!--
         <Grid HorizontalAlignment="Left" ShowGridLines="False" VerticalAlignment="Top" Margin="0,0,0,-20.6">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
+        -->
 
             <!--HorizontalAlignment="Center" VerticalAlignment="Center"-->
-            <RichTextBox x:Name="RichNote" Margin="0,0,0,0" Width="730" Height="370"
+        <!--
+            <RichTextBox x:Name="RichNote" Margin="0,0,0,0" Width="Auto" Height="Auto"
+                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                          Grid.Row="1" Grid.Column="1"
-                         Grid.RowSpan="1" Grid.ColumnSpan="1"/>
+                         Grid.RowSpan="1" Grid.ColumnSpan="1"
+                         SpellCheck.IsEnabled="True"/>
 
         </Grid>
+        -->
+        
+        
 
         <!--Reminder Panel-->
-        <Expander HorizontalAlignment="Left" Height="388" Width="172" 
+        <Expander Grid.Row="1" HorizontalAlignment="Left" Height="388" Width="172" 
                   Margin="0,20,0,0" VerticalAlignment="Top" ExpandDirection="Down"
                   Header="Reminder" IsExpanded="False" Foreground="White">
 
             <Grid Width="162"  Height="360" Margin="10,0,-1.6,0" HorizontalAlignment="Left"
                   Background="#FF393939"  VerticalAlignment="Top">
+
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                
                 <!--Verison
                 At&t
                 T-Mobile
@@ -122,87 +187,15 @@
                 <Button x:Name="Set_Rem" Grid.Row="6" 
                         Background="#FF45474A" Foreground="#FFF7F9CA"
                         Content="Set" Grid.ColumnSpan="2" Margin="0,85.4,9.6,10" Grid.Column="1"/>
-
-
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="20"/>
-                </Grid.ColumnDefinitions>
             </Grid>
         </Expander>
+        
 
-        <!--Panel for Media Insert and Text to speech and speech to Text.-->
-        <Expander Header="" IsExpanded="False" HorizontalAlignment="Right" Width="283" Height="1118" VerticalAlignment="Top" Margin="0,20,-0.4,-667.6" ExpandDirection="Left">
+        <!-- Resourse Panel for Media Insert and Text to speech and speech to Text.-->
 
-            <Grid VerticalAlignment="Top" Background="#FF393939" Width="278" Height="439" ShowGridLines="False" HorizontalAlignment="Right">
-                <TabControl x:Name="InsertMedia" Margin="9.6,2,37.4,-16.6" Grid.Column="1"
-                            Grid.RowSpan="10" Background="#FF393939">
-                    <TabItem x:Name="InsertVideo" Header="Insert Video" IsSelected="True" 
-                         Style="{StaticResource SquareTabTemplate}">
-                        <!--Possible SearchBox, needs the C# implementation-->
-                        <Grid Background="#FF393939" Grid.RowSpan="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="165*"/>
-                                <ColumnDefinition Width="82*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox Name="VideoSearchBox" Height="20" Opacity=".7"
-                                     Grid.ColumnSpan="2" IsReadOnly="False" VerticalAlignment="Top"/>
-                            <Button Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
-                                    HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1"/>
-                        </Grid>
-                    </TabItem>
+        <Expander Grid.Row="1" Header="" IsExpanded="False" HorizontalAlignment="Right" Width="300" Height="Auto" VerticalAlignment="Stretch" Margin="0,20,-0.4,-667.6" ExpandDirection="Left">
 
-                    <TabItem x:Name="InsertImage" Header="Insert Image"
-                         Style="{StaticResource SquareTabTemplate}">
-                        <!--Possible SearchBox, needs the C# implementation-->
-                        <Grid Background="#FF393939">
-                            <TextBox Name="ImageSearchBox" Height="20" Opacity=".7"
-                                     Grid.ColumnSpan="3" IsReadOnly="False" VerticalAlignment="Top"/>
-                            <Button Name="SearchImage" Height="20" Width="20" Background="#5C2599"
-                                    HorizontalAlignment="Right" VerticalAlignment="Top"/>
-                        </Grid>
-                    </TabItem>
-                    <!--Text to Speech-->
-                    <TabItem x:Name="Text_Speech" Header="Text-To-Speech" IsSelected="True"
-                         Style="{StaticResource SquareTabTemplate}">
-                        <Grid Background="#FF393939" Margin="10,0,0.4,-0.4">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="39*"/>
-                                <RowDefinition Height="71*"/>
-                            </Grid.RowDefinitions>
-                            <TextBox Name="TextTrans" Height="200" Background="#FFF8F9E6" VerticalAlignment="Top" Grid.RowSpan="2"/>
-                            <Button x:Name="PlayText" Content="Play" Foreground="#FFF7F9CA" RenderTransformOrigin="2.153,0.467"
-                                Background="#5C2599" Margin="27,88.134,154,100" Grid.Row="1"/>
-                            <Button x:Name="StopPlay" Content="Stop" Background="Red" RenderTransformOrigin="2.153,0.467"
-                                Foreground="#FFF7F9CA" Margin="153,88.134,23,100" Grid.Row="1"/>
-                        </Grid>
-                    </TabItem>
-                    <!--Speech to Text-->
-                    <TabItem x:Name="Speech_Text" Header="Speech-To-Text" IsSelected="True"
-                         Style="{StaticResource SquareTabTemplate}">
-                        <Grid>
-                            <Button x:Name="RecordSpeech"  Margin="23,26,160.2,296.4"
-                                Content="Record" Foreground="#FFF7F9CA" Background="#5C2599"/>
-                            <Button x:Name="PlaySpeech" Content="Play" Margin="110,26,92.2,296.4"
-                                Foreground="#FFF7F9CA" Background="#5C2599" RenderTransformOrigin="2.153,0.467"/>
-                            <Button x:Name="StopRecord" Margin="187,26,24.2,296.4" RenderTransformOrigin="2.153,0.467"
-                                Content="Stop" Background="Red" Foreground="#FFF7F9CA"/>
-                            <TextBox x:Name="TransText" Margin="12,83,10.2,51.4"
-                                 Background="#FFF8F9E6" IsReadOnly="True"/>
-                        </Grid>
-                    </TabItem>
-                </TabControl>
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Background="#FF393939" Width="300" Height="Auto" ShowGridLines="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="300"/>
@@ -211,19 +204,77 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
+
+                <TabControl x:Name="InsertMedia" Grid.Column="1" BorderBrush="#FF393939"
+                            Grid.RowSpan="10" Background="#FF393939" Margin="10,10,10,10">
+                    <TabItem x:Name="InsertVideo" Header="Insert Video" IsSelected="True" 
+                         Style="{StaticResource SquareTabTemplate}">
+                        <!--Possible SearchBox, needs the C# implementation-->
+                        <Grid Background="#FF393939" Grid.RowSpan="1" VerticalAlignment="Stretch" Height="Auto">
+                            <TextBox x:Name="VideoSearchBox" Height="20" Opacity=".7"
+                                     Grid.ColumnSpan="3" SpellCheck.IsEnabled="True" VerticalAlignment="Top"/>
+                            <Button x:Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem x:Name="InsertImage" Header="Insert Image"
+                         Style="{StaticResource SquareTabTemplate}">
+                        <!--Possible SearchBox, needs the C# implementation-->
+                        <Grid Background="#FF393939">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="152*"/>
+                                <RowDefinition Height="279*"/>
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="ImageSearchBox" Height="20" Opacity=".7" SpellCheck.IsEnabled="True" VerticalAlignment="Top" Margin="0,0,-0.8,0"/>
+                            <Button x:Name="SearchImage" Height="20" Width="20" Background="#5C2599"
+                                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0.2,0"/>
+                        </Grid>
+                    </TabItem>
+                    <!--Text to Speech-->
+                    <TabItem x:Name="Text_Speech" Header="Text-To-Speech" IsSelected="True"
+                         Style="{StaticResource SquareTabTemplate}">
+                        <Grid Background="#FF393939" Margin="10,0,10,0" Height="Auto" ShowGridLines="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="39*"/>
+                                <RowDefinition Height="71*"/>
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="TextTrans" Grid.RowSpan="2" Margin="0,4,0.4,45.6" TextWrapping="Wrap"
+                                    Background="#FFF8F9E6" SpellCheck.IsEnabled="True" Padding="5"/>
+                            <Button x:Name="PlayText" Grid.Row="1" Height="40" Margin="33,210,148,-0.4"
+                                    Content="Play" Foreground="#FFF7F9CA" Background="#5C2599"/>
+                            <Button x:Name="StopPlay" Grid.Row="1" Height="40" Margin="144,210,32,-0.4"
+                                    Background="Red" Content="Stop" Foreground="#FFF7F9CA" />
+                        </Grid>
+                    </TabItem>
+                    <!--Speech to Text-->
+                    <TabItem x:Name="Speech_Text" Header="Speech-To-Text" IsSelected="True"
+                         Style="{StaticResource SquareTabTemplate}">
+                        <Grid VerticalAlignment="Stretch" Height="Auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="71*"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="RecordSpeech"  Margin="23,26,170,5" Height="40"
+                                Content="Record" Foreground="#FFF7F9CA" Background="#5C2599"/>
+                            <Button x:Name="PlaySpeech" Content="Play" Margin="110,26,94,5" Height="40"
+                                Foreground="#FFF7F9CA" Background="#5C2599"/>
+                            <TextBox x:Name="TransText" Grid.Row="1" Margin="5,5,2,-0.4"
+                                 Background="#FFF8F9E6" IsReadOnly="True" Padding="5"/>
+                            <Button x:Name="StopRecord" Margin="187,26,24,5" Height="40"                                Content="Stop" Background="Red" Foreground="#FFF7F9CA"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
 
             </Grid>
         </Expander>

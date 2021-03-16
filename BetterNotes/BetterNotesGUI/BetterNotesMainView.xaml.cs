@@ -1,8 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Windows.Forms;
 using BetterNotes;
 using System.IO;
-using Microsoft.Win32;
+using System.ComponentModel;
 
 //TODO: Connect the buttons
 //TODO: Add an event listener, on change of richtextbox, set bool to false and prompt user if they want to save on close event.
@@ -10,13 +23,7 @@ using Microsoft.Win32;
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
         Note openNote;
-        //TEMPORARY CONSTRUCTOR
         public BetterNotesMainView() {
-            InitializeComponent();
-            if (!WindowExists()) _ = new MinimizedView();
-        }
-        public BetterNotesMainView(Note openNote) {
-            this.openNote = openNote;
             InitializeComponent();
             if (!WindowExists()) _ = new MinimizedView();
         }
@@ -49,7 +56,7 @@ namespace BetterNotesGUI {
             NotesReminder.SendPhoneEmailNotification("", "Test Reminder", "Test Reminder Body");
         }
 
-        private void MainWindowResolution_SizeChanged(object sender, SizeChangedEventArgs e)
+        /*private void MainWindowResolution_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (MainWindowResolution.Width <= 70) RichNote.Width = 0;
             else RichNote.Width = MainWindowResolution.Width - 70;
@@ -58,11 +65,12 @@ namespace BetterNotesGUI {
             else RichNote.Height = MainWindowResolution.Height - 130;
 
             Menubar.Width = MainWindowResolution.Width;
-        }
+        }*/
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
             UserManagement manageUserWindow = new UserManagement();
             manageUserWindow.Show();
         }
+
 
         //Integration
         private void ConvertToPDF(object sender, RoutedEventArgs e) {
