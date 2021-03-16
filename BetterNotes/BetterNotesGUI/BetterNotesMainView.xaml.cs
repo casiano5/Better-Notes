@@ -22,6 +22,7 @@ using System.ComponentModel;
 
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
+        Note openNote;
         public BetterNotesMainView() {
             InitializeComponent();
             if (!WindowExists()) _ = new MinimizedView();
@@ -68,6 +69,11 @@ namespace BetterNotesGUI {
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
             UserManagement manageUserWindow = new UserManagement();
             manageUserWindow.Show();
+        }
+
+        //Integration
+        private void ConvertToPDF(object sender, RoutedEventArgs e) {
+        //    ConvertToPdf.Convert(RichNote);
         }
     }
 }

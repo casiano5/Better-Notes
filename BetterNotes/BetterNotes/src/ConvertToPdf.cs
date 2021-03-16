@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 
 namespace BetterNotes {
-    class ConvertToPdf {
+    public class ConvertToPdf {
         public static void Convert(RichTextBox noteContent) {
             PrintDialog pd = new PrintDialog();
             pd.PrintQueue = new PrintQueue(new PrintServer(), "Microsoft Print to PDF");
