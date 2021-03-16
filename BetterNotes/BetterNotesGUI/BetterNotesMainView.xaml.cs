@@ -66,7 +66,10 @@ namespace BetterNotesGUI {
         }
 
         private void NewNote(object sender, RoutedEventArgs e) {
-
+            NewNoteDialog newNoteView = new NewNoteDialog();
+            if (MessageBox.Show("Would you like to open this note in a new window?", "Open in New Window?", MessageBoxButton.YesNoCancel) == MessageBoxResult.No) this.Close();
+            newNoteView.Show();
+            //As part of the newnotedialog, create a new BetterNotesMainView with a new object passed based on parameters given
         }
 
         private void SaveCurrentNote(object sender, RoutedEventArgs e) {
