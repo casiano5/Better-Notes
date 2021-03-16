@@ -19,7 +19,6 @@ using System.ComponentModel;
 
 //TODO: Connect the buttons
 //TODO: Add an event listener, on change of richtextbox, set bool to false and prompt user if they want to save on close event.
-//TODO: Add an interrupt to normal close of the application, do not close, insetad, minimize to taskbar (for checking timer for reminders) (see minimizedview.xaml for this interaction).
 
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
