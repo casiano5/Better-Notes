@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Shapes;
 using BetterNotes;
 using System.IO;
 using Microsoft.Win32;
@@ -11,7 +10,18 @@ using Microsoft.Win32;
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
         Note openNote;
+        
+
+        //THIS IS A TEMPORARY CONSTRUCTOR, REMOVE ON COMPLETION
         public BetterNotesMainView() {
+            InitializeComponent();
+            if (!WindowExists()) _ = new MinimizedView();
+        }
+        //THIS IS A TEMPORARY CONSTRUCTOR, REMOVE ON COMPLETION
+
+
+        public BetterNotesMainView(Note openNote) {
+            this.openNote = openNote;
             InitializeComponent();
             if (!WindowExists()) _ = new MinimizedView();
         }
@@ -44,16 +54,6 @@ namespace BetterNotesGUI {
             NotesReminder.SendPhoneEmailNotification("", "Test Reminder", "Test Reminder Body");
         }
 
-        /*private void MainWindowResolution_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (MainWindowResolution.Width <= 70) RichNote.Width = 0;
-            else RichNote.Width = MainWindowResolution.Width - 70;
-
-            if (MainWindowResolution.Height <= 130) RichNote.Height = 0;
-            else RichNote.Height = MainWindowResolution.Height - 130;
-
-            Menubar.Width = MainWindowResolution.Width;
-        }*/
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
             UserManagement manageUserWindow = new UserManagement();
             manageUserWindow.Show();
