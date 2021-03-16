@@ -128,8 +128,8 @@ namespace BetterNotes {
                 this.RemindEmail + "," +
                 this.RemindToast.ToString();
             string remindCsv = "";
+            int count = 0;
             using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
-                int count = 0;
                 while (!reader.EndOfStream) {
                     string line = reader.ReadLine();
                     if (line.Split(',')[1].Equals(this.Name)) {
@@ -139,9 +139,9 @@ namespace BetterNotes {
                     else { remindCsv += line + Environment.NewLine; }
                 }
                 reader.Close();
-                if (count == 0) AddReminderMetadata();
             }
             File.WriteAllText(GlobalVars.BnotReminderCsv, remindCsv);
+            if (count == 0) AddReminderMetadata();
         }
 
         //Delete note from reminder
@@ -176,8 +176,8 @@ namespace BetterNotes {
                 this.Name + "," +
                 bnotPath;
             string recentCsv = "";
+            int count = 0;
             using (var reader = new StreamReader(GlobalVars.BnotRecentNoteCsv)) {
-                int count = 0;
                 while (!reader.EndOfStream) {
                     string line = reader.ReadLine();
                     if (line.Split(',')[2].Equals(this.Name)) {
@@ -187,9 +187,9 @@ namespace BetterNotes {
                     else { recentCsv += line + Environment.NewLine; }
                 }
                 reader.Close();
-                if (count == 0) AddRecentMetadata(bnotPath);
             }
             File.WriteAllText(GlobalVars.BnotRecentNoteCsv, recentCsv);
+            if (count == 0) AddRecentMetadata(bnotPath);
         }
 
         //Delete Note from recent
