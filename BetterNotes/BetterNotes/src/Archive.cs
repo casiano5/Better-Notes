@@ -13,12 +13,12 @@ namespace BetterNotes {
 
         public static void UnarchiveFile(string fullPath, string archivePath, string extractPath)
         {
-            if (Directory.Exists(extractPath)) {
+            if (Directory.Exists(fullPath)) {
                 if (MessageBox.Show("There is an active note of this name, overwrite?", "Delete Active Note?", MessageBoxButton.YesNo) == MessageBoxResult.Yes) {
                     Directory.Delete(fullPath, true);
-                    ZipFile.ExtractToDirectory(archivePath, extractPath);
                 }
             }
+            ZipFile.ExtractToDirectory(archivePath, extractPath);
         }     
     }
 }

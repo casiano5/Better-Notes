@@ -3,6 +3,7 @@ using System.Windows;
 using BetterNotes;
 using System.IO;
 using Microsoft.Win32;
+using System.Windows.Documents;
 
 //TODO: Connect the buttons
 //TODO: Add an event listener, on change of richtextbox, set bool to false and prompt user if they want to save on close event.
@@ -62,7 +63,7 @@ namespace BetterNotesGUI {
 
         //Integration
         private void ConvertToPDF(object sender, RoutedEventArgs e) {
-        //    ConvertToPdf.Convert(RichNote);
+            ConvertToPdf.Convert(RichNote);
         }
 
         private void NewNote(object sender, RoutedEventArgs e) {
@@ -77,6 +78,7 @@ namespace BetterNotesGUI {
             saveFileDialog.InitialDirectory = GlobalVars.DocumentDir;
             saveFileDialog.Filter = "Better Notes Note (*.bnot)|*.bnot|All files (*.*)|*.*";
             saveFileDialog.FilterIndex = 1;
+            saveFileDialog.FileName = openNote.Name;
             saveFileDialog.RestoreDirectory = true;
             if (saveFileDialog.ShowDialog() == true) {
                 openNote.SaveNote(RichNote, Path.GetFullPath(saveFileDialog.FileName));
