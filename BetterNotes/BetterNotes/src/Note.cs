@@ -50,7 +50,7 @@ namespace BetterNotes {
             string nameAndExt = testRegex.Match(currentBnotDir).Value;
             this.Name = nameAndExt.Substring(0, nameAndExt.Length - 5);
             this.FilePath = GlobalVars.BnotWorkDir + "\\" + this.Name;
-            Archive.UnarchiveFile(currentBnotDir, GlobalVars.BnotWorkDir);
+            Archive.UnarchiveFile(GlobalVars.BnotWorkDir + "\\" + this.Name, currentBnotDir, GlobalVars.BnotWorkDir);
             List<string> csvIn = new List<string>();
             using (var reader = new StreamReader(this.FilePath + "\\NoteMetaData.properties")) {
                 while (!reader.EndOfStream) {
@@ -85,7 +85,7 @@ namespace BetterNotes {
         public void DeleteNote() {
             DeleteReminderMetadata();
             DeleteRecentMetadata();
-            Directory.Delete(this.FilePath);
+            Directory.Delete(this.FilePath, true);
         }
 
         //Save only the current note's metadata

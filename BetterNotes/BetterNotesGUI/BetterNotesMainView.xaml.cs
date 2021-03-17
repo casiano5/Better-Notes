@@ -95,5 +95,13 @@ namespace BetterNotesGUI {
                 bnotView.Show();
             }
         }
+
+        private void DeleteCurrentNote(object sender, RoutedEventArgs e) {
+            if (MessageBox.Show("Are you sure you want to delete this note", "Delete Note?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes) {
+                openNote.DeleteNote();
+                openNote = null;
+                this.Close();
+            }
+        }
     }
 }
