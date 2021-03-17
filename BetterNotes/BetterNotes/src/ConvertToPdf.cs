@@ -9,7 +9,6 @@ namespace BetterNotes {
             PrintDialog pd = new PrintDialog();
             pd.PrintQueue = new PrintQueue(new PrintServer(), "Microsoft Print to PDF");
             pd.PrintDocument((((IDocumentPaginatorSource)noteContent.Document).DocumentPaginator), "Save to PDF");
-            //pd.PrintVisual(noteContent, "Save to PDF");
         }
     }
 }

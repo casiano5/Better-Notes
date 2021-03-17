@@ -3,6 +3,7 @@ using System.Windows;
 using BetterNotes;
 using System.IO;
 using Microsoft.Win32;
+using System.Windows.Controls;
 using System.Windows.Documents;
 
 //TODO: Connect the buttons
@@ -63,7 +64,18 @@ namespace BetterNotesGUI {
 
         //Integration
         private void ConvertToPDF(object sender, RoutedEventArgs e) {
-            ConvertToPdf.Convert(RichNote);
+            FlowDocument tempFlow = new FlowDocument();
+            AddDocument(RichNote.Document, tempFlow);
+            RichTextBox tempRTB = new RichTextBox(tempFlow);
+            ConvertToPdf.Convert(tempRTB);
+        }
+        private static void AddDocument(FlowDocument from, FlowDocument to) {
+            TextRange range = new TextRange(from.ContentStart, from.ContentEnd);
+            MemoryStream stream = new MemoryStream();
+            System.Windows.Markup.XamlWriter.Save(range, stream);
+            range.Save(stream, DataFormats.XamlPackage);
+            TextRange range2 = new TextRange(to.ContentEnd, to.ContentEnd);
+            range2.Load(stream, DataFormats.XamlPackage);
         }
 
         private void NewNote(object sender, RoutedEventArgs e) {
