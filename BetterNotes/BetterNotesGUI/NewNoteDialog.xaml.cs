@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace BetterNotesGUI {
     /// <summary>
@@ -19,6 +20,16 @@ namespace BetterNotesGUI {
     public partial class NewNoteDialog : Window {
         public NewNoteDialog() {
             InitializeComponent();
+        }
+
+        private void IsNote(object sender, RoutedEventArgs e) {
+            TimeToRemindBox.Visibility = Visibility.Hidden;
+            ReminderTypeBox.Visibility = Visibility.Hidden;
+        }
+
+        private void IsReminder(object sender, RoutedEventArgs e) {
+            TimeToRemindBox.Visibility = Visibility.Visible;
+            ReminderTypeBox.Visibility = Visibility.Visible;
         }
     }
 }

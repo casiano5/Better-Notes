@@ -3,10 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="NewNoteDialog" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="NewNoteDialog" Height="335" Width="300">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5">
+        <GroupBox Header="Note Name" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+            <TextBox x:Name="noteName" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
+        </GroupBox>
+        <GroupBox x:Name="Users" Header="Note Author" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+            <ComboBox HorizontalAlignment="Stretch"/>
+        </GroupBox>
+        <GroupBox Header="Note Type" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton x:Name="isNote" Content="Note" VerticalAlignment="Center" Margin="10" Checked="IsNote"/>
+                <RadioButton x:Name="isReminder" Content="Reminder" VerticalAlignment="Center" Margin="10" Checked="IsReminder"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="TimeToRemindBox" Header="When To Remind" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Hidden">
+            <xctk:DateTimePicker x:Name="TimeToRemind"/>
+        </GroupBox>
+        <GroupBox x:Name="ReminderTypeBox" Header="What Kind of Reminder To Send" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Hidden">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <CheckBox x:Name="ToastNotification" Content="Toast" HorizontalAlignment="Left" Margin="10"/>
+                <CheckBox x:Name="EmailNotification" Content="Email" HorizontalAlignment="Left" Margin="10"/>
+                <CheckBox x:Name="PhoneNotification" Content="Text Message" HorizontalAlignment="Left" Margin="10"/>
+            </StackPanel>
+        </GroupBox>
+        <Separator/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Create" Padding="10,5,10,5" Margin="10"/>
+            <Button Content="Cancel" Padding ="10,5,10,5" Margin="10"/>
+        </StackPanel>
+    </StackPanel>
 </Window>
