@@ -1,19 +1,21 @@
 using System;
 using System.Collections.Generic;
-using System.Net;
-using HtmlAgilityPack;
+using System.Threading.Tasks;
+using YoutubeExplode;
 
 namespace BetterNotes{
     class VideoInsert {
-        //TODO: Function to return embed for videos to insert into notes. (OR maybe url????????)
-        public static List<string> getVideosFromSearchTerm(string searchTerm) {
-            const string videoSearchUrl = "https://www.youtube.com/results?search_query=";
-            searchTerm = WebUtility.UrlEncode(searchTerm);
-            return getVideosFromUrl(videoSearchUrl + searchTerm);
+        public static List<string> GetVideosFromSearchTerm(string searchTerm) {
+            var task = GetVideosFromSearchTermAsync(searchTerm);
+            List<string> videoLinks = task.Result;
+            return videoLinks;
         }
-        public static List<string> getVideosFromUrl(string url) {
-            //TODO: Implement
-            return new List<string>();
+        private async static Task<List<string>> GetVideosFromSearchTermAsync(string searchTerm) {
+            List<string> videoLinks = new List<string>();
+            var youtube = new YoutubeClient();
+            var videos = await youtube.Search.GetVideosAsync(searchTerm, 1, 1);
+            foreach (var video in videos) videoLinks.Add(video.Url);
+            return videoLinks;
         }
     }
 }
