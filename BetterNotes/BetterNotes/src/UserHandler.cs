@@ -7,7 +7,16 @@ using System.Threading.Tasks;
 
 namespace BetterNotes {
     public static class UserHandler {
-        public static List<User> UserList { get; set; }
+        private static List<User> userList;
+        public static List<User> UserList {
+            get {
+                AddAllUsersInMetadata();
+                return userList;
+            }
+            set {
+                userList = value;
+            } 
+        }
         public static void AddAllUsersInMetadata() {
             List<User> userListTemp = new List<User>();
             using (var reader = new StreamReader(GlobalVars.BnotUsersCsv)) {

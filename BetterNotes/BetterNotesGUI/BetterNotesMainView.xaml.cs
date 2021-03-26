@@ -26,6 +26,17 @@ namespace BetterNotesGUI {
             this.openNote = openNote;
             InitializeComponent();
             if (!WindowExists()) _ = new MinimizedView();
+            LoadXamlPackage(openNote.FilePath + "\\note\\note");
+        }
+        void LoadXamlPackage(string _fileName) {
+            TextRange range;
+            FileStream fStream;
+            if (File.Exists(_fileName)) {
+                range = new TextRange(RichNote.Document.ContentStart, RichNote.Document.ContentEnd);
+                fStream = new FileStream(_fileName, FileMode.OpenOrCreate);
+                range.Load(fStream, DataFormats.XamlPackage);
+                fStream.Close();
+            }
         }
         private bool WindowExists() {
             foreach (Window element in System.Windows.Application.Current.Windows) if (element.GetType() == typeof(MinimizedView)) return true;

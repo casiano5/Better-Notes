@@ -46,6 +46,11 @@ namespace BetterNotes {
             this.RemindToast = remindToast;
             this.RemindPhone = remindPhone;
             this.RemindEmail = remindEmail;
+            Directory.CreateDirectory(FilePath + "\\img");
+            Directory.CreateDirectory(FilePath + "\\note");
+            Directory.CreateDirectory(FilePath + "\\speech");
+            File.Create(FilePath + "\\NoteMetadata.properties").Dispose();
+            SaveNoteMetadata();
             AddReminderMetadata();
         }
 
@@ -55,7 +60,7 @@ namespace BetterNotes {
             string nameAndExt = testRegex.Match(currentBnotDir).Value;
             this.Name = nameAndExt.Substring(0, nameAndExt.Length - 5);
             this.FilePath = GlobalVars.BnotWorkDir + "\\" + this.Name;
-            Archive.UnarchiveFile(GlobalVars.BnotWorkDir + "\\" + this.Name, currentBnotDir, GlobalVars.BnotWorkDir);
+            Archive.UnarchiveFile(GlobalVars.BnotWorkDir + "\\" + this.Name, currentBnotDir, this.FilePath);
             List<string> csvIn = new List<string>();
             using (var reader = new StreamReader(this.FilePath + "\\NoteMetaData.properties")) {
                 while (!reader.EndOfStream) {

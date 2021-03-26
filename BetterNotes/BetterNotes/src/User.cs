@@ -11,7 +11,6 @@ namespace BetterNotes {
             this.Name = name;
             this.PhoneNumber = phoneNumber;
             this.Email = email;
-            SaveUserToMetadata();
         }
 
         public void AddUserToMetadata() {
