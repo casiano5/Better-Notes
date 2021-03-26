@@ -2,15 +2,16 @@
 using System.IO;
 
 namespace BetterNotes {
-    public class Users {
+    public class User {
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
-        public Users(string name, string phoneNumber, string email) {
+        public User(string name, string phoneNumber, string email) {
             this.Name = name;
             this.PhoneNumber = phoneNumber;
             this.Email = email;
+            SaveUserToMetadata();
         }
 
         public void AddUserToMetadata() {
@@ -19,7 +20,7 @@ namespace BetterNotes {
                 this.PhoneNumber + "," +
                 this.Email + "," +
             Environment.NewLine;
-            File.AppendAllText(GlobalVars.BnotReminderCsv, userMetadata);
+            File.AppendAllText(GlobalVars.BnotUsersCsv, userMetadata);
         }
 
         public void SaveUserToMetadata() {
@@ -34,8 +35,9 @@ namespace BetterNotes {
                     if (line.Split(',')[0].Equals(this.Name)) userCsv += userMetadata + Environment.NewLine;
                     else { userCsv += line + Environment.NewLine; }
                 }
+                reader.Close();
             }
-            File.WriteAllText(GlobalVars.BnotReminderCsv, userCsv);
+            File.WriteAllText(GlobalVars.BnotUsersCsv, userCsv);
         }
 
         public void DeleteUserFromMetadata() {
@@ -46,8 +48,9 @@ namespace BetterNotes {
                     string[] temp = line.Split(',');
                     if (!line.Split(',')[0].Equals(this.Name)) userCsv += line + Environment.NewLine;
                 }
+                reader.Close();
             }
-            File.WriteAllText(GlobalVars.BnotReminderCsv, userCsv);
+            File.WriteAllText(GlobalVars.BnotUsersCsv, userCsv);
         }
     }
 }

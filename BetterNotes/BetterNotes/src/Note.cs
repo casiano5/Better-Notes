@@ -11,7 +11,7 @@ namespace BetterNotes {
         //private vars and get/sets
         public string FilePath { get; set; } //set only in case you want to move the and change property while open (renaming notes, temp directories, etc)
         public string Name { get; set; } 
-        public string CreateUser { get; set; } 
+        public User CreateUser { get; set; } 
         public DateTime CreatedDateTime { get; } //RONLY value, should not change after first creation
         public DateTime LastModifiedDateTime { get; set; }
         public bool IsReminder { get; set; }
@@ -21,16 +21,21 @@ namespace BetterNotes {
         public string RemindEmail { get; set; }
 
         //make a note object (new file)
-        public Note(string name, string createUser) {
+        public Note(string name, User createUser) {
             this.FilePath = GlobalVars.BnotWorkDir + "\\" + name;
             this.Name = name;
             this.CreateUser = createUser;
             this.CreatedDateTime = DateTime.Now;
             this.LastModifiedDateTime = DateTime.Now;
+            Directory.CreateDirectory(FilePath + "\\img");
+            Directory.CreateDirectory(FilePath + "\\note");
+            Directory.CreateDirectory(FilePath + "\\speech");
+            File.Create(FilePath + "\\NoteMetadata.properties").Dispose();
+            SaveNoteMetadata();
         }
 
         //make a reminder object
-        public Note(string name, string createUser, DateTime timeToRemind, bool remindToast, string remindEmail, string remindPhone) {
+        public Note(string name, User createUser, DateTime timeToRemind, bool remindToast, string remindEmail, string remindPhone) {
             this.FilePath = GlobalVars.BnotWorkDir + "\\" + name;
             this.Name = name;
             this.CreateUser = createUser;
@@ -58,7 +63,7 @@ namespace BetterNotes {
                     foreach (string element in line.Split(',')) csvIn.Add(element);
                 }
             }
-            this.CreateUser = csvIn[1];
+            foreach (User user in UserHandler.UserList) if (user.Name.Equals(csvIn[1])) this.CreateUser = user;
             DateTime.TryParse(csvIn[2], out DateTime tryCreateDate);
             this.CreatedDateTime = tryCreateDate;
             this.LastModifiedDateTime = DateTime.Now;
@@ -92,7 +97,7 @@ namespace BetterNotes {
         public void SaveNoteMetadata() {
             string noteMetadata =
                 this.Name + "," +
-                this.CreateUser + "," +
+                this.CreateUser.Name + "," +
                 this.CreatedDateTime.ToString("yyyy-MM-dd HH:mm:ss") + "," +
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "," +
                 this.IsReminder.ToString() + "," +
