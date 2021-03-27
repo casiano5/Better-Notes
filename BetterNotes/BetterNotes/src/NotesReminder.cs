@@ -75,7 +75,6 @@ namespace BetterNotes {
         //Check for phone func
         public static bool IsValidPhoneNumber(string number) {
             return int.TryParse(number.Substring(3), out _);
-
         }
         //append email for carrier based on original string with character (eg: VZW8314786726 becomes 8314786726@vtext.com)
         public static string ConvertPhoneToEmail(string phoneNumber) {

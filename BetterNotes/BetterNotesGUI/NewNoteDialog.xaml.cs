@@ -16,14 +16,14 @@ using BetterNotes;
 
 namespace BetterNotesGUI {
     public partial class NewNoteDialog : Window {
-        private static readonly TextBox EmailToSend = new TextBox {
+        private static TextBox EmailToSend = new TextBox {
             TextWrapping = TextWrapping.Wrap,
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Top,
             Height = Double.NaN,
             Width = Double.NaN
         };
-        private static readonly GroupBox EmailRemindBox = new GroupBox {
+        private static GroupBox EmailRemindBox = new GroupBox {
             Name = "EmailRemindBox",
             Header = "Email to Send Reminder",
             HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -32,14 +32,14 @@ namespace BetterNotesGUI {
             Width = Double.NaN,
             Content = EmailToSend
         };
-        private static readonly TextBox PhoneToSend = new TextBox {
+        private static TextBox PhoneToSend = new TextBox {
             TextWrapping = TextWrapping.Wrap,
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Top,
             Height = Double.NaN,
             Width = Double.NaN
         };
-        private static readonly GroupBox PhoneRemindBox = new GroupBox {
+        private static GroupBox PhoneRemindBox = new GroupBox {
             Name = "PhoneRemindBox",
             Header = "Phone to Send Reminder",
             HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -48,10 +48,30 @@ namespace BetterNotesGUI {
             Width = Double.NaN,
             Content = PhoneToSend
         };
+        private static ComboBox CarrierToSend = new ComboBox {
+            Name = "CarrierToSend",
+            HorizontalAlignment = HorizontalAlignment.Stretch
+        };
+        private static GroupBox CarrierBox = new GroupBox {
+            Name = "CarrierBox",
+            Header = "Carrier",
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            VerticalAlignment = VerticalAlignment.Center,
+            Height = Double.NaN,
+            Width = Double.NaN,
+            Content = CarrierToSend
+        };
 
         public NewNoteDialog() {
             InitializeComponent();
             FillUsers();
+            FillCarriers();
+        }
+
+        private void FillCarriers() {
+            CarrierToSend.Items.Add("AT&T");
+            CarrierToSend.Items.Add("T-Mobile");
+            CarrierToSend.Items.Add("Verizon");           
         }
 
         private void FillUsers() {
@@ -75,10 +95,12 @@ namespace BetterNotesGUI {
 
         private void SendPhone(object sender, RoutedEventArgs e) {
             ParentPanel.Children.Add(PhoneRemindBox);
+            ParentPanel.Children.Add(CarrierBox);
         }
 
         private void DontSendEmail(object sender, RoutedEventArgs e) {
             ParentPanel.Children.Remove(EmailRemindBox);
+            ParentPanel.Children.Remove(CarrierBox);
         }
 
         private void DontSendPhone(object sender, RoutedEventArgs e) {
@@ -92,9 +114,17 @@ namespace BetterNotesGUI {
             foreach (User user in UserHandler.UserList) if (user.Name.Equals(userSelected)) noteUser = user;
             if (isNote.IsChecked == true) bnotView = new BetterNotesMainView(new Note(noteName.Text, noteUser));
             else if (isReminder.IsChecked == true) {
+                string phoneToRemind = "";
+                //TODO: Error check phonenumbers
+                //TODO: At least one notification options should be selected
+                //TODO: Time to remind must be in the future
+                if (CarrierToSend.SelectedValue.Equals("AT&T")) phoneToRemind = "ATT";
+                if (CarrierToSend.SelectedValue.Equals("T-Mobile")) phoneToRemind = "TMO";
+                if (CarrierToSend.SelectedValue.Equals("Verizon")) phoneToRemind = "VZW";
+                phoneToRemind += PhoneToSend.Text;
                 DateTime tryTimeToRemind = DateTime.Now;
-                DateTime.TryParse(TimeToRemind.Text + ":00" , out tryTimeToRemind);
-                bnotView = new BetterNotesMainView(new Note(noteName.Text, noteUser, tryTimeToRemind, (bool)ToastNotification.IsChecked, EmailToSend.Text, PhoneToSend.Text));
+                DateTime.TryParse(TimeToRemind.Text + ":00", out tryTimeToRemind);
+                bnotView = new BetterNotesMainView(new Note(noteName.Text, noteUser, tryTimeToRemind, (bool)ToastNotification.IsChecked, EmailToSend.Text, phoneToRemind));
             }
             bnotView.Show();
             this.Close();
