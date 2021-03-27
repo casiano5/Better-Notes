@@ -106,13 +106,11 @@ namespace BetterNotesGUI {
             TextRange range2 = new TextRange(to.ContentEnd, to.ContentEnd);
             range2.Load(stream, DataFormats.XamlPackage);
         }
-
         private void NewNote(object sender, RoutedEventArgs e) {
             NewNoteDialog newNoteView = new NewNoteDialog();
             if (MessageBox.Show("Would you like to open this note in a new window?", "Open in New Window?", MessageBoxButton.YesNoCancel) == MessageBoxResult.No) this.Close();
             newNoteView.Show();
         }
-
         private void SaveCurrentNote(object sender, RoutedEventArgs e) {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.InitialDirectory = GlobalVars.DocumentDir;
@@ -125,7 +123,6 @@ namespace BetterNotesGUI {
                 this.saved = true;
             }
         }
-
         private void OpenExistingNote(object sender, RoutedEventArgs e) {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = GlobalVars.DocumentDir;
@@ -139,7 +136,6 @@ namespace BetterNotesGUI {
                 bnotView.Show();
             }
         }
-
         private void DeleteCurrentNote(object sender, RoutedEventArgs e) {
             if (MessageBox.Show("Are you sure you want to delete this note", "Delete Note?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes) {
                 openNote.DeleteNote();

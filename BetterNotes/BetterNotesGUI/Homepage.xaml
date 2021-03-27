@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="Better Notes" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B">
+        Title="Better Notes" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" ResizeMode="NoResize">
     <Grid Background="#FF45474A" ShowGridLines="False">
 
-        <Grid Background="#FF393939" Width="340" Height="1080" ShowGridLines="False" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Grid x:Name="RecentNotesGrid" Background="#FF393939" Width="340" Height="1080" ShowGridLines="False" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="300"/>
@@ -33,6 +33,7 @@
             <TextBlock Grid.Row="1" Grid.Column="1" Text="Recent"
                    Grid.ColumnSpan="2" Margin="0,0,0,0" Foreground="#FFD4D4D4"/>
 
+            <!-- created programatically here for referece, do not uncomment or remove. 
             <Button x:Name="OpenRecent1" Content="my notes 1" Grid.Row="2" Grid.Column="1" Visibility="Visible"
                 Width="300" Height="50" Style="{StaticResource SquareButtonTemplate}"
                 Margin="0,0,0,0" Click="OpenNotes" MouseEnter="highlightButton" MouseLeave="unHighlightButton"/>
@@ -51,15 +52,13 @@
             <Button x:Name="OpenRecent6" Content="my notes 6" Grid.Row="7" Grid.Column="1" Visibility="Visible"
                 Width="300" Height="50" Style="{StaticResource SquareButtonTemplate}"
                 Margin="0,0,0,0" Click="OpenNotes" MouseEnter="highlightButton" MouseLeave="unHighlightButton"/>
+            -->
         </Grid>
 
 
         <Grid Background="#FF45474A" Width="440" Height="1080" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
@@ -72,11 +71,19 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-
+            <Image Grid.Column="1" HorizontalAlignment="Stretch" Height="150" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Stretch" Width="150"/>
+            <Button x:Name="OpenNew" Content="New Note" Grid.Row="6" Grid.Column="1" Visibility="Visible"
+                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
+                Click="OpenNewClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
+            <Button x:Name="OpenExisting" Content="Open Existing Note" Grid.Row="7" Grid.Column="1" Visibility="Visible"
+                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
+                Click="OpenExistingClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
+            <Button x:Name="UserManagement" Content="User Management" Grid.Row="8" Grid.Column="1" Visibility="Visible"
+                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
+                Click="UserManagementClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
         </Grid>
     </Grid>
-
 </Window>
