@@ -123,6 +123,7 @@ namespace BetterNotes {
                 this.RemindToast.ToString() +
                 Environment.NewLine;
             File.AppendAllText(GlobalVars.BnotReminderCsv, remindMetadata);
+            NotificationHandler.RefreshList();
         }
 
         //Edit only the current reminder information to bnot metadata
@@ -148,6 +149,7 @@ namespace BetterNotes {
             }
             File.WriteAllText(GlobalVars.BnotReminderCsv, remindCsv);
             if (count == 0) AddReminderMetadata();
+            else { NotificationHandler.RefreshList(); }
         }
 
         //Delete note from reminder
@@ -161,6 +163,7 @@ namespace BetterNotes {
                 reader.Close();
             }
             File.WriteAllText(GlobalVars.BnotReminderCsv, remindCsv);
+            NotificationHandler.RefreshList();
         }
 
         //Add to Recent Note
