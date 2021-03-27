@@ -36,7 +36,7 @@ namespace BetterNotesGUI {
                     Visibility = Visibility.Visible,
                     Width = 300,
                     Height = 50,
-                    Margin = new Thickness(0, 0, 0, 0),
+                    Margin = new Thickness(0, 0, 0, 0)
                 });
                 RecentNotesButtons[i].Style = System.Windows.Application.Current.Resources["SquareButtonTemplate"] as Style;
                 Grid.SetColumn(RecentNotesButtons[i], 1);

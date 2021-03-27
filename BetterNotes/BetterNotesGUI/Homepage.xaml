@@ -30,10 +30,10 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="Recent"
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="Recent Notes"
                    Grid.ColumnSpan="2" Margin="0,0,0,0" Foreground="#FFD4D4D4"/>
 
-            <!-- created programatically here for referece, do not uncomment or remove. 
+            <!-- created programatically here for referece, do not uncomment or remove.
             <Button x:Name="OpenRecent1" Content="my notes 1" Grid.Row="2" Grid.Column="1" Visibility="Visible"
                 Width="300" Height="50" Style="{StaticResource SquareButtonTemplate}"
                 Margin="0,0,0,0" Click="OpenNotes" MouseEnter="highlightButton" MouseLeave="unHighlightButton"/>
