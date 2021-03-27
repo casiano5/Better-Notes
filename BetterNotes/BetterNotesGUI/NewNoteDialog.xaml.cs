@@ -94,8 +94,8 @@ namespace BetterNotesGUI {
         }
 
         private void SendPhone(object sender, RoutedEventArgs e) {
-            ParentPanel.Children.Add(PhoneRemindBox);
             ParentPanel.Children.Add(CarrierBox);
+            ParentPanel.Children.Add(PhoneRemindBox);
         }
 
         private void DontSendEmail(object sender, RoutedEventArgs e) {
@@ -103,8 +103,20 @@ namespace BetterNotesGUI {
         }
 
         private void DontSendPhone(object sender, RoutedEventArgs e) {
-            ParentPanel.Children.Remove(PhoneRemindBox);
             ParentPanel.Children.Remove(CarrierBox);
+            ParentPanel.Children.Remove(PhoneRemindBox);
+        }
+
+        private void FillUserInPhoneEmail(object sender, RoutedEventArgs e) {
+            foreach (User user in UserHandler.UserList) {
+                if (UserComboBox.SelectedValue.Equals(user.Name)) {
+                    EmailToSend.Text = user.Email;
+                    PhoneToSend.Text = user.PhoneNumber.Substring(3);
+                    if (user.PhoneNumber.Contains("VZW")) CarrierToSend.SelectedItem = "Verizon";
+                    if (user.PhoneNumber.Contains("ATT")) CarrierToSend.SelectedItem = "AT&T";
+                    if (user.PhoneNumber.Contains("TMO")) CarrierToSend.SelectedItem = "T-Mobile";
+                }
+            }
         }
 
         private void CreateNote(object sender, RoutedEventArgs e) {

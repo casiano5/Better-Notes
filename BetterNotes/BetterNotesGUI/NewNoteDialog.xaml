@@ -13,7 +13,7 @@
                 <TextBox x:Name="noteName" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
             </GroupBox>
             <GroupBox Header="Note Author" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
-                <ComboBox x:Name="UserComboBox" HorizontalAlignment="Stretch"/>
+                <ComboBox x:Name="UserComboBox" HorizontalAlignment="Stretch" SelectionChanged="FillUserInPhoneEmail"/>
             </GroupBox>
             <GroupBox Header="Note Type" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
