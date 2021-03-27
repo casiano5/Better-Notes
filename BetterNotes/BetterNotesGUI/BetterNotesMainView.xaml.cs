@@ -5,6 +5,7 @@ using System.IO;
 using Microsoft.Win32;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.ComponentModel;
 
 //TODO: Connect the buttons
 //TODO: Add an event listener, on change of richtextbox, set bool to false and prompt user if they want to save on close event.
@@ -12,6 +13,7 @@ using System.Windows.Documents;
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
         Note openNote;
+        bool saved = false;
         
 
         //THIS IS A TEMPORARY CONSTRUCTOR, REMOVE ON COMPLETION
@@ -72,6 +74,22 @@ namespace BetterNotesGUI {
             manageUserWindow.Show();
         }
 
+        //Error Check
+        private void TextChange(object sender, RoutedEventArgs e) {
+            this.saved = false;
+        }
+
+        private void OnCloseNote(object sender, CancelEventArgs e) {
+            if (!this.saved) {
+                var msgResult = MessageBox.Show("Do you want to save the current note changes?", "Save Current Note", MessageBoxButton.YesNoCancel);
+                if (msgResult == MessageBoxResult.Yes) SaveCurrentNote(sender, new RoutedEventArgs());
+                if (msgResult == MessageBoxResult.Cancel) {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+            if (Directory.Exists(openNote.FilePath)) Directory.Delete(openNote.FilePath);
+        }
 
         //Integration
         private void ConvertToPDF(object sender, RoutedEventArgs e) {
@@ -93,7 +111,6 @@ namespace BetterNotesGUI {
             NewNoteDialog newNoteView = new NewNoteDialog();
             if (MessageBox.Show("Would you like to open this note in a new window?", "Open in New Window?", MessageBoxButton.YesNoCancel) == MessageBoxResult.No) this.Close();
             newNoteView.Show();
-            //As part of the newnotedialog, create a new BetterNotesMainView with a new object passed based on parameters given
         }
 
         private void SaveCurrentNote(object sender, RoutedEventArgs e) {
@@ -105,6 +122,7 @@ namespace BetterNotesGUI {
             saveFileDialog.RestoreDirectory = true;
             if (saveFileDialog.ShowDialog() == true) {
                 openNote.SaveNote(RichNote, Path.GetFullPath(saveFileDialog.FileName));
+                this.saved = true;
             }
         }
 
@@ -115,6 +133,7 @@ namespace BetterNotesGUI {
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
             BetterNotesMainView bnotView = null;
+            if (MessageBox.Show("Would you like to open this note in a new window?", "Open in New Window?", MessageBoxButton.YesNoCancel) == MessageBoxResult.No) this.Close();
             if (openFileDialog.ShowDialog() == true) {
                 bnotView = new BetterNotesMainView(new Note(openFileDialog.FileName));
                 bnotView.Show();
