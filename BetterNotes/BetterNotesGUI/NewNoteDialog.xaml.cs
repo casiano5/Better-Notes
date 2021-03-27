@@ -100,11 +100,11 @@ namespace BetterNotesGUI {
 
         private void DontSendEmail(object sender, RoutedEventArgs e) {
             ParentPanel.Children.Remove(EmailRemindBox);
-            ParentPanel.Children.Remove(CarrierBox);
         }
 
         private void DontSendPhone(object sender, RoutedEventArgs e) {
             ParentPanel.Children.Remove(PhoneRemindBox);
+            ParentPanel.Children.Remove(CarrierBox);
         }
 
         private void CreateNote(object sender, RoutedEventArgs e) {
