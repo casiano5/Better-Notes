@@ -7,6 +7,7 @@ namespace BetterNotesGUI {
     public partial class MinimizedView : Window {
         public MinimizedView() {
             InitializeComponent();
+            NotificationHandler.RefreshList();
             CreateTaskBarIcon();
             this.Hide();
         }
