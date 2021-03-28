@@ -135,20 +135,34 @@ namespace BetterNotesGUI {
             else if (isReminder.IsChecked == true) {
                 if (!ErrorCheckReminderCreate()) return;
                 string phoneToRemind = "";
-
+                string emailToRemind = "";
                 //TODO: Error check phonenumbers
 
-                if (CarrierToSend.SelectedValue.Equals("AT&T")) phoneToRemind = "ATT";
-                if (CarrierToSend.SelectedValue.Equals("T-Mobile")) phoneToRemind = "TMO";
-                if (CarrierToSend.SelectedValue.Equals("Verizon")) phoneToRemind = "VZW";
-                phoneToRemind += PhoneToSend.Text;
+
                 DateTime tryTimeToRemind = DateTime.Now;
                 DateTime.TryParse(TimeToRemind.Text + ":00", out tryTimeToRemind);
                 if (DateTime.Now >= tryTimeToRemind) {
                     System.Windows.MessageBox.Show("Please select a time in the future for time to remind", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                bnotView = new BetterNotesMainView(new Note(noteName.Text, noteUser, tryTimeToRemind, (bool)ToastNotification.IsChecked, EmailToSend.Text, phoneToRemind));
+                if (PhoneNotification.IsChecked == true) {
+                    if (CarrierToSend.SelectedValue.Equals("AT&T")) phoneToRemind = "ATT";
+                    if (CarrierToSend.SelectedValue.Equals("T-Mobile")) phoneToRemind = "TMO";
+                    if (CarrierToSend.SelectedValue.Equals("Verizon")) phoneToRemind = "VZW";
+                    phoneToRemind += PhoneToSend.Text;
+                    if (!NotesReminder.IsValidPhoneNumber(phoneToRemind)) {
+                        System.Windows.MessageBox.Show("Phone number is not valid, please enter only numbers", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
+                if (PhoneNotification.IsChecked == true) {
+                    emailToRemind = EmailToSend.Text;
+                    if (!NotesReminder.IsValidEmail(emailToRemind)) {
+                        System.Windows.MessageBox.Show("Email is not valid, please use the following format \n example@domain.com", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
+                bnotView = new BetterNotesMainView(new Note(noteName.Text, noteUser, tryTimeToRemind, (bool)ToastNotification.IsChecked, emailToRemind, phoneToRemind));
             }
             if (parentWindow != null) parentWindow.Close();
             bnotView.Show();
