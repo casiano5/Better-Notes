@@ -9,13 +9,15 @@ namespace BetterNotes {
 
         public static void RefreshList() {
             using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
+                List<TimerHandler> tempTimerList = new List<TimerHandler>();
                 while (!reader.EndOfStream) {
                     string line = reader.ReadLine();
                     string[] temp = line.Split(',');
                     DateTime.TryParse(temp[0], out DateTime tryDateTime);
                     Boolean.TryParse(temp[4], out bool trySendToast);
-                    timerList.Add(new TimerHandler(temp[1], tryDateTime, temp[2], temp[3], trySendToast));
+                    if (tryDateTime > DateTime.Now) tempTimerList.Add(new TimerHandler(temp[1], tryDateTime, temp[2], temp[3], trySendToast));
                 }
+                timerList = tempTimerList;
             }
             SetTimers();
         }
@@ -46,14 +48,12 @@ namespace BetterNotes {
 
         public void Start() {
             timer = new Timer((int)(timeToRemind - DateTime.Now).TotalMilliseconds);
-            timer.Interval = 1000;
-            timer.Enabled = false;
+            timer.Interval = (int)(timeToRemind - DateTime.Now).TotalMilliseconds;
+            timer.Enabled = true;
             timer.Elapsed += new ElapsedEventHandler(SendNotification);
-            System.Windows.MessageBox.Show("Timer event created", "It works, somehow", System.Windows.MessageBoxButton.OK);
         }
 
         public void SendNotification(object sender, ElapsedEventArgs e) {
-            System.Windows.MessageBox.Show("Timer event fired", "It works, somehow", System.Windows.MessageBoxButton.OK);
             if (!(emailContact.Equals("null") || emailContact.Equals("") || emailContact == null)) NotesReminder.SendPhoneEmailNotification(emailContact, this.name, this.reminderBody);
             if (!(phoneContact.Equals("null") || phoneContact.Equals("") || phoneContact == null)) NotesReminder.SendPhoneEmailNotification(phoneContact, this.name, this.reminderBody);
             if (sendToast) NotesReminder.SendWindowsToastNotification(this.name, this.reminderBody);
