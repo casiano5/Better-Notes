@@ -178,7 +178,7 @@ namespace BetterNotesGUI {
         }
 
         private bool ErrorCheckReminderCreate() {
-            if (TimeToRemind.Text.Equals("")) {
+            if (TimeToRemind.Text == null) {
                 System.Windows.MessageBox.Show("Please choose a time to remind", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
