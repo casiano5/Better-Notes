@@ -14,16 +14,6 @@ namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
         Note openNote;
         bool saved = false;
-        
-
-        //THIS IS A TEMPORARY CONSTRUCTOR, REMOVE ON COMPLETION
-        public BetterNotesMainView() {
-            InitializeComponent();
-            if (!WindowExists()) _ = new MinimizedView();
-        }
-        //THIS IS A TEMPORARY CONSTRUCTOR, REMOVE ON COMPLETION
-
-
         public BetterNotesMainView(Note openNote) {
             this.openNote = openNote;
             InitializeComponent();
@@ -107,9 +97,16 @@ namespace BetterNotesGUI {
             range2.Load(stream, DataFormats.XamlPackage);
         }
         private void NewNote(object sender, RoutedEventArgs e) {
-            NewNoteDialog newNoteView = new NewNoteDialog();
-            if (MessageBox.Show("Would you like to open this note in a new window?", "Open in New Window?", MessageBoxButton.YesNoCancel) == MessageBoxResult.No) this.Close();
-            newNoteView.Show();
+            NewNoteDialog newNoteView = null;
+            var msgResult = MessageBox.Show("Would you like to open this note in a new window?", "Open in New Window?", MessageBoxButton.YesNoCancel);
+            if (msgResult == MessageBoxResult.No) {
+                newNoteView = new NewNoteDialog(this);
+                newNoteView.Show();
+            }
+            else if (msgResult == MessageBoxResult.Yes) {
+                newNoteView = new NewNoteDialog();
+                newNoteView.Show();
+            }
         }
         private void SaveCurrentNote(object sender, RoutedEventArgs e) {
             SaveFileDialog saveFileDialog = new SaveFileDialog();

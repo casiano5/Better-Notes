@@ -65,9 +65,8 @@ namespace BetterNotesGUI {
             (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonUnHighLight;
         }
         private void OpenNewClick(object sender, RoutedEventArgs e) {
-            NewNoteDialog newView = new NewNoteDialog();
+            NewNoteDialog newView = new NewNoteDialog(this);
             newView.Show();
-            this.Close();
         }
         private void OpenExistingClick(object sender, RoutedEventArgs e) {
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();

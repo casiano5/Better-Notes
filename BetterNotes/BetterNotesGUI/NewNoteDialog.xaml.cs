@@ -13,9 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Xceed.Wpf.Toolkit;
 using BetterNotes;
+using System.IO;
 
 namespace BetterNotesGUI {
     public partial class NewNoteDialog : Window {
+        Window parentWindow = null;
         private static TextBox EmailToSend = new TextBox {
             TextWrapping = TextWrapping.Wrap,
             HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -66,6 +68,12 @@ namespace BetterNotesGUI {
             InitializeComponent();
             FillUsers();
             FillCarriers();
+        }
+        public NewNoteDialog(Window parentWindow) {
+            InitializeComponent();
+            FillUsers();
+            FillCarriers();
+            this.parentWindow = parentWindow;
         }
 
         private void FillCarriers() {
@@ -120,12 +128,14 @@ namespace BetterNotesGUI {
         }
 
         private void CreateNote(object sender, RoutedEventArgs e) {
+            if (!ErrorCheckNoteCreate()) return;
             User noteUser = null;
             BetterNotesMainView bnotView = null;
             string userSelected = (string)UserComboBox.SelectedValue;
             foreach (User user in UserHandler.UserList) if (user.Name.Equals(userSelected)) noteUser = user;
             if (isNote.IsChecked == true) bnotView = new BetterNotesMainView(new Note(noteName.Text, noteUser));
             else if (isReminder.IsChecked == true) {
+                if (!ErrorCheckReminderCreate()) return;
                 string phoneToRemind = "";
                 //TODO: Error check phonenumbers
                 //TODO: At least one notification options should be selected
@@ -138,12 +148,53 @@ namespace BetterNotesGUI {
                 DateTime.TryParse(TimeToRemind.Text + ":00", out tryTimeToRemind);
                 bnotView = new BetterNotesMainView(new Note(noteName.Text, noteUser, tryTimeToRemind, (bool)ToastNotification.IsChecked, EmailToSend.Text, phoneToRemind));
             }
+            if (parentWindow != null) parentWindow.Close();
             bnotView.Show();
             this.Close();
         }
 
         private void CancelCreate(object sender, RoutedEventArgs e) {
             this.Close();
+        }
+
+        private bool ErrorCheckNoteCreate() {
+            if (noteName.Text.Equals("")) {
+                System.Windows.MessageBox.Show("Please choose a Note Name", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (Directory.Exists(GlobalVars.BnotWorkDir + "\\" + noteName.Text)) {
+                System.Windows.MessageBox.Show("Note already exists (is it already open?)", "Create error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (UserComboBox.SelectedValue == null || UserComboBox.SelectedValue.Equals("")) {
+                System.Windows.MessageBox.Show("Please choose a Note Author", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if ((isNote.IsChecked == true && isReminder.IsChecked == true) || (isNote.IsChecked == false && isReminder.IsChecked == false)) {
+                System.Windows.MessageBox.Show("Please indicate if creating item is a note or a reminder", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private bool ErrorCheckReminderCreate() {
+            if (TimeToRemind.Text.Equals("")) {
+                System.Windows.MessageBox.Show("Please choose a time to remind", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (ToastNotification.IsChecked == false && PhoneNotification.IsChecked == false && EmailNotification.IsChecked == false) {
+                System.Windows.MessageBox.Show("Please select at least one notification method", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (PhoneNotification.IsChecked == true && (CarrierToSend.SelectedItem == null || CarrierToSend.SelectedItem.Equals("") || PhoneToSend.Text.Equals(""))) {
+                System.Windows.MessageBox.Show("Please input phone contact information", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (EmailNotification.IsChecked == true && EmailToSend.Text.Equals("")) {
+                System.Windows.MessageBox.Show("Please input email contact information", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
         }
     }
 }
