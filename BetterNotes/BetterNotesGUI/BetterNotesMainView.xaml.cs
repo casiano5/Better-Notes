@@ -88,7 +88,7 @@ namespace BetterNotesGUI {
                     return;
                 }
             }
-            if (Directory.Exists(openNote.FilePath)) Directory.Delete(openNote.FilePath);
+            if (Directory.Exists(openNote.FilePath)) Directory.Delete(openNote.FilePath, true);
         }
 
         //Integration
