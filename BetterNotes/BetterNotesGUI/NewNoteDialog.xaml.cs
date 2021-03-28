@@ -136,9 +136,6 @@ namespace BetterNotesGUI {
                 if (!ErrorCheckReminderCreate()) return;
                 string phoneToRemind = "";
                 string emailToRemind = "";
-                //TODO: Error check phonenumbers
-
-
                 DateTime tryTimeToRemind = DateTime.Now;
                 DateTime.TryParse(TimeToRemind.Text + ":00", out tryTimeToRemind);
                 if (DateTime.Now >= tryTimeToRemind) {

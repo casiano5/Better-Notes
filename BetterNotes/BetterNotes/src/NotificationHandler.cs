@@ -46,10 +46,14 @@ namespace BetterNotes {
 
         public void Start() {
             timer = new Timer((int)(timeToRemind - DateTime.Now).TotalMilliseconds);
+            timer.Interval = 1000;
+            timer.Enabled = false;
             timer.Elapsed += new ElapsedEventHandler(SendNotification);
+            System.Windows.MessageBox.Show("Timer event created", "It works, somehow", System.Windows.MessageBoxButton.OK);
         }
 
         public void SendNotification(object sender, ElapsedEventArgs e) {
+            System.Windows.MessageBox.Show("Timer event fired", "It works, somehow", System.Windows.MessageBoxButton.OK);
             if (!(emailContact.Equals("null") || emailContact.Equals("") || emailContact == null)) NotesReminder.SendPhoneEmailNotification(emailContact, this.name, this.reminderBody);
             if (!(phoneContact.Equals("null") || phoneContact.Equals("") || phoneContact == null)) NotesReminder.SendPhoneEmailNotification(phoneContact, this.name, this.reminderBody);
             if (sendToast) NotesReminder.SendWindowsToastNotification(this.name, this.reminderBody);
