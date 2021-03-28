@@ -6,14 +6,12 @@ using System.Net.Mail;
 namespace BetterNotes {
     public static class NotesReminder {
         public static System.Windows.Forms.NotifyIcon notifyIcon = new System.Windows.Forms.NotifyIcon();
-
         //Windows Toast Notification
         public static void SendWindowsToastNotification(string title, string content) {
             notifyIcon.BalloonTipTitle = "Reminder: " + title;
             notifyIcon.BalloonTipText = content;
             notifyIcon.ShowBalloonTip(10000);
         }
-
         //Email notification
         public static void SendPhoneEmailNotification(string contactInformation, string reminderTitle, string reminderBody) {
             if (IsValidEmail(contactInformation)) {
@@ -28,7 +26,6 @@ namespace BetterNotes {
                 mailMessage.To.Add(contactInformation);
                 EmailSMTPService.sendMail(mailMessage);
             }
-
             if (IsValidPhoneNumber(contactInformation)) {
                 string email = ConvertPhoneToEmail(contactInformation);
                 var mailMessage = new MailMessage
@@ -43,7 +40,6 @@ namespace BetterNotes {
                 EmailSMTPService.sendMail(mailMessage);
             }
         }
-
         //Check for email func
         public static bool IsValidEmail(string email) {
             if (string.IsNullOrWhiteSpace(email))
@@ -71,7 +67,6 @@ namespace BetterNotes {
                 return false;
             }
         }
-
         //Check for phone func
         public static bool IsValidPhoneNumber(string number) {
             return int.TryParse(number.Substring(3), out _);

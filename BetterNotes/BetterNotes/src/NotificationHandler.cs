@@ -6,7 +6,6 @@ using System.Timers;
 namespace BetterNotes {
     public static class NotificationHandler {
         private static List<TimerHandler> timerList = new List<TimerHandler>();
-
         public static void RefreshList() {
             using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
                 List<TimerHandler> tempTimerList = new List<TimerHandler>();
@@ -21,7 +20,6 @@ namespace BetterNotes {
             }
             SetTimers();
         }
-
         public static void SetTimers() {
             foreach (TimerHandler element in timerList) {
                 element.Start();
@@ -45,14 +43,12 @@ namespace BetterNotes {
             this.sendToast = sendToast;
             this.reminderBody = "Reminder for your note: " + name;
         }
-
         public void Start() {
             timer = new Timer((int)(timeToRemind - DateTime.Now).TotalMilliseconds);
             timer.Interval = (int)(timeToRemind - DateTime.Now).TotalMilliseconds;
             timer.Enabled = true;
             timer.Elapsed += new ElapsedEventHandler(SendNotification);
         }
-
         public void SendNotification(object sender, ElapsedEventArgs e) {
             if (!(emailContact.Equals("null") || emailContact.Equals("") || emailContact == null)) NotesReminder.SendPhoneEmailNotification(emailContact, this.name, this.reminderBody);
             if (!(phoneContact.Equals("null") || phoneContact.Equals("") || phoneContact == null)) NotesReminder.SendPhoneEmailNotification(phoneContact, this.name, this.reminderBody);

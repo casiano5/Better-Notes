@@ -6,13 +6,11 @@ namespace BetterNotes {
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-
         public User(string name, string phoneNumber, string email) {
             this.Name = name;
             this.PhoneNumber = phoneNumber;
             this.Email = email;
         }
-
         public void AddUserToMetadata() {
             string userMetadata =
                 this.Name + "," +
@@ -21,7 +19,6 @@ namespace BetterNotes {
             Environment.NewLine;
             File.AppendAllText(GlobalVars.BnotUsersCsv, userMetadata);
         }
-
         public void SaveUserToMetadata() {
             string userMetadata =
                 this.Name + "," + 
@@ -38,7 +35,6 @@ namespace BetterNotes {
             }
             File.WriteAllText(GlobalVars.BnotUsersCsv, userCsv);
         }
-
         public void DeleteUserFromMetadata() {
             string userCsv = "";
             using (var reader = new StreamReader(GlobalVars.BnotUsersCsv)) {

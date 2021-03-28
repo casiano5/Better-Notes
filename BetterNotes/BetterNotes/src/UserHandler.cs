@@ -13,9 +13,7 @@ namespace BetterNotes {
                 AddAllUsersInMetadata();
                 return userList;
             }
-            set {
-                userList = value;
-            } 
+            set {userList = value;} 
         }
         public static void AddAllUsersInMetadata() {
             List<User> userListTemp = new List<User>();
