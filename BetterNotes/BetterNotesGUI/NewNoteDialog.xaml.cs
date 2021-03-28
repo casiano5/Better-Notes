@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Xceed.Wpf.Toolkit;
 using BetterNotes;
 using System.IO;
+using System.ComponentModel;
 
 namespace BetterNotesGUI {
     public partial class NewNoteDialog : Window {
@@ -63,7 +64,6 @@ namespace BetterNotesGUI {
             Width = Double.NaN,
             Content = CarrierToSend
         };
-
         public NewNoteDialog() {
             InitializeComponent();
             FillUsers();
@@ -75,46 +75,45 @@ namespace BetterNotesGUI {
             FillCarriers();
             this.parentWindow = parentWindow;
         }
-
         private void FillCarriers() {
             CarrierToSend.Items.Add("AT&T");
             CarrierToSend.Items.Add("T-Mobile");
             CarrierToSend.Items.Add("Verizon");           
         }
-
         private void FillUsers() {
             UserHandler.AddAllUsersInMetadata();
             foreach (User user in UserHandler.UserList) UserComboBox.Items.Add(user.Name);
         }
-
         private void IsNote(object sender, RoutedEventArgs e) {
             TimeToRemindBox.Visibility = Visibility.Hidden;
             ReminderTypeBox.Visibility = Visibility.Hidden;
+            if (PhoneNotification.IsChecked == true) {
+                DontSendPhone(sender, new RoutedEventArgs());
+                PhoneNotification.IsChecked = false;
+            }
+            if (EmailNotification.IsChecked == true) {
+                DontSendEmail(sender, new RoutedEventArgs());
+                EmailNotification.IsChecked = false;
+            }
         }
-
         private void IsReminder(object sender, RoutedEventArgs e) {
             TimeToRemindBox.Visibility = Visibility.Visible;
             ReminderTypeBox.Visibility = Visibility.Visible;
         }
-
         private void SendEmail(object sender, RoutedEventArgs e) {
             ParentPanel.Children.Add(EmailRemindBox);
         }
-
         private void SendPhone(object sender, RoutedEventArgs e) {
             ParentPanel.Children.Add(CarrierBox);
             ParentPanel.Children.Add(PhoneRemindBox);
         }
-
         private void DontSendEmail(object sender, RoutedEventArgs e) {
             ParentPanel.Children.Remove(EmailRemindBox);
         }
-
         private void DontSendPhone(object sender, RoutedEventArgs e) {
             ParentPanel.Children.Remove(CarrierBox);
             ParentPanel.Children.Remove(PhoneRemindBox);
         }
-
         private void FillUserInPhoneEmail(object sender, RoutedEventArgs e) {
             foreach (User user in UserHandler.UserList) {
                 if (UserComboBox.SelectedValue.Equals(user.Name)) {
@@ -126,7 +125,6 @@ namespace BetterNotesGUI {
                 }
             }
         }
-
         private void CreateNote(object sender, RoutedEventArgs e) {
             if (!ErrorCheckNoteCreate()) return;
             User noteUser = null;
@@ -137,26 +135,28 @@ namespace BetterNotesGUI {
             else if (isReminder.IsChecked == true) {
                 if (!ErrorCheckReminderCreate()) return;
                 string phoneToRemind = "";
+
                 //TODO: Error check phonenumbers
-                //TODO: At least one notification options should be selected
-                //TODO: Time to remind must be in the future
+
                 if (CarrierToSend.SelectedValue.Equals("AT&T")) phoneToRemind = "ATT";
                 if (CarrierToSend.SelectedValue.Equals("T-Mobile")) phoneToRemind = "TMO";
                 if (CarrierToSend.SelectedValue.Equals("Verizon")) phoneToRemind = "VZW";
                 phoneToRemind += PhoneToSend.Text;
                 DateTime tryTimeToRemind = DateTime.Now;
                 DateTime.TryParse(TimeToRemind.Text + ":00", out tryTimeToRemind);
+                if (DateTime.Now >= tryTimeToRemind) {
+                    System.Windows.MessageBox.Show("Please select a time in the future for time to remind", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 bnotView = new BetterNotesMainView(new Note(noteName.Text, noteUser, tryTimeToRemind, (bool)ToastNotification.IsChecked, EmailToSend.Text, phoneToRemind));
             }
             if (parentWindow != null) parentWindow.Close();
             bnotView.Show();
             this.Close();
         }
-
         private void CancelCreate(object sender, RoutedEventArgs e) {
             this.Close();
         }
-
         private bool ErrorCheckNoteCreate() {
             if (noteName.Text.Equals("")) {
                 System.Windows.MessageBox.Show("Please choose a Note Name", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -176,7 +176,6 @@ namespace BetterNotesGUI {
             }
             return true;
         }
-
         private bool ErrorCheckReminderCreate() {
             if (TimeToRemind.Text == null) {
                 System.Windows.MessageBox.Show("Please choose a time to remind", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -195,6 +194,10 @@ namespace BetterNotesGUI {
                 return false;
             }
             return true;
+        }
+        private void OnCloseNew(object sender, CancelEventArgs e) {
+            if (PhoneNotification.IsChecked == true) DontSendPhone(sender, new RoutedEventArgs());
+            if (EmailNotification.IsChecked == true) DontSendEmail(sender, new RoutedEventArgs());
         }
     }
 }

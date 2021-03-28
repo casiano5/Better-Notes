@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="New Note" Width="350" ResizeMode="NoResize" SizeToContent="Height">
+        Title="New Note" Width="350" ResizeMode="NoResize" SizeToContent="Height" Closing="OnCloseNew">
     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
         <StackPanel x:Name="ParentPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
             <GroupBox Header="Note Name" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
