@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
 
         <!--Menu Bar-->
@@ -49,125 +49,136 @@
         <DockPanel Grid.Row="1" Grid.RowSpan="2">
             <Grid DockPanel.Dock="Top" Background="#FF45474A" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" 
               VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="75"/>
+               <!-- <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>-->
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="125"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="125"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="30*"/>
                 </Grid.ColumnDefinitions>
-                <GridSplitter Grid.Column="0" Grid.RowSpan="3" HorizontalAlignment="Right" VerticalAlignment="Stretch"
-                              ResizeDirection="Columns" Background="Black" ShowsPreview="true" Width="5"/>
+                
                 <!--Reminder Panel-->
-                <StackPanel x:Name="ReminderStack" Grid.RowSpan="3" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF393939" Margin="5,0">
-                    <TextBlock  Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                User
-                    </TextBlock>
-                    <ComboBox x:Name="GetUser" FontSize="15" Margin="5,5,5,5">
-                        <ComboBoxItem Content="Select User" IsSelected="True"/>
-                    </ComboBox>
-                    <!--User Email-->
-                    <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                    Email
-                    </TextBlock>
-                    <TextBox x:Name="RemEmail" Margin="5,5,5,5"/>
-                    <!--User Phone-->
-                    <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                    Phone Number
-                    </TextBlock>
-                    <TextBox x:Name="RemPhone" Margin="5,5,5,5"/>
-                    <!--Types of Services-->
-                    <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                    Service type
-                    </TextBlock>
-                    <ComboBox x:Name="SerSel" FontSize="15" Margin="5,5,5,5">
-                        <ComboBoxItem Content="Select Service" IsSelected="True"/>
-                        <ComboBoxItem Content="Verison"/>
-                        <ComboBoxItem Content='Att'/>
-                        <ComboBoxItem Content="TMobile"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90*"/>
+                        <ColumnDefinition Width="8"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <GridSplitter Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                                  Background="Black" ShowsPreview="true" Width="5"/>
+                    <Button x:Name="ExapandMind" Grid.Column="1" Background="#5C2599" Height="40"/>
+                    <StackPanel x:Name="ReminderStack" Grid.RowSpan="3" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF393939" Margin="5,0">
+                        <TextBlock  Foreground="#FFF7F9CA" Margin="5,0,5,0">
+                            User
+                        </TextBlock>
+                        <ComboBox x:Name="GetUser" FontSize="15" Margin="5,5,5,5">
+                            <ComboBoxItem Content="Select User" IsSelected="True"/>
+                        </ComboBox>
+                        <!--User Email-->
+                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
+                            Email
+                        </TextBlock>
+                        <TextBox x:Name="RemEmail" Margin="5,5,5,5"/>
+                        <!--User Phone-->
+                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
+                            Phone Number
+                        </TextBlock>
+                        <TextBox x:Name="RemPhone" Margin="5,5,5,5"/>
+                        <!--Types of Services-->
+                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
+                            Service type
+                        </TextBlock>
+                        <ComboBox x:Name="SerSel" FontSize="15" Margin="5,5,5,5">
+                            <ComboBoxItem Content="Select Service" IsSelected="True"/>
+                            <ComboBoxItem Content="Verison"/>
+                            <ComboBoxItem Content='Att'/>
+                            <ComboBoxItem Content="TMobile"/>
 
-                    </ComboBox>
-                    <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                    Date/Time
-                    </TextBlock>
-                    <xctk:DateTimePicker x:Name="TimeToRemind" Margin="5,5,5,5" FontSize="12" Format="Custom" FormatString="yyyy-MM-dd HH:mm"/>
-                    <!--Notification Date-->
-                    <!--<DatePicker x:Name="RemDate"  Margin="10,0,-0.4,10.2" Grid.Row="5" 
+                        </ComboBox>
+                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
+                             Date/Time
+                        </TextBlock>
+                        <xctk:DateTimePicker x:Name="TimeToRemind" Margin="5,5,5,5" FontSize="12" Format="Custom" FormatString="yyyy-MM-dd HH:mm"/>
+                        <!--Notification Date-->
+                        <!--<DatePicker x:Name="RemDate"  Margin="10,0,-0.4,10.2" Grid.Row="5" 
                              IsDropDownOpen="False" Text="" Grid.ColumnSpan="3"/>-->
-                    <!--Reminders to Send-->
-                    <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                    Reminders To Set:
-                    </TextBlock>
-                    <CheckBox Foreground="#FFF7F9CA" Content="Email" Margin="5,0,5,0"/>
-                    <CheckBox Foreground="#FFF7F9CA" Content="Phone" Margin="5,0,5,0"/>
-                    <CheckBox Foreground="#FFF7F9CA" Content="Notification" Margin="5,0,5,5"/>
-                    <!--Set Notification Button-->
-                    <Button x:Name="Set_Rem" Background="#FF45474A" Foreground="#FFF7F9CA"
+                        <!--Reminders to Send-->
+                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
+                            Reminders To Set:
+                        </TextBlock>
+                        <CheckBox Foreground="#FFF7F9CA" Content="Email" Margin="5,0,5,0"/>
+                        <CheckBox Foreground="#FFF7F9CA" Content="Phone" Margin="5,0,5,0"/>
+                        <CheckBox Foreground="#FFF7F9CA" Content="Notification" Margin="5,0,5,5"/>
+                        <!--Set Notification Button-->
+                        <Button x:Name="Set_Rem" Background="#FF45474A" Foreground="#FFF7F9CA"
                         Content="Set"  Margin="0,0,0,5" Height="30"/>
-                </StackPanel>
-
+                    </StackPanel>
+                </Grid>
 
                 <!--RichNote-->
-                <RichTextBox x:Name="RichNote" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <RichTextBox x:Name="RichNote" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                              Grid.Row="1" Grid.Column="1" Height="Auto" Width="Auto" 
                              SpellCheck.IsEnabled="True" TextChanged="TextChange"/>
-                <GridSplitter Grid.Column="2" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                              Background="Black" ShowsPreview="true" Width="5"/>
+                </Grid>
 
 
 
                 <!--Resource Panel-->
-                <!--<StackPanel Grid.Column="2" Grid.RowSpan="3">-->
-
-                    <TabControl x:Name="InsertMedia" Grid.Column="2" Grid.RowSpan="3" BorderBrush="#FF393939"
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="95*"/>
+                    </Grid.ColumnDefinitions>
+                    <GridSplitter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                              Background="Black" ShowsPreview="true" Width="5"/>
+                    <Button x:Name="ExapandSource" Grid.Column="0" Height="40" Background="#5C2599"/>
+                    <TabControl x:Name="InsertMedia" Grid.Column="1" Grid.RowSpan="3" BorderBrush="#FF393939"
                             Background="#FF393939" Margin="10,10,10,10">
-                        <TabItem x:Name="InsertVideo" Header="Insert Video" Style="{StaticResource SquareTabTemplate}" >
+                        <TabItem x:Name="InsertVideo" FontSize="13" Header="Insert Video" TabIndex="0" Style="{StaticResource SquareTabTemplate}" >
 
                             <!--Possible SearchBox, needs the C# implementation-->
                             <Grid Background="#FF393939" VerticalAlignment="Stretch" Height="Auto">
-                            <!--5 available seach result spots-->
-                            <Grid.RowDefinitions>
+                                <!--5 available seach result spots-->
+                                <Grid.RowDefinitions>
                                     <RowDefinition Height="25"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <TextBox x:Name="VideoSearchBox" Height="20" Opacity=".7"
                                      SpellCheck.IsEnabled="True" VerticalAlignment="Top"/>
                                 <Button x:Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
                                     HorizontalAlignment="Right" VerticalAlignment="Top"/>
-                            <TextBlock Grid.Row="1" TextWrapping="Wrap">Testing</TextBlock>
-                            <TextBlock Grid.Row="2" TextWrapping="Wrap">TestingTestingTestingTestingTestingTestingTesting</TextBlock>
-                        </Grid>
-                            
+                                <StackPanel x:Name="InsertVideoPanel" Grid.Row="1">
+                                </StackPanel>
+                            </Grid>
+
                         </TabItem>
 
-                        <TabItem x:Name="InsertImage" Header="Insert Image" Style="{StaticResource SquareTabTemplate}">
+                        <TabItem x:Name="InsertImage" Header="Insert Image" TabIndex="1" Style="{StaticResource SquareTabTemplate}" FontSize="13">
                             <!--Possible SearchBox, needs the C# implementation-->
-                            <Grid Background="#FF393939">
-                            <!--5 available seach result spots-->
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="80*"/>
-                                    <RowDefinition Height="20"/>
-                                </Grid.RowDefinitions>
-                                <TextBox x:Name="ImageSearchBox" Height="20" Opacity=".7" SpellCheck.IsEnabled="True" VerticalAlignment="Top" Margin="0,0,-0.8,0"/>
+                        <Grid Background="#FF393939">
+                               <!-- 5 available seach result spots-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="ImageSearchBox" Height="20" Opacity=".7" SpellCheck.IsEnabled="True" VerticalAlignment="Top" Margin="0,0,-0.8,0"/>
                                 <Button x:Name="SearchImage" Height="20" Width="20" Background="#5C2599"
                                     HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0.2,0"/>
+                                <StackPanel x:Name="InsertImagePanel" Grid.Row="1">
+                                    </StackPanel>
                             </Grid>
                         </TabItem>
                         <!--Text to Speech-->
-                        <TabItem x:Name="Text_Speech" Header="Text-To-Speech" Style="{StaticResource SquareTabTemplate}">
+                        <TabItem x:Name="Text_Speech" Header="Text-To-Speech" FontSize="13" TabIndex="2" Style="{StaticResource SquareTabTemplate}">
                             <StackPanel Background="#FF393939" Height="Auto" Width="Auto">
                                 <TextBox x:Name="TextTrans" Padding="70" Margin="0,5,0,5" TextWrapping="Wrap"
                                     Background="#FFF8F9E6" SpellCheck.IsEnabled="True" />
@@ -178,7 +189,7 @@
                             </StackPanel>
                         </TabItem>
                         <!--Speech to Text-->
-                        <TabItem x:Name="Speech_Text" Header="Speech-To-Text" Style="{StaticResource SquareTabTemplate}">
+                        <TabItem x:Name="Speech_Text" Header="Speech-To-Text" FontSize="13" TabIndex="3" Style="{StaticResource SquareTabTemplate}">
                             <StackPanel>
                                 <StackPanel x:Name="SpeechButtons" Orientation="Horizontal" Width="Auto" VerticalAlignment="Center" >
                                     <Button x:Name="RecordSpeech" Height="40" Margin="5,5,5,5"
@@ -195,7 +206,7 @@
                         </TabItem>
 
                     </TabControl>
-                
+                </Grid>
                 <!--Select Font-->
                 <!--
                 <ComboBox x:Name="FontSelect" Grid.Column="1" Grid.Row="2" Height="30" VerticalAlignment="Top" Margin="28.6,10.2,214.6,0">
