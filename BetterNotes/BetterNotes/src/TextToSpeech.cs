@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Speech.Synthesis;
 
 namespace BetterNotes {
-    public class TextToSpeech {
+    public static class TextToSpeech {
             public static void GetSpeech(string input) {
                 var reader = new SpeechSynthesizer();
                 reader.SetOutputToDefaultAudioDevice();

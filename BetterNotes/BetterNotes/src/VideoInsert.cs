@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using YoutubeExplode;
 
 namespace BetterNotes{
-    class VideoInsert {
+    public static class VideoInsert {
         public static List<string> GetVideosFromSearchTerm(string searchTerm) {
             var task = GetVideosFromSearchTermAsync(searchTerm);
             List<string> videoLinks = task.Result;

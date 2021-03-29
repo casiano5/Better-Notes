@@ -5,7 +5,7 @@ using System.Linq;
 using HtmlAgilityPack;
 
 namespace BetterNotes{
-    public class ImageInsert{
+    public static class ImageInsert{
         //TODO: Function to download images and save them in the correct path, return the path of the saved image (path given based on notes requesting insert)
         public static List<string> getImagesFromSearchTerm(string searchTerm) {
             const string imageSearchUrl = "https://www.google.com/search?site=&tbm=isch&q=";
