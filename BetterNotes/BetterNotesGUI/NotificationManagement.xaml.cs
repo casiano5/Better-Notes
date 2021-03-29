@@ -81,7 +81,7 @@ namespace BetterNotesGUI {
         private void DeleteNotificationMetadata(object sender, RoutedEventArgs e) {
             int rowIndex = 0;
             Int32.TryParse((sender as Button).Name[6].ToString(), out rowIndex);
-            if (MessageBox.Show("Are you sure you want to delete this reminder? \n WARNING: If the note containing this notification is opened, it will re-add the notification", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
+            if (MessageBox.Show("Are you sure you want to delete this reminder?\n\nWARNING: If the note containing this notification is opened, it will re-add the notification", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
                 string remindCsv = "";
                 using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
                     while (!reader.EndOfStream) {
