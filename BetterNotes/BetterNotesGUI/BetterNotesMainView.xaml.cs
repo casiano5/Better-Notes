@@ -14,13 +14,15 @@ namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
         Note openNote;
         bool saved = false;
+        public virtual System.Windows.Forms.AnchorStyles Anchor { get; set; }
+        public object Controls { get; private set; }
         public BetterNotesMainView(Note openNote) {
             this.openNote = openNote;
             InitializeComponent();
             if (!WindowExists()) _ = new MinimizedView();
             LoadXamlPackage(openNote.FilePath + "\\note\\note");
         }
-        void LoadXamlPackage(string _fileName) {
+        private void LoadXamlPackage(string _fileName) {
             TextRange range;
             FileStream fStream;
             if (File.Exists(_fileName)) {
@@ -40,10 +42,7 @@ namespace BetterNotesGUI {
             this.Close();
         }
         
-        // Add a button to a form and set some of its common properties.
-        public virtual System.Windows.Forms.AnchorStyles Anchor { get; set; }
-        public object Controls { get; private set; }
-
+        // Add a button to a form, common props above.
         private void unHighlightButton(object sender, System.Windows.Input.MouseEventArgs e)
         {
             (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonUnHighLight;
