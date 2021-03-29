@@ -74,16 +74,19 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <Image Grid.Column="1" HorizontalAlignment="Stretch" Height="150" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Stretch" Width="150"/>
-            <Button x:Name="OpenNew" Content="New Note" Grid.Row="6" Grid.Column="1" Visibility="Visible"
+            <Image Grid.Column="1" HorizontalAlignment="Stretch" Height="150" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Stretch" Width="150"/>
+            <Button x:Name="OpenNew" Content="New Note" Grid.Row="5" Grid.Column="1" Visibility="Visible"
                 HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
                 Click="OpenNewClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
-            <Button x:Name="OpenExisting" Content="Open Existing Note" Grid.Row="7" Grid.Column="1" Visibility="Visible"
+            <Button x:Name="OpenExisting" Content="Open Existing Note" Grid.Row="6" Grid.Column="1" Visibility="Visible"
                 HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
                 Click="OpenExistingClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
-            <Button x:Name="UserManagement" Content="User Management" Grid.Row="8" Grid.Column="1" Visibility="Visible"
+            <Button x:Name="UserManagement" Content="User Management" Grid.Row="7" Grid.Column="1" Visibility="Visible"
                 HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
                 Click="UserManagementClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
+            <Button x:Name="NotificationManagement" Content="Notification Management" Grid.Row="8" Grid.Column="1" Visibility="Visible"
+                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
+                Click="NotificationClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
         </Grid>
     </Grid>
 </Window>

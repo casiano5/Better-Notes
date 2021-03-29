@@ -69,6 +69,9 @@
     <Compile Include="NewNoteDialog.xaml.cs">
       <DependentUpon>NewNoteDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NotificationManagement.xaml.cs">
+      <DependentUpon>NotificationManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserManagement.xaml.cs">
       <DependentUpon>UserManagement.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewNoteDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotificationManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

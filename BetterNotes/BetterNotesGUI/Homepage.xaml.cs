@@ -85,5 +85,9 @@ namespace BetterNotesGUI {
             UserManagement manageUserWindow = new UserManagement();
             manageUserWindow.Show();
         }
+        private void NotificationClick(object sender, RoutedEventArgs e) {
+            NotificationManagement notifyView = new NotificationManagement();
+            notifyView.Show();
+        }
     }
 }

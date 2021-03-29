@@ -1,0 +1,31 @@
+﻿<Window x:Class="BetterNotesGUI.NotificationManagement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BetterNotesGUI"
+        mc:Ignorable="d"
+        Title="Notification Management" SizeToContent="Height" Width="350" ResizeMode="NoResize">
+    <StackPanel x:Name="NotificationListPanel" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
+        <!-- created programatically here for referece, do not uncomment or remove.
+        <GroupBox Header="SomeNoteName" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <Label>When to remind: </Label>
+                    <Label>Send Windows Notification: </Label>
+                    <Label>Send Email Notification: </Label>
+                    <Label>Send Phone Notification: </Label>
+                    <Label>Delete: </Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <Label>2020-02-29 15:00:00</Label>
+                    <Label>Yes</Label>
+                    <Label>email@example.com</Label>
+                    <Label>TMO1231231234</Label>
+                    <Button Content="Delete"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        -->
+    </StackPanel>
+</Window>

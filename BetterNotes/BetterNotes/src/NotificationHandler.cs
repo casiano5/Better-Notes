@@ -17,6 +17,7 @@ namespace BetterNotes {
                     if (tryDateTime > DateTime.Now) tempTimerList.Add(new TimerHandler(temp[1], tryDateTime, temp[2], temp[3], trySendToast));
                 }
                 timerList = tempTimerList;
+                reader.Close();
             }
             SetTimers();
         }
@@ -63,6 +64,7 @@ namespace BetterNotes {
                     string line = reader.ReadLine();
                     if (!line.Split(',')[1].Equals(this.name)) remindCsv += line + Environment.NewLine;
                 }
+                reader.Close();
             }
             File.WriteAllText(GlobalVars.BnotReminderCsv, remindCsv);
         }
