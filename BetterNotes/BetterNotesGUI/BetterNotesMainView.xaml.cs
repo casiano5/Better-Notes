@@ -41,13 +41,7 @@ namespace BetterNotesGUI {
             homepageView.Show();
             this.Close();
         }
-        
-        // Add a button to a form, common props above.
-        private void unHighlightButton(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonUnHighLight;
-        }
-        
+                
         private void testWTN(object sender, RoutedEventArgs e) {
             NotesReminder.SendWindowsToastNotification("Test Notification", "Here is some content");
         }
