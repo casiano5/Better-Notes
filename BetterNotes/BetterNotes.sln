@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterNotes", "BetterNotes\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterNotesGUI", "BetterNotesGUI\BetterNotesGUI.csproj", "{CB010718-8402-4002-8D9B-B55C62D16EF3}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BetterNotesSetup", "BetterNotesSetup\BetterNotesSetup.vdproj", "{BEAE66D0-0906-4CB7-B673-D28D69E433FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{CB010718-8402-4002-8D9B-B55C62D16EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB010718-8402-4002-8D9B-B55C62D16EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB010718-8402-4002-8D9B-B55C62D16EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEAE66D0-0906-4CB7-B673-D28D69E433FC}.Debug|Any CPU.ActiveCfg = Debug
+		{BEAE66D0-0906-4CB7-B673-D28D69E433FC}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
