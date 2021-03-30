@@ -155,7 +155,7 @@
     <Resource Include="Resources\BetterNotes.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\BetterNotes_Icon.png" />
+    <Resource Include="Resources\BetterNotes_Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

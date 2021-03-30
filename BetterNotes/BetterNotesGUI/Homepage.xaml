@@ -74,7 +74,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <Image Grid.Column="1" HorizontalAlignment="Stretch" Height="150" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Stretch" Width="150"/>
+            <Image Source="pack://application:,,/Resources/BetterNotes_Icon.png" Grid.Column="1" HorizontalAlignment="Stretch" Height="150" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Stretch" Width="150"/>
             <Button x:Name="OpenNew" Content="New Note" Grid.Row="5" Grid.Column="1" Visibility="Visible"
                 HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
                 Click="OpenNewClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
