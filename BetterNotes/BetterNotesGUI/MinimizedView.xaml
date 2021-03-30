@@ -5,5 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="MinimizedView" Height="0" Width="0">
+        Title="MinimizedView" Icon="BetterNotes.ico" Height="0" Width="0">
 </Window>

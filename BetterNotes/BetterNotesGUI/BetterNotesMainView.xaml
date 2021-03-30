@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:BetterNotesGUI"
         
         mc:Ignorable="d"
-        Title="Better Notes" Name="MainWindowResolution" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" Closing="OnCloseNote">
+        Title="Better Notes" Icon="BetterNotes.ico" Name="MainWindowResolution" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" Closing="OnCloseNote">
     <!-- Width= "{Binding ElementName=MainWindowResolution, Path=Width}" -->
     <!-- <TextBox Height={Binding RelativeSource={RelativeSource FindAncestor, 
            AncestorType={x:Type Window}}, Path=Height} /> -->

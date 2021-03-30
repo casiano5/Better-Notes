@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="Better Notes" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" ResizeMode="NoResize">
+        Title="Better Notes" Icon="BetterNotes.ico" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" ResizeMode="NoResize">
     <Grid Background="#FF45474A" ShowGridLines="False">
 
         <Grid x:Name="RecentNotesGrid" Background="#FF393939" Width="340" Height="1080" ShowGridLines="False" HorizontalAlignment="Left" VerticalAlignment="Top">

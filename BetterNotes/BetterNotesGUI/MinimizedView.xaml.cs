@@ -12,7 +12,7 @@ namespace BetterNotesGUI {
             this.Hide();
         }
         private void CreateTaskBarIcon() {
-            NotesReminder.notifyIcon.Icon = SystemIcons.Application;
+            NotesReminder.notifyIcon.Icon = Properties.Resources.BetterNotes;
             NotesReminder.notifyIcon.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
             NotesReminder.notifyIcon.ContextMenuStrip.Items.Add("Create New File").Click += (s, e) => ShowNew();
             NotesReminder.notifyIcon.ContextMenuStrip.Items.Add("Open New File").Click += (s, e) => ShowOpen();
