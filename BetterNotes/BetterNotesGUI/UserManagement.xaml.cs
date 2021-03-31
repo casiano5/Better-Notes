@@ -41,7 +41,7 @@ namespace BetterNotesGUI
             }
             if (tempUserList.Count <= 0)
             {
-                EnterU.Children.Add(new TextBlock
+                UserN.Items.Add(new TextBlock
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
