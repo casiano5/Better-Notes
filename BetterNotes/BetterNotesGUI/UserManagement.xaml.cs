@@ -16,9 +16,6 @@ using BetterNotes;
 
 namespace BetterNotesGUI
 {
-    /// <summary>
-    /// Interaction logic for UserManagement.xaml
-    /// </summary>
     public partial class UserManagement : Window
     {
         public UserManagement()
@@ -90,7 +87,6 @@ namespace BetterNotesGUI
                 EmailPanel.Children.Add(delete);
                 EmailPanel.Children.Add(update);
                 UserE.Items.Add(EmailPanel);
-
             }
         }
     }
