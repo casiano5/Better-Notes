@@ -8,7 +8,6 @@ using System.Windows.Documents;
 using System.ComponentModel;
 
 //TODO: Connect the buttons
-//TODO: Add an event listener, on change of richtextbox, set bool to false and prompt user if they want to save on close event.
 
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
@@ -128,6 +127,7 @@ namespace BetterNotesGUI {
         }
         private void DeleteCurrentNote(object sender, RoutedEventArgs e) {
             if (MessageBox.Show("Are you sure you want to delete this note", "Delete Note?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes) {
+                this.saved = true;
                 openNote.DeleteNote();
                 openNote = null;
                 this.Close();

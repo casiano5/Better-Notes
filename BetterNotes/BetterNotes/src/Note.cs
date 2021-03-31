@@ -204,7 +204,7 @@ namespace BetterNotes {
         //Delete Note from recent
         public void DeleteRecentMetadata() {
             string recentCsv = "";
-            using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
+            using (var reader = new StreamReader(GlobalVars.BnotRecentNoteCsv)) {
                 while (!reader.EndOfStream) {
                     string line = reader.ReadLine();
                     if (!line.Split(',')[2].Equals(this.Name)) recentCsv += line + Environment.NewLine; ;
