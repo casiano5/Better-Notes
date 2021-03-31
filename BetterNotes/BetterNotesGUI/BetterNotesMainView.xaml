@@ -69,7 +69,7 @@
                     
                     <GridSplitter Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch"
                                   Background="Black" ShowsPreview="true" Width="5"/>
-                    <Button x:Name="ExapandMind" Grid.Column="1" Background="#5C2599" Height="40"/>
+                    <Button x:Name="ExapandMind" HorizontalAlignment="Left" Width="10" Grid.Column="1" Background="#5C2599" Height="40"/>
                     <StackPanel x:Name="ReminderStack" Grid.RowSpan="3" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF393939" Margin="5,0">
                         <TextBlock  Foreground="#FFF7F9CA" Margin="5,0,5,0">
                             User
@@ -140,7 +140,7 @@
                     </Grid.ColumnDefinitions>
                     <GridSplitter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch"
                               Background="Black" ShowsPreview="true" Width="5"/>
-                    <Button x:Name="ExapandSource" Grid.Column="0" Height="40" Background="#5C2599"/>
+                    <Button x:Name="ExapandSource" HorizontalAlignment="Right" Width="10" Grid.Column="0" Height="40" Background="#5C2599"/>
                     <TabControl x:Name="InsertMedia" Grid.Column="1" Grid.RowSpan="3" BorderBrush="#FF393939"
                             Background="#FF393939" Margin="10,10,10,10">
                         <TabItem x:Name="InsertVideo" FontSize="13" Header="Insert Video" TabIndex="0" Style="{StaticResource SquareTabTemplate}" >

@@ -6,7 +6,47 @@
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
         Title="User Management" Icon="BetterNotes.ico" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="#FF45474A" ShowGridLines="False">
+        <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center" Height="Auto">
+            <StackPanel Orientation="Horizontal" Height="Auto">
+                <ListBox Width="150" Background="Beige" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="User Name"/>
+                </ListBox>
+                <ListBox Width="125" Background="Beige" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="User Phone Number" />
+                </ListBox>
+                <ListBox Width="200" Background="Beige" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="User Email" />
+                </ListBox>
+
+
+            </StackPanel>
+            <StackPanel x:Name="EnterU" Orientation="Horizontal" Height="Auto">
+                <ListBox x:Name="UserN" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock Text="Arial" Margin="2,1,2,1" />
+                    <TextBlock Text="Test Name" Margin="2,1,2,1"/>
+                </ListBox>
+                <ListBox x:Name="UserP" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock Text="Arial" Margin="2,1,2,1"/>
+                    <TextBlock Text="735-719-H0N3" Margin="2,1,2,1"/>
+                </ListBox>
+                <ListBox x:Name="UserE" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock Text="Test21914@georgiasouthern.edu" Margin="2,1,2,1"/>
+                    <TextBlock Text="Test21914@georgiasouthern.edu" Margin="2,1,2,1"/>
+                </ListBox>
+                <ListBox x:Name="ModBut" BorderBrush="#FF45474A" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF45474A" >
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Delete" Margin="0,2,3,0" FontSize="10"/>
+                        <Button Content="Update" Margin="0,2,3,0" FontSize="10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Delete" Margin="0,2,3,0" FontSize="10"/>
+                        <Button Content="Update" Margin="0,2,3,0" FontSize="10"/>
+                    </StackPanel>
+                </ListBox>
+
+            </StackPanel>
+            <Button x:Name="NewUser" Content="_New_User" Width="475" HorizontalAlignment="Left"/>
+        </StackPanel>
     </Grid>
 </Window>
