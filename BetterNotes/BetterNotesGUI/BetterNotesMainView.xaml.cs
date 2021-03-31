@@ -8,7 +8,6 @@ using System.Windows.Documents;
 using System.ComponentModel;
 
 //TODO: Connect the buttons
-//TODO: Add an event listener, on change of richtextbox, set bool to false and prompt user if they want to save on close event.
 
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
