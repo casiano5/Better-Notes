@@ -21,7 +21,6 @@ namespace BetterNotesGUI
     /// </summary>
     public partial class UserManagement : Window
     {
-        private List<List<string>> UserList = new List<List<string>>();
         public UserManagement()
         {
             InitializeComponent();
@@ -29,17 +28,8 @@ namespace BetterNotesGUI
         }
         private void FillUsers()
         {
-            List<List<string>> tempUserList = new List<List<string>>();
-            using (var reader = new System.IO.StreamReader(GlobalVars.BnotUsersCsv))
-            {
-                while (!reader.EndOfStream)
-                {
-                    string line = reader.ReadLine();
-                    tempUserList.Add(line.Split(',').ToList<string>());
-                }
-                reader.Close();
-            }
-            if (tempUserList.Count <= 0)
+            UserHandler.AddAllUsersInMetadata();
+            if (UserHandler.UserList.Count <= 0)
             {
                 UserN.Items.Add(new TextBlock
                 {
@@ -49,10 +39,9 @@ namespace BetterNotesGUI
                     Text = "No Current User are set"
 
                 });
-                this.UserList = null;
                 return;
             }
-            for (int i = 0; i < tempUserList.Count; i++)
+            for (int i = 0; i < UserHandler.UserList.Count; i++)
             {
                 Button delete = new Button
                 {
@@ -73,7 +62,7 @@ namespace BetterNotesGUI
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
                     Margin = new Thickness(2, 1, 2, 1),
-                    Text = tempUserList[i][0]///Need Help
+                    Text = UserHandler.UserList[i].Name///Need Help
 
                 });
                 UserP.Items.Add(new TextBlock
@@ -81,7 +70,7 @@ namespace BetterNotesGUI
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
                     Margin = new Thickness(2, 1, 2, 1),
-                    Text = tempUserList[i][0]///Need Help
+                    Text = UserHandler.UserList[i].PhoneNumber///Need Help
 
                 });
 
@@ -95,7 +84,7 @@ namespace BetterNotesGUI
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
                     Margin = new Thickness(2, 1, 2, 1),
-                    Text = tempUserList[i][2]///Need Help
+                    Text = UserHandler.UserList[i].Email///Need Help
 
                 });
                 EmailPanel.Children.Add(delete);
