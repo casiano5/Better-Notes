@@ -45,9 +45,9 @@ namespace BetterNotesGUI
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
-                    Margin = new Thickness(2,1,2,1),
+                    Margin = new Thickness(2, 1, 2, 1),
                     Text = "No Current User are set"
-                    
+
                 });
                 this.UserList = null;
                 return;
@@ -67,7 +67,7 @@ namespace BetterNotesGUI
                     Content = "Update",
                     Margin = new Thickness(0, 2, 3, 0)
                 };
-               // update.Click += new RoutedEventHandler((s, e) => UpdateUserMetadata(s, e));
+                // update.Click += new RoutedEventHandler((s, e) => UpdateUserMetadata(s, e));
                 UserN.Items.Add(new TextBlock
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -84,11 +84,11 @@ namespace BetterNotesGUI
                     Text = tempUserList[i][0]///Need Help
 
                 });
-                
-                StackPanel EmailPanel=new StackPanel
+
+                StackPanel EmailPanel = new StackPanel
                 {
                     Name = "EmailPanel" + i,
-                    Orientation = Orientation.Horizontal                   
+                    Orientation = Orientation.Horizontal
                 };
                 EmailPanel.Children.Add(new TextBlock
                 {
@@ -101,7 +101,8 @@ namespace BetterNotesGUI
                 EmailPanel.Children.Add(delete);
                 EmailPanel.Children.Add(update);
                 UserE.Items.Add(EmailPanel);
-                
+
             }
         }
+    }
 }
