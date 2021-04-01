@@ -8,7 +8,7 @@
         Title="User Management" Icon="BetterNotes.ico" Height="450" Width="800">
     <Grid Background="#FF45474A" ShowGridLines="False">
         <StackPanel x:Name="UserTable" Background="#FF45474A" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="Auto" Margin="0,80,0,0">
-            <Button x:Name="NewUser"  BorderBrush="#FF45474A" Foreground="White" Content="_New_User" Height="25" Width="556" HorizontalAlignment="Left">
+            <Button x:Name="NewUser"  BorderBrush="#FF45474A" Foreground="White" Content="_New_User" Height="25" Width="556" HorizontalAlignment="Left" Click="CreateUser">
                 <Button.Background>
                     <LinearGradientBrush EndPoint=".5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FF45474A" Offset="1"/>

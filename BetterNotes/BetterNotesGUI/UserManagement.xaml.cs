@@ -23,8 +23,9 @@ namespace BetterNotesGUI
             InitializeComponent();
             FillUsers();
         }
-        private void FillUsers()
+        public void FillUsers()
         {
+            EnterU.Children.Clear();
             UserHandler.AddAllUsersInMetadata();
             ListBox UserN = new ListBox {
                 Name = "UserN",
@@ -115,22 +116,21 @@ namespace BetterNotesGUI
             int rowIndex = 0;
             Int32.TryParse((sender as Button).Name[7].ToString(), out rowIndex);
             if (MessageBox.Show("Are you sure you want to delete this User?", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
-                string userCsv = "";
-                using (var reader = new StreamReader(GlobalVars.BnotUsersCsv)) {
-                    while (!reader.EndOfStream) {
-                        string line = reader.ReadLine();
-                        if (!line.Split(',')[0].Equals(UserHandler.UserList[rowIndex].Name)) userCsv += line + Environment.NewLine;
-                    }
-                    reader.Close();
-                }
-                File.WriteAllText(GlobalVars.BnotUsersCsv, userCsv);
-                EnterU.Children.Clear();
+                UserHandler.UserList[rowIndex].DeleteUserFromMetadata();
                 FillUsers();
             }
         }
 
-        private void UpdateUser(object sender, RoutedEventArgs e) {
+        private void CreateUser(object sender, RoutedEventArgs e) {
+            UserDialog uDialog = new UserDialog(this);
+            uDialog.Show();
+        }
 
+        private void UpdateUser(object sender, RoutedEventArgs e) {
+            int rowIndex = 0;
+            Int32.TryParse((sender as Button).Name[7].ToString(), out rowIndex);
+            UserDialog uDialog = new UserDialog(UserHandler.UserList[rowIndex], this);
+            uDialog.Show();
         }
     }
 }
