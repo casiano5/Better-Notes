@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="User Management" Icon="BetterNotes.ico" Height="450" Width="800">
     <Grid Background="#FF45474A" ShowGridLines="False">
-        <StackPanel x:Name="UserTable" Background="#FF45474A" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="Auto" Margin="0,80,0,0">
-            <Button x:Name="NewUser"  BorderBrush="#FF45474A" Foreground="White" Content="_New_User" Height="25" Width="556" HorizontalAlignment="Left" Click="CreateUser">
+        <StackPanel x:Name="UserTable" Background="#FF45474A" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0">
+            <Button x:Name="NewUser"  BorderBrush="#FF45474A" Foreground="White" Content="_New_User" Height="25" Width="Auto" HorizontalAlignment="Stretch" Click="CreateUser">
                 <Button.Background>
                     <LinearGradientBrush EndPoint=".5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FF45474A" Offset="1"/>
@@ -16,7 +16,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <StackPanel Orientation="Horizontal" Height="Auto">
+            <!--<StackPanel Orientation="Horizontal" Height="Auto">
 
                 <ListBox Width="150" Background="Beige" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="User Name"/>
@@ -29,7 +29,7 @@
                 </ListBox>
 
 
-            </StackPanel>
+            </StackPanel>-->
             <StackPanel x:Name="EnterU" Orientation="Horizontal" Height="Auto">
                 <!-- created programatically here for referece, do not uncomment or remove.
                 <ListBox x:Name="UserN" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using BetterNotes;
 
 namespace BetterNotesGUI
@@ -16,24 +17,51 @@ namespace BetterNotesGUI
         {
             EnterU.Children.Clear();
             UserHandler.AddAllUsersInMetadata();
-            ListBox UserN = new ListBox {
+            ListBox UserN = new ListBox
+            {
                 Name = "UserN",
-                Width = 150,
+                //Width = 150,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top
             };
-            ListBox UserP = new ListBox {
+            ListBox UserP = new ListBox
+            {
                 Name = "UserP",
-                Width = 125,
+                // Width = 125,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top
             };
-            ListBox UserE = new ListBox {
+            ListBox UserE = new ListBox
+            {
                 Name = "UserE",
-                Width = 280,
+                // Width = 280,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top
             };
+            UserN.Items.Add(new ListBoxItem
+            {
+                Background = Brushes.Beige,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch,
+                Content = "User Name"
+
+            });
+            UserP.Items.Add(new ListBoxItem
+            {
+                Background = Brushes.Beige,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch,
+                Content = "User Phone"
+
+            });
+            UserE.Items.Add(new ListBoxItem
+            {
+                Background = Brushes.Beige,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch,
+                Content = "User Email"
+
+            });
 
             if (UserHandler.UserList.Count <= 0)
             {
@@ -53,17 +81,30 @@ namespace BetterNotesGUI
                 {
                     Name = "Dbutton" + i,
                     Content = "Delete",
-                    Margin = new Thickness(10, 2, 3, 0)
+                    Margin = new Thickness(3, 2, 3, 0),
+                   // HorizontalAlignment = HorizontalAlignment.Right,
+                    FlowDirection = FlowDirection.RightToLeft
                 };
                 delete.Click += new RoutedEventHandler((s, e) => DeleteUserGUI(s, e));
                 Button update = new Button
                 {
                     Name = "Ubutton" + i,
                     Content = "Update",
-                    Margin = new Thickness(0, 2, 3, 0)
+                    Margin = new Thickness(0, 2, 20, 0),
+                   // HorizontalAlignment = HorizontalAlignment.Right,
+                    FlowDirection = FlowDirection.RightToLeft
                 };
                 update.Click += new RoutedEventHandler((s, e) => UpdateUser(s, e));
-                UserN.Items.Add(new TextBlock
+                StackPanel NamePanel = new StackPanel
+                {
+                    //FlowDirection=FlowDirection.LeftToRight,
+                    Name = "NamePanel" + i,
+                    Orientation = Orientation.Horizontal
+                };
+
+                NamePanel.Children.Add(delete);
+                NamePanel.Children.Add(update);
+                NamePanel.Children.Add(new TextBlock
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
@@ -71,30 +112,23 @@ namespace BetterNotesGUI
                     Text = UserHandler.UserList[i].Name
 
                 });
+                UserN.Items.Add(NamePanel);
                 UserP.Items.Add(new TextBlock
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
-                    Margin = new Thickness(2, 1, 2, 1),
+                    Margin = new Thickness(0, 5, 0, 1),
                     Text = UserHandler.UserList[i].PhoneNumber
 
                 });
-                StackPanel EmailPanel = new StackPanel
-                {
-                    Name = "EmailPanel" + i,
-                    Orientation = Orientation.Horizontal
-                };
-                EmailPanel.Children.Add(new TextBlock
+                UserE.Items.Add(new TextBlock
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
-                    Margin = new Thickness(2, 1, 2, 1),
+                    Margin = new Thickness(0, 5, 0, 1),
                     Text = UserHandler.UserList[i].Email
 
                 });
-                EmailPanel.Children.Add(delete);
-                EmailPanel.Children.Add(update);
-                UserE.Items.Add(EmailPanel);
             }
             EnterU.Children.Add(UserN);
             EnterU.Children.Add(UserP);
