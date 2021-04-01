@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using BetterNotes;
 using System.IO;
 using System.Linq;
+using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace BetterNotesGUI {
     public partial class Homepage : Window {
@@ -55,7 +57,20 @@ namespace BetterNotesGUI {
                 RecentNotesButtons[i].AddHandler(System.Windows.Controls.Button.MouseEnterEvent, new RoutedEventHandler(HighlightButton));
                 RecentNotesButtons[i].AddHandler(System.Windows.Controls.Button.MouseLeaveEvent, new RoutedEventHandler(UnHighlightButton));
                 RecentNotesButtons[i].Click += new RoutedEventHandler((s, e) => OpenNotes(s, e, filePath));
-                RecentNotesButtons[i].Content = RecentNotesList[i][2] + "\n" + filePath;
+                //RecentNotesButtons[i].Content = RecentNotesList[i][2] + "\n" + filePath;
+                Run nameRun = new Run(RecentNotesList[i][2] + "\n");
+                Run spacingRun = new Run(".\n");
+                Run pathRun = new Run(filePath);
+                nameRun.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFE0F500");
+                pathRun.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#AAAAAAAA");
+                pathRun.FontSize = 11;
+                spacingRun.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#00AAAAAA");
+                spacingRun.FontSize = 3;
+                TextBlock nameFilePath = new TextBlock();
+                nameFilePath.Inlines.Add(nameRun);
+                nameFilePath.Inlines.Add(spacingRun);
+                nameFilePath.Inlines.Add(pathRun);
+                RecentNotesButtons[i].Content = nameFilePath;
                 RecentNotesGrid.Children.Add(RecentNotesButtons[i]);
             }
         }
