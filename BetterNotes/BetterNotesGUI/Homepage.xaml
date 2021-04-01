@@ -8,7 +8,7 @@
         Title="Better Notes" Icon="BetterNotes.ico" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" ResizeMode="NoResize">
     <Grid Background="#FF45474A" ShowGridLines="False">
 
-        <Grid x:Name="RecentNotesGrid" Background="#FF393939" Width="340" Height="1080" ShowGridLines="False" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Grid x:Name="RecentNotesGrid" Background="#FF393939" Width="340" Height="470" ShowGridLines="False" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="300"/>
@@ -18,8 +18,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="65"/>
-                <RowDefinition Height="65"/>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="65"/>
                 <RowDefinition Height="65"/>
@@ -56,14 +54,14 @@
         </Grid>
 
 
-        <Grid Background="#FF45474A" Width="440" Height="1080" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <Grid Background="#FF45474A" Width="440" Height="470" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
@@ -72,20 +70,20 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Image Source="pack://application:,,/Resources/BetterNotes_Icon.png" Grid.Column="1" HorizontalAlignment="Stretch" Height="150" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Stretch" Width="150"/>
+            <Image Source="pack://application:,,/Resources/BetterNotes_Icon.png" Grid.Column="1" HorizontalAlignment="Stretch" Width="170" Height="170" Grid.Row="1" Grid.RowSpan="4" VerticalAlignment="Stretch"/>
             <Button x:Name="OpenNew" Content="New Note" Grid.Row="5" Grid.Column="1" Visibility="Visible"
-                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
+                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}" Height="45"
                 Click="OpenNewClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
             <Button x:Name="OpenExisting" Content="Open Existing Note" Grid.Row="6" Grid.Column="1" Visibility="Visible"
-                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
+                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}" Height="45"
                 Click="OpenExistingClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
             <Button x:Name="UserManagement" Content="User Management" Grid.Row="7" Grid.Column="1" Visibility="Visible"
-                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
+                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}" Height="45"
                 Click="UserManagementClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
             <Button x:Name="NotificationManagement" Content="Notification Management" Grid.Row="8" Grid.Column="1" Visibility="Visible"
-                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}"
+                HorizontalAlignment="Stretch" Style="{StaticResource SquareButtonTemplate}" Height="45"
                 Click="NotificationClick" MouseEnter="HighlightButton" MouseLeave="UnHighlightButton"/>
         </Grid>
     </Grid>
