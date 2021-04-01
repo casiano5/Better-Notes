@@ -49,7 +49,7 @@
         <DockPanel Grid.Row="1" Grid.RowSpan="2">
             <Grid DockPanel.Dock="Top" Background="#FF45474A" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" 
               VerticalAlignment="Stretch">
-               <!-- <Grid.RowDefinitions>
+                <!-- <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="20"/>
@@ -59,14 +59,14 @@
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="35*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <!--Reminder Panel-->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="90*"/>
                         <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <GridSplitter Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch"
                                   Background="Black" ShowsPreview="true" Width="5"/>
                     <Button x:Name="ExapandMind" HorizontalAlignment="Left" Width="10" Grid.Column="1" Background="#5C2599" Height="40"/>
@@ -152,10 +152,9 @@
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <TextBox x:Name="VideoSearchBox" Height="20" Opacity=".7"
-                                     SpellCheck.IsEnabled="True" VerticalAlignment="Top"/>
+                                <TextBox x:Name="VideoSearchBox" Height="20" SpellCheck.IsEnabled="True" VerticalAlignment="Top"/>
                                 <Button x:Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
-                                    HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                                    HorizontalAlignment="Right" VerticalAlignment="Top" Click="SearchVideoClick"/>
                                 <StackPanel x:Name="InsertVideoPanel" Grid.Row="1">
                                 </StackPanel>
                             </Grid>
@@ -164,17 +163,21 @@
 
                         <TabItem x:Name="InsertImage" Header="Insert Image" TabIndex="1" Style="{StaticResource SquareTabTemplate}" FontSize="13">
                             <!--Possible SearchBox, needs the C# implementation-->
-                        <Grid Background="#FF393939">
-                               <!-- 5 available seach result spots-->
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="25"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <TextBox x:Name="ImageSearchBox" Height="20" Opacity=".7" SpellCheck.IsEnabled="True" VerticalAlignment="Top" Margin="0,0,-0.8,0"/>
+                            <Grid Background="#FF393939">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="76*"/>
+                                    <ColumnDefinition Width="125*"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- 5 available seach result spots-->
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBox x:Name="ImageSearchBox" Height="20" SpellCheck.IsEnabled="True" VerticalAlignment="Top" Margin="0,0,-1,0" Grid.ColumnSpan="2"/>
                                 <Button x:Name="SearchImage" Height="20" Width="20" Background="#5C2599"
-                                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0.2,0"/>
-                                <StackPanel x:Name="InsertImagePanel" Grid.Row="1">
-                                    </StackPanel>
+                                    HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="1" Click="SearchImageClick"/>
+                                <StackPanel x:Name="InsertImagePanel" Grid.Row="1" Grid.ColumnSpan="2">
+                                </StackPanel>
                             </Grid>
                         </TabItem>
                         <!--Text to Speech-->

@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using BetterNotes;
 using System.IO;
-using Microsoft.Win32;
-using System.Windows.Controls;
 using System.Windows.Documents;
 using System.ComponentModel;
+using System.Windows.Forms;
+using DataFormats = System.Windows.DataFormats;
+using Image = System.Drawing.Image;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using RichTextBox = System.Windows.Controls.RichTextBox;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 
 //TODO: Connect the buttons
 
@@ -133,6 +139,29 @@ namespace BetterNotesGUI {
                 openNote.DeleteNote();
                 openNote = null;
                 this.Close();
+            }
+        }
+
+        private void SearchVideoClick(object sender, RoutedEventArgs e) {
+            VideoInsert.GetVideosFromSearchTerm(VideoSearchBox.Text);
+        }
+
+        private void SearchImageClick(object sender, RoutedEventArgs e) {
+            List<string> imageLinks = ImageInsert.GetImagesFromSearchTerm(ImageSearchBox.Text);
+            List<Image> imageList = new List<Image>();
+            foreach (string link in imageLinks) {
+                try {
+                    System.Net.HttpWebRequest webRequest = System.Net.HttpWebRequest.Create(link) as System.Net.HttpWebRequest;
+                    webRequest.AllowWriteStreamBuffering = true;
+                    webRequest.Timeout = 30000;
+                    System.Net.WebResponse webResponse = webRequest.GetResponse();
+                    System.IO.Stream stream = webResponse.GetResponseStream();
+                    imageList.Add(System.Drawing.Image.FromStream(stream));
+                    webResponse.Close();
+                }
+                catch (Exception exception) {
+                    MessageBox.Show("Failed to get images, please try again.", "Image Get Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }
