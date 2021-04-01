@@ -206,9 +206,9 @@ namespace BetterNotesGUI {
         }
 
         private void GenerateWavFile(object sender, RoutedEventArgs e) {
-            TextToSpeech.PutSpeechInFile(TextTrans.Text, openNote.FilePath + "\\speech\\speech.wav");
+            TextToSpeech.PutSpeechInFile(TextTrans.Text, openNote.FilePath + "\\speech\\TTS.wav");
             ttsPlayer = new WMPLib.WindowsMediaPlayer();
-            ttsPlayer.URL = openNote.FilePath + "\\speech\\speech.wav";
+            ttsPlayer.URL = openNote.FilePath + "\\speech\\TTS.wav";
             ttsPlayer.controls.stop();
             PlayText.Visibility = Visibility.Visible;
             StopPlay.Visibility = Visibility.Visible;

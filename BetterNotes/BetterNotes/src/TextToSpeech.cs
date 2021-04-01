@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace BetterNotes {
             }//getspeech
             public static void PutSpeechInFile(string input, string path) {
                 var reader = new SpeechSynthesizer();
+                if (File.Exists(path)) File.Delete(path); 
                 reader.SetOutputToWaveFile(path);
                 reader.Speak(input);
                 reader.Dispose();
