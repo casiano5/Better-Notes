@@ -26,6 +26,25 @@ namespace BetterNotesGUI
         private void FillUsers()
         {
             UserHandler.AddAllUsersInMetadata();
+            ListBox UserN = new ListBox {
+                Name = "UserN",
+                Width = 150,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top
+            };
+            ListBox UserP = new ListBox {
+                Name = "UserP",
+                Width = 125,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top
+            };
+            ListBox UserE = new ListBox {
+                Name = "UserE",
+                Width = 280,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top
+            };
+
             if (UserHandler.UserList.Count <= 0)
             {
                 UserN.Items.Add(new TextBlock
@@ -46,20 +65,20 @@ namespace BetterNotesGUI
                     Content = "Delete",
                     Margin = new Thickness(10, 2, 3, 0)
                 };
-                //delete.Click += new RoutedEventHandler((s, e) => DeleteUserMetadata(s, e));
+                delete.Click += new RoutedEventHandler((s, e) => DeleteUserGUI(s, e));
                 Button update = new Button
                 {
                     Name = "Ubutton" + i,
                     Content = "Update",
                     Margin = new Thickness(0, 2, 3, 0)
                 };
-                // update.Click += new RoutedEventHandler((s, e) => UpdateUserMetadata(s, e));
+                update.Click += new RoutedEventHandler((s, e) => UpdateUser(s, e));
                 UserN.Items.Add(new TextBlock
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
                     Margin = new Thickness(2, 1, 2, 1),
-                    Text = UserHandler.UserList[i].Name///Need Help
+                    Text = UserHandler.UserList[i].Name
 
                 });
                 UserP.Items.Add(new TextBlock
@@ -67,10 +86,9 @@ namespace BetterNotesGUI
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
                     Margin = new Thickness(2, 1, 2, 1),
-                    Text = UserHandler.UserList[i].PhoneNumber///Need Help
+                    Text = UserHandler.UserList[i].PhoneNumber
 
                 });
-
                 StackPanel EmailPanel = new StackPanel
                 {
                     Name = "EmailPanel" + i,
@@ -81,13 +99,38 @@ namespace BetterNotesGUI
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
                     Margin = new Thickness(2, 1, 2, 1),
-                    Text = UserHandler.UserList[i].Email///Need Help
+                    Text = UserHandler.UserList[i].Email
 
                 });
                 EmailPanel.Children.Add(delete);
                 EmailPanel.Children.Add(update);
                 UserE.Items.Add(EmailPanel);
             }
+            EnterU.Children.Add(UserN);
+            EnterU.Children.Add(UserP);
+            EnterU.Children.Add(UserE);
+        }
+
+        private void DeleteUserGUI(object sender, RoutedEventArgs e) {
+            int rowIndex = 0;
+            Int32.TryParse((sender as Button).Name[7].ToString(), out rowIndex);
+            if (MessageBox.Show("Are you sure you want to delete this User?", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) {
+                string userCsv = "";
+                using (var reader = new StreamReader(GlobalVars.BnotUsersCsv)) {
+                    while (!reader.EndOfStream) {
+                        string line = reader.ReadLine();
+                        if (!line.Split(',')[0].Equals(UserHandler.UserList[rowIndex].Name)) userCsv += line + Environment.NewLine;
+                    }
+                    reader.Close();
+                }
+                File.WriteAllText(GlobalVars.BnotUsersCsv, userCsv);
+                EnterU.Children.Clear();
+                FillUsers();
+            }
+        }
+
+        private void UpdateUser(object sender, RoutedEventArgs e) {
+
         }
     }
 }

@@ -31,28 +31,30 @@
 
             </StackPanel>
             <StackPanel x:Name="EnterU" Orientation="Horizontal" Height="Auto">
+                <!-- created programatically here for referece, do not uncomment or remove.
                 <ListBox x:Name="UserN" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">
-                  <!--  <TextBlock Text="Arial" Margin="2,1,2,1" />
-                    <TextBlock Text="Test Name" Margin="2,1,2,1"/>-->
+                    <TextBlock Text="Arial" Margin="2,1,2,1" />
+                    <TextBlock Text="Test Name" Margin="2,1,2,1"/>
                 </ListBox>
                 <ListBox x:Name="UserP" Width="125" HorizontalAlignment="Center" VerticalAlignment="Top">
-                  <!--  <TextBlock Text="Arial" Margin="2,1,2,1"/>
-                    <TextBlock Text="735-719-H0N3" Margin="2,1,2,1"/>-->
+                  <TextBlock Text="Arial" Margin="2,1,2,1"/>
+                    <TextBlock Text="735-719-H0N3" Margin="2,1,2,1"/>
                 </ListBox>
                 <ListBox x:Name="UserE" Width="280" HorizontalAlignment="Center" VerticalAlignment="Top">
-                   <!-- <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Test21914@georgiasouthern.edu" Margin="2,1,2,1"/>
                         <Button Content="Delete" Margin="20,2,3,0" FontSize="10"/>
                         <Button Content="Update" Margin="0,2,3,0" FontSize="10"/>
-                    </StackPanel>-->                    
+                    </StackPanel>
                 </ListBox>
-                <!--<ListBox x:Name="ModifyButtons" Width="100" BorderBrush="#FF45474A" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF45474A" >
+                <ListBox x:Name="ModifyButtons" Width="100" BorderBrush="#FF45474A" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF45474A" >
                     
                     <StackPanel Orientation="Horizontal">
                         <Button Content="Delete" Margin="0,2,3,0" FontSize="10"/>
                         <Button Content="Update" Margin="0,2,3,0" FontSize="10"/>
                     </StackPanel>
-                </ListBox>-->
+                </ListBox>
+                -->
 
             </StackPanel>
 
