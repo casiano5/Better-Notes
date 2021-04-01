@@ -156,7 +156,7 @@ namespace BetterNotesGUI {
             imageList = new List<Image>();
             foreach (string link in imageLinks) {
                 try {
-                    System.Net.HttpWebRequest webRequest = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(link);
+                    System.Net.HttpWebRequest webRequest = System.Net.HttpWebRequest.Create(link) as System.Net.HttpWebRequest;
                     webRequest.AllowWriteStreamBuffering = true;
                     webRequest.Timeout = 30000;
                     System.Net.WebResponse webResponse = webRequest.GetResponse();
