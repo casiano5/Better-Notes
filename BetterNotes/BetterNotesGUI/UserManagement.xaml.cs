@@ -38,6 +38,14 @@ namespace BetterNotesGUI
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top
             };
+            ListBox UserB = new ListBox
+            {
+                Name = "UserB",
+                // BorderBrush = Brushes.White,
+                // Width = 280,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top
+            };
             UserN.Items.Add(new ListBoxItem
             {
                 Background = Brushes.Beige,
@@ -62,6 +70,17 @@ namespace BetterNotesGUI
                 Content = "User Email"
 
             });
+            UserB.Items.Add(new ListBoxItem
+            {
+                Background = Brushes.Beige,
+                //BorderBrush = Brushes.Transparent,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch,
+                Content = "Buttons",
+                Foreground = Brushes.Beige
+
+
+            });
 
             if (UserHandler.UserList.Count <= 0)
             {
@@ -82,7 +101,7 @@ namespace BetterNotesGUI
                     Name = "Dbutton" + i,
                     Content = "Delete",
                     Margin = new Thickness(3, 2, 3, 0),
-                   // HorizontalAlignment = HorizontalAlignment.Right,
+                    // HorizontalAlignment = HorizontalAlignment.Right,
                     FlowDirection = FlowDirection.RightToLeft
                 };
                 delete.Click += new RoutedEventHandler((s, e) => DeleteUserGUI(s, e));
@@ -91,28 +110,28 @@ namespace BetterNotesGUI
                     Name = "Ubutton" + i,
                     Content = "Update",
                     Margin = new Thickness(0, 2, 20, 0),
-                   // HorizontalAlignment = HorizontalAlignment.Right,
+                    // HorizontalAlignment = HorizontalAlignment.Right,
                     FlowDirection = FlowDirection.RightToLeft
                 };
                 update.Click += new RoutedEventHandler((s, e) => UpdateUser(s, e));
-                StackPanel NamePanel = new StackPanel
+                StackPanel ButtonPanel = new StackPanel
                 {
                     //FlowDirection=FlowDirection.LeftToRight,
                     Name = "NamePanel" + i,
                     Orientation = Orientation.Horizontal
                 };
 
-                NamePanel.Children.Add(delete);
-                NamePanel.Children.Add(update);
-                NamePanel.Children.Add(new TextBlock
+                ButtonPanel.Children.Add(delete);
+                ButtonPanel.Children.Add(update);
+                UserB.Items.Add(ButtonPanel);
+                UserN.Items.Add(new TextBlock
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
-                    Margin = new Thickness(2, 1, 2, 1),
+                    Margin = new Thickness(0, 5, 0, 1),
                     Text = UserHandler.UserList[i].Name
 
                 });
-                UserN.Items.Add(NamePanel);
                 UserP.Items.Add(new TextBlock
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -133,6 +152,7 @@ namespace BetterNotesGUI
             EnterU.Children.Add(UserN);
             EnterU.Children.Add(UserP);
             EnterU.Children.Add(UserE);
+            EnterU.Children.Add(UserB);
         }
 
         private void DeleteUserGUI(object sender, RoutedEventArgs e) {
