@@ -5,10 +5,8 @@ using BetterNotes;
 using System.IO;
 using System.Windows.Documents;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Media;
 using DataFormats = System.Windows.DataFormats;
 using Image = System.Drawing.Image;
 using MessageBox = System.Windows.MessageBox;
@@ -25,7 +23,7 @@ namespace BetterNotesGUI {
         private List<string> imageLinks;
         private int imageIndex;
         bool saved = false;
-        private SoundPlayer ttsPlayer;
+        private WMPLib.WindowsMediaPlayer ttsPlayer;
         public virtual System.Windows.Forms.AnchorStyles Anchor { get; set; }
         public object Controls { get; private set; }
         public BetterNotesMainView(Note openNote) {
@@ -209,17 +207,24 @@ namespace BetterNotesGUI {
 
         private void GenerateWavFile(object sender, RoutedEventArgs e) {
             TextToSpeech.PutSpeechInFile(TextTrans.Text, openNote.FilePath + "\\speech\\speech.wav");
+            ttsPlayer = new WMPLib.WindowsMediaPlayer();
+            ttsPlayer.URL = openNote.FilePath + "\\speech\\speech.wav";
+            ttsPlayer.controls.stop();
             PlayText.Visibility = Visibility.Visible;
             StopPlay.Visibility = Visibility.Visible;
         }
 
         private void PlayTts(object sender, RoutedEventArgs e) {
-            ttsPlayer = new SoundPlayer(openNote.FilePath + "\\speech\\speech.wav");
-            ttsPlayer.Play();
+            ttsPlayer.controls.play();
         }
 
         private void StopTts(object sender, RoutedEventArgs e) {
-            ttsPlayer.Stop();
+            ttsPlayer.controls.stop();
+            ttsPlayer.close();
+        }
+
+        private void PauseTts(object sender, RoutedEventArgs e) {
+            ttsPlayer.controls.pause();
         }
     }
 }
