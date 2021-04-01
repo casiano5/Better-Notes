@@ -15,7 +15,7 @@ namespace BetterNotes {
             string userMetadata =
                 this.Name + "," +
                 this.PhoneNumber + "," +
-                this.Email + "," +
+                this.Email +
             Environment.NewLine;
             File.AppendAllText(GlobalVars.BnotUsersCsv, userMetadata);
         }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using BetterNotes;
 using System.IO;
+using System.Linq;
 
 namespace BetterNotesGUI {
     public partial class Homepage : Window {
@@ -14,6 +14,16 @@ namespace BetterNotesGUI {
             InitializeComponent();
             if (!WindowExists()) _ = new MinimizedView();
             GenerateRecentNotes();
+            this.Show();
+            long fileLen = new FileInfo(GlobalVars.BnotUsersCsv).Length;
+            if (fileLen == 0 || (fileLen == 3 && File.ReadAllBytes("file").SequenceEqual(new byte[] { 239, 187, 191 }))) {
+                FirstLaunch();
+            }
+        }
+        private void FirstLaunch() {
+            MessageBox.Show("Welcome to Better Notes!\nPlease set up a user in the following dialog","", MessageBoxButton.OK);
+            UserManagement manageUserWindow = new UserManagement();
+            manageUserWindow.Show();
         }
         private bool WindowExists() {
             foreach (Window element in System.Windows.Application.Current.Windows) if (element.GetType() == typeof(MinimizedView)) return true;
