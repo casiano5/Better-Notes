@@ -57,7 +57,6 @@ namespace BetterNotesGUI {
                 RecentNotesButtons[i].AddHandler(System.Windows.Controls.Button.MouseEnterEvent, new RoutedEventHandler(HighlightButton));
                 RecentNotesButtons[i].AddHandler(System.Windows.Controls.Button.MouseLeaveEvent, new RoutedEventHandler(UnHighlightButton));
                 RecentNotesButtons[i].Click += new RoutedEventHandler((s, e) => OpenNotes(s, e, filePath));
-                //RecentNotesButtons[i].Content = RecentNotesList[i][2] + "\n" + filePath;
                 Run nameRun = new Run(RecentNotesList[i][2] + "\n");
                 Run spacingRun = new Run(".\n");
                 Run pathRun = new Run(filePath);
