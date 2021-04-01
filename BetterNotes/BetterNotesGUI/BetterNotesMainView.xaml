@@ -144,19 +144,31 @@
                     <TabControl x:Name="InsertMedia" Grid.Column="1" BorderBrush="#FF393939"
                             Background="#FF393939" Margin="5,0,0,0">
                         <TabItem x:Name="InsertVideo" FontSize="13" Header="Insert Video" TabIndex="0" Style="{StaticResource SquareTabTemplate}" >
-
                             <!--Possible SearchBox, needs the C# implementation-->
-                            <Grid Background="#FF393939" VerticalAlignment="Stretch" Height="Auto">
-                                <!--5 available seach result spots-->
+                            <Grid Background="#FF393939">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="10"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- 5 available seach result spots-->
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="25"/>
                                     <RowDefinition Height="*"/>
+                                    <RowDefinition Height="25"/>
                                 </Grid.RowDefinitions>
-                                <TextBox x:Name="VideoSearchBox" Height="20" SpellCheck.IsEnabled="True" VerticalAlignment="Top"/>
-                                <Button x:Name="SearchVideo" Height="20" Width="20" Background="#5C2599"
-                                    HorizontalAlignment="Right" VerticalAlignment="Top" Click="SearchVideoClick"/>
-                                <StackPanel x:Name="InsertVideoPanel" Grid.Row="1">
+
+                                <TextBox x:Name="VideoSearchBox" Grid.Column="1" Height="20" SpellCheck.IsEnabled="True" Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="2"/>
+                                <Button x:Name="SearchVideo" Grid.Row="0" Grid.Column="3" Height="20" Width="20" Margin="0,0,0,0" Background="#5C2599"
+                                        Click="SearchImageClick"/>
+                                <StackPanel x:Name="InsertVideoPanel" Grid.Row="1" Grid.ColumnSpan="4">
                                 </StackPanel>
+                                <Button x:Name="VideoInsertPrevious" Content="Previous" Width="Auto" Height="20" 
+                                        Grid.Row="2" Grid.Column="1" Margin="5,0,5,0" Click="PlaceImagesMinus" IsEnabled="False"/>
+                                <Button x:Name="VideoInsertNext" Content="Next" Width="Auto" Height="20"
+                                        Grid.Row="2" Grid.Column="2" Margin="5,0,5,0" Click="PlaceImagesPlus" IsEnabled="False"/>
                             </Grid>
 
                         </TabItem>
@@ -193,23 +205,24 @@
                             <StackPanel Background="#FF393939" Height="Auto" Width="Auto">
                                 <TextBox x:Name="TextTrans" Padding="70" Margin="0,5,0,5" TextWrapping="Wrap"
                                     Background="#FFF8F9E6" SpellCheck.IsEnabled="True" />
-                                <StackPanel Orientation="Horizontal" Width="Auto" HorizontalAlignment="Stretch">
-                                    <Button x:Name="PlayText" VerticalAlignment="Center" Height="40" Margin="5,5,5,5" Content="Play" Foreground="#FFF7F9CA" Background="#5C2599"/>
-                                    <Button x:Name="StopPlay" Height="40" Margin="5,5,5,5"  Content="Stop" Foreground="#FFF7F9CA" Background="Red"/>
+                                <StackPanel Width="Auto" HorizontalAlignment="Stretch">
+                                    <Button x:Name="GenerateSpeech" Height="25" Margin="5,5,5,5"  Content="Generate" Foreground="#FFF7F9CA" Background="#FF45474A"/>
+                                    <Button x:Name="PlayText" VerticalAlignment="Center" Height="25" Margin="5,5,5,5" Content="Play" Foreground="#FFF7F9CA" Background="#5C2599"/>
+                                    <Button x:Name="StopPlay" Height="25" Margin="5,5,5,5"  Content="Stop" Foreground="#FFF7F9CA" Background="Red"/>
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>
                         <!--Speech to Text-->
                         <TabItem x:Name="Speech_Text" Header="Speech-To-Text" FontSize="13" TabIndex="3" Style="{StaticResource SquareTabTemplate}">
                             <StackPanel>
-                                <StackPanel x:Name="SpeechButtons" Orientation="Horizontal" Width="Auto" VerticalAlignment="Center" >
-                                    <Button x:Name="RecordSpeech" Height="40" Margin="5,5,5,5"
-                                            Content="Record" Foreground="#FFF7F9CA" Background="#5C2599"/>
-                                    <Button x:Name="PlaySpeech" Content="Play" Height="40" Margin="5,5,5,5"
-                                            Foreground="#FFF7F9CA" Background="#5C2599"/>
+                                <StackPanel x:Name="SpeechButtons" Width="Auto" VerticalAlignment="Center" >
+                                    <Button x:Name="RecordSpeech" Height="25" Margin="5,5,5,5"
+                                            Content="Record" Foreground="#FFF7F9CA" Background="#FF45474A"/>
                                 </StackPanel>
-                                <Button x:Name="StopRecord" Height="40" Content="Stop" 
-                                    Background="Red" Foreground="#FFF7F9CA"/>
+                                <Button x:Name="PlaySpeech" Height="25" Content="Play" Margin="5,5,5,5"
+                                            Foreground="#FFF7F9CA" Background="#5C2599"/>
+                                <Button x:Name="StopRecord" Height="25" Content="Stop" Margin="5,5,5,5"
+                                            Background="Red" Foreground="#FFF7F9CA"/>
                                 <TextBox x:Name="TransText" Grid.Row="1" Margin="0,5,0,5" Padding="70"
                                          Background="#FFF8F9E6" IsReadOnly="True"/>
 
