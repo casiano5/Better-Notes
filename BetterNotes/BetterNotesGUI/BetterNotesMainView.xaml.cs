@@ -70,7 +70,7 @@ namespace BetterNotesGUI {
                     return;
                 }
             }
-            if (Directory.Exists(openNote.FilePath)) Directory.Delete(openNote.FilePath, true);
+            if(openNote != null) if (Directory.Exists(openNote.FilePath)) Directory.Delete(openNote.FilePath, true);
         }
 
         //Integration
