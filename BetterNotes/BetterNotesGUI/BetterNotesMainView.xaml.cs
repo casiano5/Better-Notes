@@ -5,7 +5,9 @@ using BetterNotes;
 using System.IO;
 using System.Windows.Documents;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Drawing;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using DataFormats = System.Windows.DataFormats;
 using Image = System.Drawing.Image;
 using MessageBox = System.Windows.MessageBox;
@@ -18,6 +20,9 @@ using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
         Note openNote;
+        private List<System.Drawing.Image> imageList;
+        private List<string> imageLinks;
+        private int imageIndex;
         bool saved = false;
         public virtual System.Windows.Forms.AnchorStyles Anchor { get; set; }
         public object Controls { get; private set; }
@@ -147,11 +152,11 @@ namespace BetterNotesGUI {
         }
 
         private void SearchImageClick(object sender, RoutedEventArgs e) {
-            List<string> imageLinks = ImageInsert.GetImagesFromSearchTerm(ImageSearchBox.Text);
-            List<Image> imageList = new List<Image>();
+            imageLinks = ImageInsert.GetImagesFromSearchTerm(ImageSearchBox.Text);
+            imageList = new List<Image>();
             foreach (string link in imageLinks) {
                 try {
-                    System.Net.HttpWebRequest webRequest = System.Net.HttpWebRequest.Create(link) as System.Net.HttpWebRequest;
+                    System.Net.HttpWebRequest webRequest = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(link);
                     webRequest.AllowWriteStreamBuffering = true;
                     webRequest.Timeout = 30000;
                     System.Net.WebResponse webResponse = webRequest.GetResponse();
@@ -159,10 +164,45 @@ namespace BetterNotesGUI {
                     imageList.Add(System.Drawing.Image.FromStream(stream));
                     webResponse.Close();
                 }
-                catch (Exception exception) {
-                    MessageBox.Show("Failed to get images, please try again.", "Image Get Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                catch (Exception ex) {
+                    MessageBox.Show("Failed to get images, please try again", "Image Get Failure", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+            //TODO:add the next and previous buttons here
+            imageIndex = 0;
+            PlaceImages();
+        }
+
+        private void PlaceImages() {
+            ImageInsertPrevious.IsEnabled = (imageIndex != 0);
+            ImageInsertNext.IsEnabled = !(imageIndex + 3 > imageLinks.Count);
+            InsertImagePanel.Children.Clear();
+            for (int i = imageIndex; i < imageIndex + 3 && i < imageLinks.Count && i >= 0; i++) {
+                Button imageButton = new Button {
+                    Content = new System.Windows.Controls.Image {
+                        Source = new BitmapImage(new Uri(imageLinks[i]))
+                    },
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Margin = new Thickness(5)
+                };
+                int index = i;
+                imageButton.Click += new RoutedEventHandler((s, e) => InsertImageToRTB(s, e, index));
+                InsertImagePanel.Children.Add(imageButton);
+            }
+        }
+
+        private void PlaceImagesPlus(object sender, RoutedEventArgs e) {
+            imageIndex += 3;
+            PlaceImages();
+        }
+
+        private void PlaceImagesMinus(object sender, RoutedEventArgs e) {
+            imageIndex -= 3;
+            PlaceImages();
+        }
+
+        private void InsertImageToRTB(object sender, RoutedEventArgs e, int index) {
+            throw new NotImplementedException();
         }
     }
 }
