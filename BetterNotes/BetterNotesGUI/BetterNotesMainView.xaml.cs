@@ -119,7 +119,9 @@ namespace BetterNotesGUI {
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
             BetterNotesMainView bnotView = null;
-            if (MessageBox.Show("Would you like to open this note in a new window?", "Open in New Window?", MessageBoxButton.YesNoCancel) == MessageBoxResult.No) this.Close();
+            var msgReturn = MessageBox.Show("Would you like to open this note in a new window?", "Open in New Window?", MessageBoxButton.YesNoCancel);
+            if (msgReturn == MessageBoxResult.No) this.Close();
+            if (msgReturn == MessageBoxResult.Cancel) return;
             if (openFileDialog.ShowDialog() == true) {
                 bnotView = new BetterNotesMainView(new Note(openFileDialog.FileName));
                 bnotView.Show();
