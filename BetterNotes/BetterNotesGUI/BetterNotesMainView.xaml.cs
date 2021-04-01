@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Media;
 using DataFormats = System.Windows.DataFormats;
 using Image = System.Drawing.Image;
 using MessageBox = System.Windows.MessageBox;
@@ -24,6 +25,7 @@ namespace BetterNotesGUI {
         private List<string> imageLinks;
         private int imageIndex;
         bool saved = false;
+        private SoundPlayer ttsPlayer;
         public virtual System.Windows.Forms.AnchorStyles Anchor { get; set; }
         public object Controls { get; private set; }
         public BetterNotesMainView(Note openNote) {
@@ -203,6 +205,21 @@ namespace BetterNotesGUI {
 
         private void InsertImageToRTB(object sender, RoutedEventArgs e, int index) {
             throw new NotImplementedException();
+        }
+
+        private void GenerateWavFile(object sender, RoutedEventArgs e) {
+            TextToSpeech.PutSpeechInFile(TextTrans.Text, openNote.FilePath + "\\speech\\speech.wav");
+            PlayText.Visibility = Visibility.Visible;
+            StopPlay.Visibility = Visibility.Visible;
+        }
+
+        private void PlayTts(object sender, RoutedEventArgs e) {
+            ttsPlayer = new SoundPlayer(openNote.FilePath + "\\speech\\speech.wav");
+            ttsPlayer.Play();
+        }
+
+        private void StopTts(object sender, RoutedEventArgs e) {
+            ttsPlayer.Stop();
         }
     }
 }

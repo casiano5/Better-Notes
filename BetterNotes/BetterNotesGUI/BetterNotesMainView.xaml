@@ -206,9 +206,9 @@
                                 <TextBox x:Name="TextTrans" Padding="70" Margin="0,5,0,5" TextWrapping="Wrap"
                                     Background="#FFF8F9E6" SpellCheck.IsEnabled="True" />
                                 <StackPanel Width="Auto" HorizontalAlignment="Stretch">
-                                    <Button x:Name="GenerateSpeech" Height="25" Margin="5,5,5,5"  Content="Generate" Foreground="#FFF7F9CA" Background="#FF45474A"/>
-                                    <Button x:Name="PlayText" VerticalAlignment="Center" Height="25" Margin="5,5,5,5" Content="Play" Foreground="#FFF7F9CA" Background="#5C2599"/>
-                                    <Button x:Name="StopPlay" Height="25" Margin="5,5,5,5"  Content="Stop" Foreground="#FFF7F9CA" Background="Red"/>
+                                    <Button x:Name="GenerateSpeech" Height="25" Margin="5,5,5,5"  Content="Generate" Foreground="#FFF7F9CA" Background="#FF45474A" Click="GenerateWavFile"/>
+                                    <Button x:Name="PlayText" VerticalAlignment="Center" Height="25" Margin="5,5,5,5" Content="Play" Foreground="#FFF7F9CA" Background="#5C2599" Click="PlayTts" Visibility="Hidden"/>
+                                    <Button x:Name="StopPlay" Height="25" Margin="5,5,5,5"  Content="Stop" Foreground="#FFF7F9CA" Background="Red" Click="StopTts" Visibility="Hidden"/>
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>
