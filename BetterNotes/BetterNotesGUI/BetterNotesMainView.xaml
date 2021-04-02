@@ -215,16 +215,14 @@
                         <!--Speech to Text-->
                         <TabItem x:Name="Speech_Text" Header="Speech-To-Text" FontSize="13" TabIndex="3" Style="{StaticResource SquareTabTemplate}">
                             <StackPanel>
+                                <TextBox x:Name="TransText" Grid.Row="1" Margin="0,5,0,5" Padding="70"
+                                         Background="#FFF8F9E6" IsReadOnly="True"/>
                                 <StackPanel x:Name="SpeechButtons" Width="Auto" VerticalAlignment="Center" >
                                     <Button x:Name="RecordSpeech" Height="25" Margin="5,5,5,5"
                                             Content="Record" Foreground="#FFF7F9CA" Background="#FF45474A" Click="StartRecordStt"/>
-                                </StackPanel>
-                                <Button x:Name="PlaySpeech" Height="25" Content="Play" Margin="5,5,5,5"
-                                            Foreground="#FFF7F9CA" Background="#5C2599"/>
-                                <Button x:Name="StopRecord" Height="25" Content="Stop" Margin="5,5,5,5"
+                                    <Button x:Name="StopRecord" Height="25" Content="Stop" Margin="5,5,5,5"
                                             Background="Red" Foreground="#FFF7F9CA" Click="StopRecordStt"/>
-                                <TextBox x:Name="TransText" Grid.Row="1" Margin="0,5,0,5" Padding="70"
-                                         Background="#FFF8F9E6" IsReadOnly="True"/>
+                                </StackPanel>
 
                             </StackPanel>
                         </TabItem>
