@@ -239,11 +239,7 @@ namespace BetterNotesGUI {
             waveIn.DataAvailable += (s, a) => {
                 RecordedAudioWriter.Write(a.Buffer, 0, a.BytesRecorded);
             };
-            waveIn.RecordingStopped += (s, a) => {
-                //RecordedAudioWriter?.Dispose();
-                //RecordedAudioWriter = null;
-                //waveIn.Dispose();
-            };
+            waveIn.RecordingStopped += (s, a) => {};
         }
 
         private void StopRecordStt(object sender, RoutedEventArgs e) {
