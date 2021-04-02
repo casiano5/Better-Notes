@@ -59,7 +59,9 @@ namespace BetterNotesGUI {
                 RecentNotesButtons[i].Click += new RoutedEventHandler((s, e) => OpenNotes(s, e, filePath));
                 Run nameRun = new Run(RecentNotesList[i][2] + "\n");
                 Run spacingRun = new Run(".\n");
-                Run pathRun = new Run(filePath);
+                Run pathRun = null;
+                if (filePath.Length > 40) pathRun = new Run(filePath.Substring(0, 40) + "...");
+                else { pathRun = new Run(filePath); }
                 nameRun.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFE0F500");
                 pathRun.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#AAAAAAAA");
                 pathRun.FontSize = 11;

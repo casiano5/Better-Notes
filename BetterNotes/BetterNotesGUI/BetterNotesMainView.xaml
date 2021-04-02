@@ -102,7 +102,18 @@
                     </Grid.ColumnDefinitions>
                     <RichTextBox x:Name="RichNote" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
                              Grid.Row="1" Grid.Column="1" Height="Auto" Width="Auto" 
-                             SpellCheck.IsEnabled="True" TextChanged="TextChange"/>
+                             SpellCheck.IsEnabled="True" TextChanged="TextChange">
+                        <RichTextBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="ApplicationCommands.Cut"/>
+                                <MenuItem Command="ApplicationCommands.Copy"/>
+                                <MenuItem Command="ApplicationCommands.Paste"/>
+                                <MenuItem Header="Text To Speech" Click="ContextMenuTts"/>
+                                <MenuItem Header="Image Insert" Click="ContextMenuImage"/>
+                                <MenuItem Header="Video Insert (coming soon)"/>
+                            </ContextMenu>
+                        </RichTextBox.ContextMenu>
+                    </RichTextBox>
                 </Grid>
 
 

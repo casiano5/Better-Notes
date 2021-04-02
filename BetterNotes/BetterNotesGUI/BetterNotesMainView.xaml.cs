@@ -324,6 +324,14 @@ namespace BetterNotesGUI {
         private List<string> imageLinks;
         private int imageIndex;
 
+        private void ContextMenuImage(object sender, RoutedEventArgs e) {
+            if (RichNote.Selection != null && !RichNote.Selection.IsEmpty) {
+                ImageSearchBox.Text = RichNote.Selection.Text;
+                Dispatcher.BeginInvoke((Action)(() => InsertMedia.SelectedIndex = 1));
+                SearchImageClick(sender, new RoutedEventArgs());
+            }
+            else {MessageBox.Show("Please select some text for inline features", "Oops", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
+        }
         private void SearchImageClick(object sender, RoutedEventArgs e) {
             imageLinks = ImageInsert.GetImagesFromSearchTerm(ImageSearchBox.Text);
             imageList = new List<Image>();
@@ -377,6 +385,14 @@ namespace BetterNotesGUI {
         private List<string> videoLinks;
         private int videoIndex;
 
+        private void ContextMenuVideo(object sender, RoutedEventArgs e) {
+            if (RichNote.Selection != null && !RichNote.Selection.IsEmpty) {
+                VideoSearchBox.Text = RichNote.Selection.Text;
+                Dispatcher.BeginInvoke((Action)(() => InsertMedia.SelectedIndex = 0));
+                SearchVideoClick(sender, new RoutedEventArgs());
+            }
+            else { MessageBox.Show("Please select some text for inline features", "Oops", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
+        }
         private void SearchVideoClick(object sender, RoutedEventArgs e) {
             PlaceVideos();
             throw new NotImplementedException();
@@ -398,6 +414,15 @@ namespace BetterNotesGUI {
 
         //TTS
         private WMPLib.WindowsMediaPlayer ttsPlayer;
+
+        private void ContextMenuTts(object sender, RoutedEventArgs e) {
+            if (RichNote.Selection != null && !RichNote.Selection.IsEmpty) {
+                TextTrans.Text = RichNote.Selection.Text;
+                Dispatcher.BeginInvoke((Action)(() => InsertMedia.SelectedIndex = 2));
+                GenerateWavFile(sender, new RoutedEventArgs());
+            }
+            else { MessageBox.Show("Please select some text for inline features", "Oops", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
+        }
         private void GenerateWavFile(object sender, RoutedEventArgs e) {
             TextToSpeech.PutSpeechInFile(TextTrans.Text, openNote.FilePath + "\\speech\\TTS.wav");
             ttsPlayer = new WMPLib.WindowsMediaPlayer();
