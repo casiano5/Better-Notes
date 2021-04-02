@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace BetterNotesGUI {
     public partial class Homepage : Window {
-        List<System.Windows.Controls.Button> RecentNotesButtons = new List<System.Windows.Controls.Button>();
+        List<Button> RecentNotesButtons = new List<Button>();
 
         public Homepage() {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace BetterNotesGUI {
             }
             RecentNotesList = SortDescending(RecentNotesList);
             for (int i = 0; i < RecentNotesList.Count && i < 6; i++) {
-                RecentNotesButtons.Add(new System.Windows.Controls.Button() {
+                RecentNotesButtons.Add(new Button() {
                     Name = "OpenRecent" + i,
                     Content = "Recent",
                     Visibility = Visibility.Visible,
@@ -50,13 +50,13 @@ namespace BetterNotesGUI {
                     Height = 50,
                     Margin = new Thickness(0)
                 });
-                RecentNotesButtons[i].Style = System.Windows.Application.Current.Resources["SquareButtonTemplate"] as Style;
+                RecentNotesButtons[i].Style = System.Windows.Application.Current.Resources["RecentButtonTemplate"] as Style;
                 Grid.SetColumn(RecentNotesButtons[i], 1);
                 Grid.SetRow(RecentNotesButtons[i], i + 2);
                 string filePath = RecentNotesList[i][3];
-                RecentNotesButtons[i].AddHandler(System.Windows.Controls.Button.MouseEnterEvent, new RoutedEventHandler(HighlightButton));
-                RecentNotesButtons[i].AddHandler(System.Windows.Controls.Button.MouseLeaveEvent, new RoutedEventHandler(UnHighlightButton));
-                RecentNotesButtons[i].Click += new RoutedEventHandler((s, e) => OpenNotes(s, e, filePath));
+                RecentNotesButtons[i].AddHandler(MouseEnterEvent, new RoutedEventHandler(HighlightButton));
+                RecentNotesButtons[i].AddHandler(MouseLeaveEvent, new RoutedEventHandler(UnHighlightButton));
+                RecentNotesButtons[i].Click += (s, e) => OpenNotes(s, e, filePath);
                 Run nameRun = new Run(RecentNotesList[i][2] + "\n");
                 Run spacingRun = new Run(".\n");
                 Run pathRun = null;
@@ -67,7 +67,9 @@ namespace BetterNotesGUI {
                 pathRun.FontSize = 11;
                 spacingRun.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#00AAAAAA");
                 spacingRun.FontSize = 3;
-                TextBlock nameFilePath = new TextBlock();
+                TextBlock nameFilePath = new TextBlock {
+                    Margin = new Thickness(35,0,35,0)
+                };
                 nameFilePath.Inlines.Add(nameRun);
                 nameFilePath.Inlines.Add(spacingRun);
                 nameFilePath.Inlines.Add(pathRun);

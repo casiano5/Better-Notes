@@ -36,6 +36,23 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- Added Style for recent buttons to prevent alignment conflicts -->
+        <Style x:Key="RecentButtonTemplate" TargetType="Button">
+            <Setter Property="Background" Value="#10AAB1BB" />
+            <Setter Property="Foreground" Value="#FFE0F500" />
+            <Setter Property="BorderBrush" Value="#10AAB1BB" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!--Set up Tab colors, need to change current tab color-->
         <Style x:Key="SquareTabTemplate" TargetType="TabItem">
             <Setter Property="Background" Value="#FFF3F794"/>
