@@ -268,7 +268,6 @@ namespace BetterNotesGUI {
                 }
             }
         }
-
         private void SaveReminderInformation() {
             if (!ErrorCheckReminderCreate()) return;
             string phoneToRemind = "";
