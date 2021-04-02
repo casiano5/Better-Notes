@@ -23,6 +23,7 @@ namespace BetterNotesGUI {
         Note openNote;
         private List<System.Drawing.Image> imageList;
         private List<string> imageLinks;
+        private List<string> videoLinks;
         private int imageIndex;
         private bool saved = false;
         private WMPLib.WindowsMediaPlayer ttsPlayer;
@@ -150,11 +151,7 @@ namespace BetterNotesGUI {
                 this.Close();
             }
         }
-
-        private void SearchVideoClick(object sender, RoutedEventArgs e) {
-            VideoInsert.GetVideosFromSearchTerm(VideoSearchBox.Text);
-        }
-
+        
         private void SearchImageClick(object sender, RoutedEventArgs e) {
             imageLinks = ImageInsert.GetImagesFromSearchTerm(ImageSearchBox.Text);
             imageList = new List<Image>();
@@ -172,9 +169,13 @@ namespace BetterNotesGUI {
                     MessageBox.Show("Failed to get images, please try again", "Image Get Failure", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            //TODO:add the next and previous buttons here
             imageIndex = 0;
             PlaceImages();
+        }
+
+        private void SearchVideoClick(object sender, RoutedEventArgs e) {
+            videoLinks = VideoInsert.GetVideosFromSearchTerm(VideoSearchBox.Text);
+            //PlaceVideos();
         }
 
         private void PlaceImages() {
