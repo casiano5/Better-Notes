@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
 using BetterNotes;
 using System.IO;
 using System.Windows.Documents;
@@ -192,7 +193,8 @@ namespace BetterNotesGUI {
                 Height = Double.NaN,
                 Width = Double.NaN,
                 Content = EmailToSend,
-                BorderThickness = new Thickness(0)
+                BorderThickness = new Thickness(0),
+                Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF7F9CA")
             };
             PhoneToSend = new TextBox {
                 TextWrapping = TextWrapping.Wrap,
@@ -209,7 +211,8 @@ namespace BetterNotesGUI {
                 Height = Double.NaN,
                 Width = Double.NaN,
                 Content = PhoneToSend,
-                BorderThickness = new Thickness(0)
+                BorderThickness = new Thickness(0),
+                Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF7F9CA")
             };
             CarrierToSend = new ComboBox {
                 Name = "CarrierToSend",
@@ -222,7 +225,8 @@ namespace BetterNotesGUI {
                 VerticalAlignment = VerticalAlignment.Center,
                 Height = Double.NaN,
                 Width = Double.NaN,
-                BorderThickness = new Thickness(0)
+                BorderThickness = new Thickness(0),
+                Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF7F9CA")
             };
         }
         private void FillCarriers() {
