@@ -25,6 +25,7 @@ namespace BetterNotesGUI {
         private List<string> imageLinks;
         private List<string> videoLinks;
         private int imageIndex;
+        private int videoIndex;
         private bool saved = false;
         private WMPLib.WindowsMediaPlayer ttsPlayer;
         private WaveInEvent waveIn;
@@ -173,11 +174,6 @@ namespace BetterNotesGUI {
             PlaceImages();
         }
 
-        private void SearchVideoClick(object sender, RoutedEventArgs e) {
-            videoLinks = VideoInsert.GetVideosFromSearchTerm(VideoSearchBox.Text);
-            //PlaceVideos();
-        }
-
         private void PlaceImages() {
             ImageInsertPrevious.IsEnabled = (imageIndex != 0);
             ImageInsertNext.IsEnabled = !(imageIndex + 3 > imageLinks.Count);
@@ -207,6 +203,29 @@ namespace BetterNotesGUI {
         }
 
         private void InsertImageToRTB(object sender, RoutedEventArgs e, int index) {
+            throw new NotImplementedException();
+        }
+
+        private void SearchVideoClick(object sender, RoutedEventArgs e) {
+            PlaceVideos();
+            throw new NotImplementedException();
+        }
+
+        private void PlaceVideos() {
+            throw new NotImplementedException();
+        }
+
+        private void PlaceVideosPlus(object sender, RoutedEventArgs e) {
+            videoIndex += 3;
+            PlaceImages();
+        }
+
+        private void PlaceVideosMinus(object sender, RoutedEventArgs e) {
+            videoIndex -= 3;
+            PlaceImages();
+        }
+
+        private void VideoImageToRTB(object sender, RoutedEventArgs e, int index) {
             throw new NotImplementedException();
         }
 
