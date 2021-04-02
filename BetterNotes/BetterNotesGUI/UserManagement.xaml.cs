@@ -76,10 +76,7 @@ namespace BetterNotesGUI
                 //BorderBrush = Brushes.Transparent,
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Stretch,
-                Content = "Buttons",
-                Foreground = Brushes.Beige
-
-
+                Content = "Actions",
             });
 
             if (UserHandler.UserList.Count <= 0)
