@@ -32,8 +32,6 @@ namespace BetterNotesGUI {
             if (!WindowExists()) _ = new MinimizedView();
             LoadXamlPackage(openNote.FilePath + "\\note\\note");
             InitializeReminderElements();
-            FillCarriers();
-            FillUsers();
             if (openNote.IsReminder) FillReminderInfo();
         }
         private void LoadXamlPackage(string _fileName) {
@@ -158,13 +156,15 @@ namespace BetterNotesGUI {
 
         private void FillReminderInfo() {
             SetReminder.IsChecked = openNote.IsReminder;
-            UserComboBox.SelectedItem = openNote.CreateUser;
+            UserComboBox.SelectedItem = openNote.CreateUser.Name;
             TimeToRemind.Text = openNote.TimeToRemind.ToString("yyyy-MM-dd HH:mm");
             if (openNote.RemindToast) ToastNotification.IsChecked = true;
-            if (openNote.RemindEmail != null && !openNote.RemindEmail.Equals("") && !openNote.RemindEmail.Equals("null")) EmailNotification.IsChecked = true;
-            if (openNote.RemindPhone != null && !openNote.RemindPhone.Equals("") && !openNote.RemindPhone.Equals("null")) PhoneNotification.IsChecked = true;
-            if (EmailNotification.IsChecked == true) EmailToSend.Text = openNote.RemindEmail;
-            if (PhoneNotification.IsChecked == true) {
+            if (openNote.RemindEmail != null && !openNote.RemindEmail.Equals("") && !openNote.RemindEmail.Equals("null")) {
+                EmailNotification.IsChecked = true;
+                EmailToSend.Text = openNote.RemindEmail;
+            }
+            if (openNote.RemindPhone != null && !openNote.RemindPhone.Equals("") && !openNote.RemindPhone.Equals("null")) {
+                PhoneNotification.IsChecked = true;
                 if (openNote.RemindPhone.Contains("VZW")) CarrierToSend.SelectedItem = "Verizon";
                 if (openNote.RemindPhone.Contains("ATT")) CarrierToSend.SelectedItem = "AT&T";
                 if (openNote.RemindPhone.Contains("TMO")) CarrierToSend.SelectedItem = "T-Mobile";
@@ -228,6 +228,8 @@ namespace BetterNotesGUI {
                 BorderThickness = new Thickness(0),
                 Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF7F9CA")
             };
+            FillCarriers();
+            FillUsers();
         }
         private void FillCarriers() {
             CarrierToSend.Items.Clear();
@@ -238,7 +240,7 @@ namespace BetterNotesGUI {
         }
         private void FillUsers() {
             UserHandler.AddAllUsersInMetadata();
-            CarrierToSend.Items.Clear();
+            UserComboBox.Items.Clear();
             foreach (User user in UserHandler.UserList) UserComboBox.Items.Add(user.Name);
         }
         private void SendEmail(object sender, RoutedEventArgs e) {
