@@ -2,12 +2,17 @@ using System;
 using System.Net;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using HtmlAgilityPack;
 
 namespace BetterNotes{
     public static class ImageInsert{
         //TODO: Function to download images and save them in the correct path, return the path of the saved image (path given based on notes requesting insert)
         public static List<string> GetImagesFromSearchTerm(string searchTerm) {
+            if (searchTerm.Equals("") || searchTerm == null) {
+                MessageBox.Show("Please enter a search term", "Search Term is Empty", MessageBoxButton.OK, MessageBoxImage.Error);
+                return new List<string>();
+            }
             const string imageSearchUrl = "https://www.google.com/search?site=&tbm=isch&q=";
             searchTerm = WebUtility.UrlEncode(searchTerm);
             return GetImagesFromUrl(imageSearchUrl + searchTerm);

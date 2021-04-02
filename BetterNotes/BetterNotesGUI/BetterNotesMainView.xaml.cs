@@ -378,10 +378,22 @@ namespace BetterNotesGUI {
             PlaceImages();
         }
         private void InsertImageToRTB(object sender, RoutedEventArgs e, int index) {
-            throw new NotImplementedException();
+            for (int i = 0; i < Int32.MaxValue; i++) {
+                if (!File.Exists(openNote.FilePath + "\\img\\" + i + ".png")) {
+                    imageList[index].Save(openNote.FilePath + "\\img\\" + i + ".png");
+                    Paragraph imageParagraph = new Paragraph();
+                    imageParagraph.Inlines.Add(new System.Windows.Controls.Image {
+                        Source = new BitmapImage(new Uri(imageLinks[i])),
+                        Width = 200
+                    });
+                    RichNote.Document.Blocks.Add(imageParagraph);
+                    return;
+                }
+            }
+
         }
 
-        //Video Insert
+        //Video Insert (not implemented)
         private List<string> videoLinks;
         private int videoIndex;
 
