@@ -27,10 +27,10 @@ namespace BetterNotes {
             this.CreateUser = createUser;
             this.CreatedDateTime = DateTime.Now;
             this.LastModifiedDateTime = DateTime.Now;
-            Directory.CreateDirectory(FilePath + "\\img");
-            Directory.CreateDirectory(FilePath + "\\note");
-            Directory.CreateDirectory(FilePath + "\\speech");
-            File.Create(FilePath + "\\NoteMetadata.properties").Dispose();
+            if (!Directory.Exists(FilePath + "\\img")) Directory.CreateDirectory(FilePath + "\\img");
+            if (!Directory.Exists(FilePath + "\\note")) Directory.CreateDirectory(FilePath + "\\note");
+            if (!Directory.Exists(FilePath + "\\speech")) Directory.CreateDirectory(FilePath + "\\speech");
+            if (!File.Exists(FilePath + "\\NoteMetadata.properties")) File.Create(FilePath + "\\NoteMetadata.properties").Dispose();
             SaveNoteMetadata();
         }
 
@@ -46,10 +46,10 @@ namespace BetterNotes {
             this.RemindToast = remindToast;
             this.RemindPhone = remindPhone;
             this.RemindEmail = remindEmail;
-            Directory.CreateDirectory(FilePath + "\\img");
-            Directory.CreateDirectory(FilePath + "\\note");
-            Directory.CreateDirectory(FilePath + "\\speech");
-            File.Create(FilePath + "\\NoteMetadata.properties").Dispose();
+            if (!Directory.Exists(FilePath + "\\img")) Directory.CreateDirectory(FilePath + "\\img");
+            if (!Directory.Exists(FilePath + "\\note")) Directory.CreateDirectory(FilePath + "\\note");
+            if (!Directory.Exists(FilePath + "\\speech")) Directory.CreateDirectory(FilePath + "\\speech");
+            if (!File.Exists(FilePath + "\\NoteMetadata.properties")) File.Create(FilePath + "\\NoteMetadata.properties").Dispose();
             SaveNoteMetadata();
             AddReminderMetadata();
         }

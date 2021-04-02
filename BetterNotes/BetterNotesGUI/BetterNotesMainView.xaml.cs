@@ -21,22 +21,19 @@ using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
         Note openNote;
-        private List<System.Drawing.Image> imageList;
-        private List<string> imageLinks;
-        private List<string> videoLinks;
-        private int imageIndex;
-        private int videoIndex;
         private bool saved = false;
-        private WMPLib.WindowsMediaPlayer ttsPlayer;
-        private WaveInEvent waveIn;
-        private WaveFileWriter RecordedAudioWriter;
         public virtual System.Windows.Forms.AnchorStyles Anchor { get; set; }
         public object Controls { get; private set; }
+
         public BetterNotesMainView(Note openNote) {
             this.openNote = openNote;
             InitializeComponent();
             if (!WindowExists()) _ = new MinimizedView();
             LoadXamlPackage(openNote.FilePath + "\\note\\note");
+            InitializeReminderElements();
+            FillCarriers();
+            FillUsers();
+            if (openNote.IsReminder) FillReminderInfo();
         }
         private void LoadXamlPackage(string _fileName) {
             TextRange range;
@@ -57,17 +54,6 @@ namespace BetterNotesGUI {
             homepageView.Show();
             this.Close();
         }
-                
-        private void testWTN(object sender, RoutedEventArgs e) {
-            NotesReminder.SendWindowsToastNotification("Test Notification", "Here is some content");
-        }
-        private void testPN(object sender, RoutedEventArgs e) {
-            NotesReminder.SendPhoneEmailNotification("", "Test Reminder", "Test Reminder Body");
-        }
-        private void testEM(object sender, RoutedEventArgs e) {
-            NotesReminder.SendPhoneEmailNotification("", "Test Reminder", "Test Reminder Body");
-        }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
             UserManagement manageUserWindow = new UserManagement();
             manageUserWindow.Show();
@@ -77,7 +63,6 @@ namespace BetterNotesGUI {
         private void TextChange(object sender, RoutedEventArgs e) {
             this.saved = false;
         }
-
         private void OnCloseNote(object sender, CancelEventArgs e) {
             if (!this.saved) {
                 var msgResult = MessageBox.Show("Do you want to save the current note changes?", "Save Current Note", MessageBoxButton.YesNoCancel);
@@ -91,6 +76,8 @@ namespace BetterNotesGUI {
         }
 
         //Integration
+
+        //Convert To PDF
         private void ConvertToPDF(object sender, RoutedEventArgs e) {
             FlowDocument tempFlow = new FlowDocument();
             AddDocument(RichNote.Document, tempFlow);
@@ -105,6 +92,8 @@ namespace BetterNotesGUI {
             TextRange range2 = new TextRange(to.ContentEnd, to.ContentEnd);
             range2.Load(stream, DataFormats.XamlPackage);
         }
+
+        //Note operations
         private void NewNote(object sender, RoutedEventArgs e) {
             NewNoteDialog newNoteView = null;
             var msgResult = MessageBox.Show("Would you like to open this note in a new window?", "Open in New Window?", MessageBoxButton.YesNoCancel);
@@ -125,6 +114,11 @@ namespace BetterNotesGUI {
             saveFileDialog.FileName = openNote.Name;
             saveFileDialog.RestoreDirectory = true;
             if (saveFileDialog.ShowDialog() == true) {
+                if (SetReminder.IsChecked == true) SaveReminderInformation();
+                else {
+                    Note tempOpenNote = new Note(openNote.Name, openNote.CreateUser);
+                    openNote = tempOpenNote;
+                }
                 openNote.SaveNote(RichNote, Path.GetFullPath(saveFileDialog.FileName));
                 this.saved = true;
             }
@@ -152,7 +146,178 @@ namespace BetterNotesGUI {
                 this.Close();
             }
         }
-        
+
+        //Reminder Operations
+        private TextBox EmailToSend;
+        private GroupBox EmailRemindBox;
+        private TextBox PhoneToSend;
+        private GroupBox PhoneRemindBox;
+        private ComboBox CarrierToSend;
+        private GroupBox CarrierBox;
+
+        private void FillReminderInfo() {
+            SetReminder.IsChecked = openNote.IsReminder;
+            UserComboBox.SelectedItem = openNote.CreateUser;
+            TimeToRemind.Text = openNote.TimeToRemind.ToString("yyyy-MM-dd HH:mm");
+            if (openNote.RemindToast) ToastNotification.IsChecked = true;
+            if (openNote.RemindEmail != null && !openNote.RemindEmail.Equals("") && !openNote.RemindEmail.Equals("null")) EmailNotification.IsChecked = true;
+            if (openNote.RemindPhone != null && !openNote.RemindPhone.Equals("") && !openNote.RemindPhone.Equals("null")) PhoneNotification.IsChecked = true;
+            if (EmailNotification.IsChecked == true) EmailToSend.Text = openNote.RemindEmail;
+            if (PhoneNotification.IsChecked == true) {
+                if (openNote.RemindPhone.Contains("VZW")) CarrierToSend.SelectedItem = "Verizon";
+                if (openNote.RemindPhone.Contains("ATT")) CarrierToSend.SelectedItem = "AT&T";
+                if (openNote.RemindPhone.Contains("TMO")) CarrierToSend.SelectedItem = "T-Mobile";
+                PhoneToSend.Text = openNote.RemindPhone.Substring(3);
+            }
+        }
+        private void ShowRemindPanel(object sender, RoutedEventArgs e) {
+            ParentPanel.Visibility = Visibility.Visible;
+        }
+        private void HideRemindPanel(object sender, RoutedEventArgs e) {
+            ParentPanel.Visibility = Visibility.Hidden;
+        }
+        private void InitializeReminderElements() {
+            EmailToSend = new TextBox {
+                TextWrapping = TextWrapping.Wrap,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = Double.NaN,
+                Width = Double.NaN,
+            };
+            EmailRemindBox = new GroupBox {
+                Name = "EmailRemindBox",
+                Header = "Email",
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Center,
+                Height = Double.NaN,
+                Width = Double.NaN,
+                Content = EmailToSend,
+                BorderThickness = new Thickness(0)
+            };
+            PhoneToSend = new TextBox {
+                TextWrapping = TextWrapping.Wrap,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Top,
+                Height = Double.NaN,
+                Width = Double.NaN,
+            };
+            PhoneRemindBox = new GroupBox {
+                Name = "PhoneRemindBox",
+                Header = "Phone",
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Center,
+                Height = Double.NaN,
+                Width = Double.NaN,
+                Content = PhoneToSend,
+                BorderThickness = new Thickness(0)
+            };
+            CarrierToSend = new ComboBox {
+                Name = "CarrierToSend",
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            };
+            CarrierBox = new GroupBox {
+                Name = "CarrierBox",
+                Header = "Carrier",
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Center,
+                Height = Double.NaN,
+                Width = Double.NaN,
+                BorderThickness = new Thickness(0)
+            };
+        }
+        private void FillCarriers() {
+            CarrierToSend.Items.Clear();
+            CarrierToSend.Items.Add("AT&T");
+            CarrierToSend.Items.Add("T-Mobile");
+            CarrierToSend.Items.Add("Verizon");
+            CarrierBox.Content = CarrierToSend;
+        }
+        private void FillUsers() {
+            UserHandler.AddAllUsersInMetadata();
+            CarrierToSend.Items.Clear();
+            foreach (User user in UserHandler.UserList) UserComboBox.Items.Add(user.Name);
+        }
+        private void SendEmail(object sender, RoutedEventArgs e) {
+            ParentPanel.Children.Add(EmailRemindBox);
+        }
+        private void SendPhone(object sender, RoutedEventArgs e) {
+            ParentPanel.Children.Add(CarrierBox);
+            ParentPanel.Children.Add(PhoneRemindBox);
+        }
+        private void DontSendEmail(object sender, RoutedEventArgs e) {
+            ParentPanel.Children.Remove(EmailRemindBox);
+        }
+        private void DontSendPhone(object sender, RoutedEventArgs e) {
+            ParentPanel.Children.Remove(CarrierBox);
+            ParentPanel.Children.Remove(PhoneRemindBox);
+        }
+        private void FillUserInPhoneEmail(object sender, RoutedEventArgs e) {
+            foreach (User user in UserHandler.UserList) {
+                if (UserComboBox.SelectedValue.Equals(user.Name)) {
+                    EmailToSend.Text = user.Email;
+                    PhoneToSend.Text = user.PhoneNumber.Substring(3);
+                    if (user.PhoneNumber.Contains("VZW")) CarrierToSend.SelectedItem = "Verizon";
+                    if (user.PhoneNumber.Contains("ATT")) CarrierToSend.SelectedItem = "AT&T";
+                    if (user.PhoneNumber.Contains("TMO")) CarrierToSend.SelectedItem = "T-Mobile";
+                }
+            }
+        }
+
+        private void SaveReminderInformation() {
+            if (!ErrorCheckReminderCreate()) return;
+            string phoneToRemind = "";
+            string emailToRemind = "";
+            DateTime tryTimeToRemind = DateTime.Now;
+            DateTime.TryParse(TimeToRemind.Text + ":00", out tryTimeToRemind);
+            if (DateTime.Now >= tryTimeToRemind) {
+                System.Windows.MessageBox.Show("Please select a time in the future for time to remind", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (PhoneNotification.IsChecked == true) {
+                if (CarrierToSend.SelectedValue.Equals("AT&T")) phoneToRemind = "ATT";
+                if (CarrierToSend.SelectedValue.Equals("T-Mobile")) phoneToRemind = "TMO";
+                if (CarrierToSend.SelectedValue.Equals("Verizon")) phoneToRemind = "VZW";
+                phoneToRemind += PhoneToSend.Text;
+                if (!NotesReminder.IsValidPhoneNumber(phoneToRemind)) {
+                    System.Windows.MessageBox.Show("Phone number is not valid, please enter only numbers", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            if (PhoneNotification.IsChecked == true) {
+                emailToRemind = EmailToSend.Text;
+                if (!NotesReminder.IsValidEmail(emailToRemind)) {
+                    System.Windows.MessageBox.Show("Email is not valid, please use the following format \n example@domain.com", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            Note tempOpenNote = new Note(openNote.Name, openNote.CreateUser, tryTimeToRemind, (bool)ToastNotification.IsChecked, emailToRemind, phoneToRemind);
+            openNote = tempOpenNote;
+        }
+        private bool ErrorCheckReminderCreate() {
+            if (TimeToRemind.Text == null) {
+                System.Windows.MessageBox.Show("Please choose a time to remind", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (ToastNotification.IsChecked == false && PhoneNotification.IsChecked == false && EmailNotification.IsChecked == false) {
+                System.Windows.MessageBox.Show("Please select at least one notification method", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (PhoneNotification.IsChecked == true && (CarrierToSend.SelectedItem == null || CarrierToSend.SelectedItem.Equals("") || PhoneToSend.Text.Equals(""))) {
+                System.Windows.MessageBox.Show("Please input phone contact information", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (EmailNotification.IsChecked == true && EmailToSend.Text.Equals("")) {
+                System.Windows.MessageBox.Show("Please input email contact information", "Create Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+
+        //ImageInsert
+        private List<System.Drawing.Image> imageList;
+        private List<string> imageLinks;
+        private int imageIndex;
+
         private void SearchImageClick(object sender, RoutedEventArgs e) {
             imageLinks = ImageInsert.GetImagesFromSearchTerm(ImageSearchBox.Text);
             imageList = new List<Image>();
@@ -173,7 +338,6 @@ namespace BetterNotesGUI {
             imageIndex = 0;
             PlaceImages();
         }
-
         private void PlaceImages() {
             ImageInsertPrevious.IsEnabled = (imageIndex != 0);
             ImageInsertNext.IsEnabled = !(imageIndex + 3 > imageLinks.Count);
@@ -191,44 +355,43 @@ namespace BetterNotesGUI {
                 InsertImagePanel.Children.Add(imageButton);
             }
         }
-
         private void PlaceImagesPlus(object sender, RoutedEventArgs e) {
             imageIndex += 3;
             PlaceImages();
         }
-
         private void PlaceImagesMinus(object sender, RoutedEventArgs e) {
             imageIndex -= 3;
             PlaceImages();
         }
-
         private void InsertImageToRTB(object sender, RoutedEventArgs e, int index) {
             throw new NotImplementedException();
         }
+
+        //Video Insert
+        private List<string> videoLinks;
+        private int videoIndex;
 
         private void SearchVideoClick(object sender, RoutedEventArgs e) {
             PlaceVideos();
             throw new NotImplementedException();
         }
-
         private void PlaceVideos() {
             throw new NotImplementedException();
         }
-
         private void PlaceVideosPlus(object sender, RoutedEventArgs e) {
             videoIndex += 3;
             PlaceImages();
         }
-
         private void PlaceVideosMinus(object sender, RoutedEventArgs e) {
             videoIndex -= 3;
             PlaceImages();
         }
-
         private void VideoImageToRTB(object sender, RoutedEventArgs e, int index) {
             throw new NotImplementedException();
         }
 
+        //TTS
+        private WMPLib.WindowsMediaPlayer ttsPlayer;
         private void GenerateWavFile(object sender, RoutedEventArgs e) {
             TextToSpeech.PutSpeechInFile(TextTrans.Text, openNote.FilePath + "\\speech\\TTS.wav");
             ttsPlayer = new WMPLib.WindowsMediaPlayer();
@@ -237,20 +400,20 @@ namespace BetterNotesGUI {
             PlayText.Visibility = Visibility.Visible;
             StopPlay.Visibility = Visibility.Visible;
         }
-
         private void PlayTts(object sender, RoutedEventArgs e) {
             ttsPlayer.controls.play();
         }
-
         private void StopTts(object sender, RoutedEventArgs e) {
             ttsPlayer.controls.stop();
             ttsPlayer.close();
         }
-
         private void PauseTts(object sender, RoutedEventArgs e) {
             ttsPlayer.controls.pause();
         }
 
+        //STT
+        private WaveInEvent waveIn;
+        private WaveFileWriter RecordedAudioWriter;
         private void StartRecordStt(object sender, RoutedEventArgs e) {
             if (File.Exists(openNote.FilePath + "\\speech\\STT.wav")) File.Delete(openNote.FilePath + "\\speech\\STT.wav");
             waveIn = new WaveInEvent();
@@ -261,7 +424,6 @@ namespace BetterNotesGUI {
             };
             waveIn.RecordingStopped += (s, a) => {};
         }
-
         private void StopRecordStt(object sender, RoutedEventArgs e) {
             waveIn.StopRecording();
             RecordedAudioWriter?.Dispose();

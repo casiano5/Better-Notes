@@ -76,12 +76,14 @@ namespace BetterNotesGUI {
             this.parentWindow = parentWindow;
         }
         private void FillCarriers() {
+            CarrierToSend.Items.Clear();
             CarrierToSend.Items.Add("AT&T");
             CarrierToSend.Items.Add("T-Mobile");
             CarrierToSend.Items.Add("Verizon");           
         }
         private void FillUsers() {
             UserHandler.AddAllUsersInMetadata();
+            CarrierToSend.Items.Clear();
             foreach (User user in UserHandler.UserList) UserComboBox.Items.Add(user.Name);
         }
         private void IsNote(object sender, RoutedEventArgs e) {

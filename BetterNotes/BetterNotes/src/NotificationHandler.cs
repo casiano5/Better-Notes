@@ -45,10 +45,13 @@ namespace BetterNotes {
             this.reminderBody = "Reminder for your note: " + name;
         }
         public void Start() {
-            timer = new Timer((int)(timeToRemind - DateTime.Now).TotalMilliseconds);
-            timer.Interval = (int)(timeToRemind - DateTime.Now).TotalMilliseconds;
-            timer.Enabled = true;
-            timer.Elapsed += new ElapsedEventHandler(SendNotification);
+            int timeTillReminder = (int) (timeToRemind - DateTime.Now).TotalMilliseconds;
+            if (!(timeTillReminder < 0)) {
+                timer = new Timer(timeTillReminder);
+                timer.Interval = timeTillReminder;
+                timer.Enabled = true;
+                timer.Elapsed += new ElapsedEventHandler(SendNotification);
+            }
         }
         public void SendNotification(object sender, ElapsedEventArgs e) {
             if (!(emailContact.Equals("null") || emailContact.Equals("") || emailContact == null)) NotesReminder.SendPhoneEmailNotification(emailContact, this.name, this.reminderBody);

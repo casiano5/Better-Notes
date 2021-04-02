@@ -37,11 +37,6 @@
                     <MenuItem Header="Manage Users"/>
                     <MenuItem Header="Preferences"/>
                 </MenuItem>
-                <MenuItem Header="_Test">
-                    <MenuItem Header="SendWindowsToastNotification" Click="testWTN"/>
-                    <MenuItem Header="SendEmailNotification" Click="testEM"/>
-                    <MenuItem Header="SendPhoneNotification" Click="testPN"/>
-                </MenuItem>
             </Menu>
         </DockPanel>
 
@@ -71,50 +66,30 @@
                                   Background="Black" ShowsPreview="true" Width="5"/>
                     <Button x:Name="ExapandMind" HorizontalAlignment="Left" Width="10" Grid.Column="1" Background="#5C2599" Height="40"/>
                     <StackPanel x:Name="ReminderStack" Grid.RowSpan="3" Height="Auto" Width="Auto" Background="#FF393939" Margin="0,0,5,0">
-                        <TextBlock  Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                            User
-                        </TextBlock>
-                        <ComboBox x:Name="GetUser" FontSize="15" Margin="5,5,5,5">
-                            <ComboBoxItem Content="Select User" IsSelected="True"/>
-                        </ComboBox>
-                        <!--User Email-->
-                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                            Email
-                        </TextBlock>
-                        <TextBox x:Name="RemEmail" Margin="5,5,5,5"/>
-                        <!--User Phone-->
-                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                            Phone Number
-                        </TextBlock>
-                        <TextBox x:Name="RemPhone" Margin="5,5,5,5"/>
-                        <!--Types of Services-->
-                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                            Service type
-                        </TextBlock>
-                        <ComboBox x:Name="SerSel" FontSize="15" Margin="5,5,5,5">
-                            <ComboBoxItem Content="Select Service" IsSelected="True"/>
-                            <ComboBoxItem Content="Verison"/>
-                            <ComboBoxItem Content='Att'/>
-                            <ComboBoxItem Content="TMobile"/>
-
-                        </ComboBox>
-                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                             Date/Time
-                        </TextBlock>
-                        <xctk:DateTimePicker x:Name="TimeToRemind" Margin="5,5,5,5" FontSize="12" Format="Custom" FormatString="yyyy-MM-dd HH:mm"/>
-                        <!--Notification Date-->
-                        <!--<DatePicker x:Name="RemDate"  Margin="10,0,-0.4,10.2" Grid.Row="5" 
-                             IsDropDownOpen="False" Text="" Grid.ColumnSpan="3"/>-->
-                        <!--Reminders to Send-->
-                        <TextBlock Foreground="#FFF7F9CA" Margin="5,0,5,0">
-                            Reminders To Set:
-                        </TextBlock>
-                        <CheckBox Foreground="#FFF7F9CA" Content="Email" Margin="5,0,5,0"/>
-                        <CheckBox Foreground="#FFF7F9CA" Content="Phone" Margin="5,0,5,0"/>
-                        <CheckBox Foreground="#FFF7F9CA" Content="Notification" Margin="5,0,5,5"/>
-                        <!--Set Notification Button-->
-                        <Button x:Name="Set_Rem" Background="#FF45474A" Foreground="#FFF7F9CA"
-                        Content="Set"  Margin="5,0,0,5" Height="30"/>
+                        <CheckBox x:Name="SetReminder" Content="Set Reminder?" HorizontalAlignment="Left" Margin="0,5,0,5" Checked="ShowRemindPanel" Unchecked="HideRemindPanel"/>
+                        <StackPanel x:Name="ParentPanel" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden">
+                            <GroupBox Header="Note Author" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" BorderThickness="0">
+                                <ComboBox x:Name="UserComboBox" HorizontalAlignment="Stretch" SelectionChanged="FillUserInPhoneEmail"/>
+                            </GroupBox>
+                            <GroupBox x:Name="TimeToRemindBox" Header="Remind Time" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" BorderThickness="0">
+                                <xctk:DateTimePicker x:Name="TimeToRemind" Format="Custom" FormatString="yyyy-MM-dd HH:mm"/>
+                            </GroupBox>
+                            <GroupBox x:Name="ReminderTypeBox" Header="Type" HorizontalAlignment="Left" VerticalAlignment="Center" Height="auto" Width="auto" BorderThickness="0">
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <CheckBox x:Name="ToastNotification" Content="Windows Notification" HorizontalAlignment="Left" Margin="0"/>
+                                    <CheckBox x:Name="EmailNotification" Content="Email" HorizontalAlignment="Left" Margin="0" Checked="SendEmail" Unchecked="DontSendEmail"/>
+                                    <CheckBox x:Name="PhoneNotification" Content="Text Message" HorizontalAlignment="Left" Margin="0" Checked="SendPhone" Unchecked="DontSendPhone"/>
+                                </StackPanel>
+                            </GroupBox>
+                            <!-- created programatically here for referece, do not uncomment or remove.
+                            <GroupBox x:Name="EmailRemindBox" Header="Email" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" BorderThickness="0">
+                                <TextBox x:Name="EmailToSend" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
+                            </GroupBox>
+                            <GroupBox x:Name="PhoneRemindBox" Header="Phone" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" BorderThickness="0">
+                                <TextBox x:Name="PhoneToSend" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
+                            </GroupBox>
+                            -->
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
 
