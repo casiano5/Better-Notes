@@ -87,10 +87,10 @@ namespace BetterNotesGUI {
             this.Close();
         }
         private void HighlightButton(object sender, RoutedEventArgs e) {
-            (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonHighLight;
+            (sender as Button).Background = GlobalVars.ButtonHighLight;
         }
         private void UnHighlightButton(object sender, RoutedEventArgs e) {
-            (sender as System.Windows.Controls.Button).Background = GlobalVars.ButtonUnHighLight;
+            (sender as Button).Background = GlobalVars.ButtonUnHighLight;
         }
         private void OpenNewClick(object sender, RoutedEventArgs e) {
             NewNoteDialog newView = new NewNoteDialog(this);
@@ -102,9 +102,8 @@ namespace BetterNotesGUI {
             openFileDialog.Filter = "Better Notes Note (*.bnot)|*.bnot|All files (*.*)|*.*";
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
-            BetterNotesMainView bnotView = null;
             if (openFileDialog.ShowDialog() == true) {
-                bnotView = new BetterNotesMainView(new Note(openFileDialog.FileName));
+                BetterNotesMainView bnotView = new BetterNotesMainView(new Note(openFileDialog.FileName));
                 bnotView.Show();
                 this.Close();
             }
