@@ -5,8 +5,10 @@ using BetterNotes;
 using System.IO;
 using System.Windows.Documents;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using NAudio.Wave;
 using DataFormats = System.Windows.DataFormats;
 using Image = System.Drawing.Image;
 using MessageBox = System.Windows.MessageBox;
@@ -22,8 +24,10 @@ namespace BetterNotesGUI {
         private List<System.Drawing.Image> imageList;
         private List<string> imageLinks;
         private int imageIndex;
-        bool saved = false;
+        private bool saved = false;
         private WMPLib.WindowsMediaPlayer ttsPlayer;
+        private WaveInEvent waveIn;
+        private WaveFileWriter RecordedAudioWriter;
         public virtual System.Windows.Forms.AnchorStyles Anchor { get; set; }
         public object Controls { get; private set; }
         public BetterNotesMainView(Note openNote) {
@@ -225,6 +229,29 @@ namespace BetterNotesGUI {
 
         private void PauseTts(object sender, RoutedEventArgs e) {
             ttsPlayer.controls.pause();
+        }
+
+        private void StartRecordStt(object sender, RoutedEventArgs e) {
+            if (File.Exists(openNote.FilePath + "\\speech\\STT.wav")) File.Delete(openNote.FilePath + "\\speech\\STT.wav");
+            waveIn = new WaveInEvent();
+            RecordedAudioWriter = new WaveFileWriter(openNote.FilePath + "\\speech\\STT.wav", waveIn.WaveFormat);
+            waveIn.StartRecording();
+            waveIn.DataAvailable += (s, a) => {
+                RecordedAudioWriter.Write(a.Buffer, 0, a.BytesRecorded);
+            };
+            waveIn.RecordingStopped += (s, a) => {
+                //RecordedAudioWriter?.Dispose();
+                //RecordedAudioWriter = null;
+                //waveIn.Dispose();
+            };
+        }
+
+        private void StopRecordStt(object sender, RoutedEventArgs e) {
+            waveIn.StopRecording();
+            RecordedAudioWriter?.Dispose();
+            RecordedAudioWriter = null;
+            waveIn.Dispose();
+            TransText.Text = SpeechToText.SpeechToTextFromFile(openNote.FilePath + "\\speech\\STT.wav");
         }
     }
 }

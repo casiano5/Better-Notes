@@ -3,9 +3,10 @@ using System.Speech.Recognition;
 
 namespace BetterNotes {
     public static class SpeechToText {
-        private static string returnValue = "";
+        private static string returnValue;
 
         public static string SpeechToTextFromFile(string path) {
+            returnValue = "";
             SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-US"));
             recognizer.LoadGrammar(new DictationGrammar());
             recognizer.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(recognizer_SpeechRecognized);
