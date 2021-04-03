@@ -8,6 +8,7 @@
         Title="User Management" Icon="BetterNotes.ico" Height="450" Width="800"
         ResizeMode="NoResize">
     <Grid Background="#FF45474A" ShowGridLines="False">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel x:Name="UserTable" Background="#FF45474A" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0">
             <Button x:Name="NewUser"  BorderBrush="#FF45474A" Foreground="White" Content="_New_User" Height="25" Width="Auto" HorizontalAlignment="Stretch" Click="CreateUser">
                 <Button.Background>
@@ -31,8 +32,9 @@
 
 
             </StackPanel>-->
-            <StackPanel x:Name="EnterU" Orientation="Horizontal" Height="Auto">
-                <!-- created programatically here for referece, do not uncomment or remove.
+           
+                <StackPanel x:Name="EnterU" Orientation="Horizontal" Height="Auto">
+                    <!-- created programatically here for referece, do not uncomment or remove.
                 <ListBox x:Name="UserN" Width="150" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <TextBlock Text="Arial" Margin="2,1,2,1" />
                     <TextBlock Text="Test Name" Margin="2,1,2,1"/>
@@ -57,8 +59,9 @@
                 </ListBox>
                 -->
 
-            </StackPanel>
-
+                </StackPanel>
+            
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
