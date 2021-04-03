@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="User Management" Icon="BetterNotes.ico" Height="450" Width="800"
+        Title="User Management" Icon="BetterNotes.ico" MaxHeight="450" Width="720"
         ResizeMode="NoResize"
-        SizeToContent="Width">
+        SizeToContent="WidthAndHeight">
     <Grid x:Name="Back" ShowGridLines="False">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel x:Name="UserTable" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0">
+            <StackPanel x:Name="UserTable" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,20,10,5">
                 <Button x:Name="NewUser"  BorderBrush="#FF45474A" Style="{StaticResource SquareButtonTemplate}" Foreground="#FFF7F9CA" Content="New User" Height="25" Width="Auto"
                              MouseEnter="HighlightButton" MouseLeave="UnHighlightButton" HorizontalAlignment="Stretch" Click="CreateUser">
                     <Button.Background>
