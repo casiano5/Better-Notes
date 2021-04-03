@@ -160,7 +160,7 @@
 
                         <TabItem x:Name="InsertImage" Header="Insert Image" TabIndex="1" Style="{StaticResource SquareTabTemplate}" FontSize="13">
                             <!--Possible SearchBox, needs the C# implementation-->
-                            <Grid Background="#FF393939">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"/>
                                     <ColumnDefinition Width="*"/>
@@ -187,13 +187,13 @@
                         </TabItem>
                         <!--Text to Speech-->
                         <TabItem x:Name="Text_Speech" Header="Text-To-Speech" FontSize="13" TabIndex="2" Style="{StaticResource SquareTabTemplate}">
-                            <StackPanel Background="#FF393939" Height="Auto" Width="Auto">
+                            <StackPanel Height="Auto" Width="Auto">
                                 <TextBox x:Name="TextTrans" Padding="10" Margin="0,5,0,5" TextWrapping="Wrap"
                                     Background="#FFF8F9E6" SpellCheck.IsEnabled="True" />
                                 <StackPanel Width="Auto" HorizontalAlignment="Stretch">
-                                    <Button x:Name="GenerateSpeech" Height="25" Margin="5,5,5,5"  Content="Generate" Foreground="#FFF7F9CA" Background="#FF45474A" Click="GenerateWavFile"/>
-                                    <Button x:Name="PlayText" VerticalAlignment="Center" Height="25" Margin="5,5,5,5" Content="Play" Foreground="#FFF7F9CA" Background="#5C2599" Click="PlayTts" Visibility="Hidden"/>
-                                    <Button x:Name="StopPlay" Height="25" Margin="5,5,5,5"  Content="Stop" Foreground="#FFF7F9CA" Background="Red" Click="StopTts" Visibility="Hidden"/>
+                                    <Button x:Name="GenerateSpeech" Height="25" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}" MouseEnter="HighlightButtonD" MouseLeave="UnHighlightButtonD" Content="Generate" Foreground="#FFF7F9CA" Background="#FF45474A" Click="GenerateWavFile"/>
+                                    <Button x:Name="PlayText" VerticalAlignment="Center" Height="25" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}" MouseEnter="HighlightButton"  MouseLeave="UnHighlightButton" Content="Play" Foreground="#FFF7F9CA" Background="#5C2599" Click="PlayTts" Visibility="Hidden"/>
+                                    <Button x:Name="StopPlay" Height="25" Margin="5,5,5,5"  Style="{StaticResource SquareButtonTemplate}" MouseEnter="HighlightButton" MouseLeave="UnHighlightButtonStop" Content="Stop" Foreground="#FFF7F9CA" Background="Red" Click="StopTts" Visibility="Hidden"/>
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>
@@ -203,9 +203,11 @@
                                 <TextBox x:Name="TransText" Grid.Row="1" Margin="0,5,0,5" Padding="70"
                                          Background="#FFF8F9E6" IsReadOnly="True"/>
                                 <StackPanel x:Name="SpeechButtons" Width="Auto" VerticalAlignment="Center" >
-                                    <Button x:Name="RecordSpeech" Height="25" Margin="5,5,5,5"
+                                    <Button x:Name="RecordSpeech" Height="25" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}"
+                                            MouseEnter="HighlightButtonD" MouseLeave="UnHighlightButtonD"
                                             Content="Record" Foreground="#FFF7F9CA" Background="#FF45474A" Click="StartRecordStt"/>
-                                    <Button x:Name="StopRecord" Height="25" Content="Stop" Margin="5,5,5,5"
+                                    <Button x:Name="StopRecord" Height="25" Content="Stop" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}"
+                                            MouseEnter="HighlightButton" MouseLeave="UnHighlightButtonStop"
                                             Background="Red" Foreground="#FFF7F9CA" Click="StopRecordStt"/>
                                 </StackPanel>
 

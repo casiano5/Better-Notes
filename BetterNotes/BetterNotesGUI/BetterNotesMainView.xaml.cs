@@ -477,5 +477,25 @@ namespace BetterNotesGUI {
             waveIn.Dispose();
             TransText.Text = SpeechToText.SpeechToTextFromFile(openNote.FilePath + "\\speech\\STT.wav");
         }
+        private void UnHighlightButton(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = GlobalVars.ManageUnHighLight;
+        }
+        private void UnHighlightButtonStop(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = Brushes.Red;
+        }
+        private void HighlightButton(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = GlobalVars.ButtonUnHighLight;
+        }
+        private void HighlightButtonD(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = GlobalVars.ButtonHighLight;
+        }
+        private void UnHighlightButtonD(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = GlobalVars.ButtonUnHighLight;
+        }
     }
 }
