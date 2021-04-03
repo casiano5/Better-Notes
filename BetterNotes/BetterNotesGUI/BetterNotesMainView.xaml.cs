@@ -29,6 +29,10 @@ namespace BetterNotesGUI {
         public BetterNotesMainView(Note openNote) {
             this.openNote = openNote;
             InitializeComponent();
+            Back.Background = GlobalVars.MainBack;
+            ReminderStack.Background = GlobalVars.MainPBack;
+            InsertMedia.Background = GlobalVars.MainPBack;
+            InsertMedia.BorderBrush = GlobalVars.MainPBack;
             if (!WindowExists()) _ = new MinimizedView();
             LoadXamlPackage(openNote.FilePath + "\\note\\note");
             InitializeReminderElements();

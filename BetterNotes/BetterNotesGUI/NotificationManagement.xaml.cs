@@ -10,10 +10,13 @@ namespace BetterNotesGUI {
     public partial class NotificationManagement : Window {
         private List<List<string>> notificationList = new List<List<string>>();
         public NotificationManagement() {
+           
             InitializeComponent();
+            Back.Background = GlobalVars.MainBack;
             FillNotifications();
         }
         private void FillNotifications() {
+            
             List<List<string>> tempNotificationList = new List<List<string>>();
             using (var reader = new StreamReader(GlobalVars.BnotReminderCsv)) {
                 while (!reader.EndOfStream) {
@@ -26,8 +29,10 @@ namespace BetterNotesGUI {
                 NotificationListPanel.Children.Add(new GroupBox{
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Stretch,
+                    BorderThickness = new Thickness(0),
                     Content = new Label {
                         Content = "No notifications are set",
+                        Foreground=GlobalVars.MainText,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center
                     } 
@@ -54,20 +59,23 @@ namespace BetterNotesGUI {
                     Orientation = Orientation.Vertical,
                     HorizontalAlignment = HorizontalAlignment.Center
                 };
-                labelStack.Children.Add(new Label { Content = "When to Remind:" });
-                labelStack.Children.Add(new Label { Content = "Send Windows Toast Notification:" });
-                labelStack.Children.Add(new Label { Content = "Send Email Notification:" });
-                labelStack.Children.Add(new Label { Content = "Send Phone Notification:" });
-                labelStack.Children.Add(new Label { Content = "Delete:" });
-                contentStack.Children.Add(new Label { Content = tempNotificationList[i][0] });
-                contentStack.Children.Add(new Label { Content = tempNotificationList[i][4][0].ToString().ToLower().Equals("t") ? "Yes" : "No" } );
-                contentStack.Children.Add(new Label { Content = tempNotificationList[i][3].Equals("") ? "No" : tempNotificationList[i][3] });
-                contentStack.Children.Add(new Label { Content = tempNotificationList[i][2].Equals("") ? "No" : tempNotificationList[i][2] });
-                contentStack.Children.Add(new Label { Content = delete });
+                labelStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = "When to Remind:" });
+                labelStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = "Send Windows Toast Notification:" });
+                labelStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = "Send Email Notification:" });
+                labelStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = "Send Phone Notification:" });
+                labelStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = "Delete:" });
+                contentStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = tempNotificationList[i][0] });
+                contentStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = tempNotificationList[i][4][0].ToString().ToLower().Equals("t") ? "Yes" : "No" } );
+                contentStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = tempNotificationList[i][3].Equals("") ? "No" : tempNotificationList[i][3] });
+                contentStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = tempNotificationList[i][2].Equals("") ? "No" : tempNotificationList[i][2] });
+                contentStack.Children.Add(new Label { Foreground = GlobalVars.MainText, Content = delete });
                 parentStack.Children.Add(labelStack);
                 parentStack.Children.Add(contentStack);
                 GroupBox groupBox = new GroupBox {
                     Header = tempNotificationList[i][1],
+                    //BorderBrush = GlobalVars.ButtonUnHighLight,
+                    Foreground= GlobalVars.MainText,
+                    BorderThickness = new Thickness(0.2),
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     VerticalAlignment = VerticalAlignment.Center,
                     Height = Double.NaN,

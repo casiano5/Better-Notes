@@ -7,25 +7,26 @@
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
         Title="User Edit" Icon="BetterNotes.ico" Width="350" ResizeMode="NoResize" SizeToContent="Height">
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
-        <StackPanel x:Name="ParentPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <GroupBox Header="User Name" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
-                <TextBox x:Name="NameBox" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
-            </GroupBox>
-            <GroupBox Header="Email Address" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
-                <TextBox x:Name="EmailBox" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
-            </GroupBox>
-            <GroupBox Header="Carrier" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
-                <ComboBox x:Name="CarrierBox" HorizontalAlignment="Stretch"></ComboBox>
-            </GroupBox>
-            <GroupBox Header="Phone Number" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
-                <TextBox x:Name="PhoneBox" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
-            </GroupBox>
+    <Grid x:Name="Back">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
+            <StackPanel x:Name="ParentPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <GroupBox x:Name="UserNameG" Header="User Name" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+                    <TextBox x:Name="NameBox" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
+                </GroupBox>
+                <GroupBox x:Name="EmailAddressG" Header="Email Address" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+                    <TextBox x:Name="EmailBox" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
+                </GroupBox>
+                <GroupBox x:Name="CarrierG" Header="Carrier" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+                    <ComboBox x:Name="CarrierBox" HorizontalAlignment="Stretch"></ComboBox>
+                </GroupBox>
+                <GroupBox x:Name="PhoneNumberG" Header="Phone Number" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+                    <TextBox x:Name="PhoneBox" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <Button Content="Save" Padding="10,5,10,5" Margin="10" Click="SaveUser"/>
+                <Button Content="Cancel" Padding ="10,5,10,5" Margin="10" Click="CancelUser"/>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Button Content="Save" Padding="10,5,10,5" Margin="10" Click="SaveUser"/>
-            <Button Content="Cancel" Padding ="10,5,10,5" Margin="10" Click="CancelUser"/>
-        </StackPanel>
-    </StackPanel>
-
+    </Grid>
 </Window>

@@ -7,16 +7,17 @@
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
         Title="New Note" Icon="BetterNotes.ico" Width="350" ResizeMode="NoResize" SizeToContent="Height" Closing="OnCloseNew">
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
-        <StackPanel x:Name="ParentPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <GroupBox Header="Note Name" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+    <Grid x:Name="Back">
+    <StackPanel x:Name="MainB" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
+        <StackPanel x:Name="ParentPanel" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+            <GroupBox x:Name="noteNameG" Header="Note Name" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto"  BorderThickness="0">
                 <TextBox x:Name="noteName" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>
             </GroupBox>
-            <GroupBox Header="Note Author" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
+            <GroupBox x:Name="UserComboBoxG" Header="Note Author" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" BorderThickness="0">
                 <ComboBox x:Name="UserComboBox" HorizontalAlignment="Stretch" SelectionChanged="FillUserInPhoneEmail"/>
             </GroupBox>
-            <GroupBox Header="Note Type" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <GroupBox x:Name="NoteTypeG" Header="Note Type" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto"   BorderThickness="0" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="Transparent">
                     <RadioButton x:Name="isNote" Content="Note" VerticalAlignment="Center" Margin="10" Checked="IsNote"/>
                     <RadioButton x:Name="isReminder" Content="Reminder" VerticalAlignment="Center" Margin="10" Checked="IsReminder"/>
                 </StackPanel>
@@ -24,8 +25,8 @@
             <GroupBox x:Name="TimeToRemindBox" Header="When To Remind" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Hidden">
                 <xctk:DateTimePicker x:Name="TimeToRemind" Format="Custom" FormatString="yyyy-MM-dd HH:mm"/>
             </GroupBox>
-            <GroupBox x:Name="ReminderTypeBox" Header="What Kind of Reminder To Send" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Hidden">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <GroupBox x:Name="ReminderTypeBox" Header="What Kind of Reminder To Send" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Hidden" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="Transparent">
                     <CheckBox x:Name="ToastNotification" Content="Windows Notification" HorizontalAlignment="Left" Margin="10"/>
                     <CheckBox x:Name="EmailNotification" Content="Email" HorizontalAlignment="Left" Margin="10" Checked="SendEmail" Unchecked="DontSendEmail"/>
                     <CheckBox x:Name="PhoneNotification" Content="Text Message" HorizontalAlignment="Left" Margin="10" Checked="SendPhone" Unchecked="DontSendPhone"/>
@@ -42,9 +43,10 @@
             </GroupBox>
             -->
         </StackPanel>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="Transparent">
             <Button Content="Create" Padding="10,5,10,5" Margin="10" Click="CreateNote"/>
             <Button Content="Cancel" Padding ="10,5,10,5" Margin="10" Click="CancelCreate"/>
         </StackPanel>
-    </StackPanel>
+        </StackPanel>
+    </Grid>
 </Window>

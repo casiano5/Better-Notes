@@ -29,6 +29,8 @@ namespace BetterNotesGUI {
         private static GroupBox EmailRemindBox = new GroupBox {
             Name = "EmailRemindBox",
             Header = "Email to Send Reminder",
+            Foreground = GlobalVars.MainText,
+            BorderThickness = new Thickness(0),
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Center,
             Height = Double.NaN,
@@ -36,15 +38,19 @@ namespace BetterNotesGUI {
             Content = EmailToSend
         };
         private static TextBox PhoneToSend = new TextBox {
+           
             TextWrapping = TextWrapping.Wrap,
+            BorderThickness = new Thickness(0),
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Top,
             Height = Double.NaN,
             Width = Double.NaN
         };
         private static GroupBox PhoneRemindBox = new GroupBox {
+            Foreground = GlobalVars.MainText,
             Name = "PhoneRemindBox",
             Header = "Phone to Send Reminder",
+            BorderThickness = new Thickness(0),
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Center,
             Height = Double.NaN,
@@ -56,8 +62,10 @@ namespace BetterNotesGUI {
             HorizontalAlignment = HorizontalAlignment.Stretch
         };
         private static GroupBox CarrierBox = new GroupBox {
+            Foreground = GlobalVars.MainText,
             Name = "CarrierBox",
             Header = "Carrier",
+            BorderThickness = new Thickness(0),
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Center,
             Height = Double.NaN,
@@ -66,11 +74,14 @@ namespace BetterNotesGUI {
         };
         public NewNoteDialog() {
             InitializeComponent();
+            Back.Background = GlobalVars.MainBack;
             FillUsers();
             FillCarriers();
+            Back.Background = GlobalVars.MainBack;
         }
         public NewNoteDialog(Window parentWindow) {
             InitializeComponent();
+            Back.Background = GlobalVars.MainBack;
             FillUsers();
             FillCarriers();
             this.parentWindow = parentWindow;
@@ -82,6 +93,17 @@ namespace BetterNotesGUI {
             CarrierToSend.Items.Add("Verizon");           
         }
         private void FillUsers() {
+            noteNameG.Foreground = GlobalVars.MainText;
+            UserComboBoxG.Foreground = GlobalVars.MainText;
+            NoteTypeG.Foreground = GlobalVars.MainText;
+            isNote.Foreground = GlobalVars.MainText;
+            isReminder.Foreground = GlobalVars.MainText;
+            TimeToRemindBox.Foreground = GlobalVars.MainText;
+            ReminderTypeBox.Foreground = GlobalVars.MainText;
+            ToastNotification.Foreground = GlobalVars.MainText;
+            EmailNotification.Foreground = GlobalVars.MainText;
+            PhoneNotification.Foreground = GlobalVars.MainText;
+
             UserHandler.AddAllUsersInMetadata();
             CarrierToSend.Items.Clear();
             foreach (User user in UserHandler.UserList) UserComboBox.Items.Add(user.Name);

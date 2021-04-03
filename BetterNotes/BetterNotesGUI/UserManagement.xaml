@@ -7,17 +7,18 @@
         mc:Ignorable="d"
         Title="User Management" Icon="BetterNotes.ico" Height="450" Width="800"
         ResizeMode="NoResize">
-    <Grid Background="#FF45474A" ShowGridLines="False">
+    <Grid x:Name="Back" ShowGridLines="False">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel x:Name="UserTable" Background="#FF45474A" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0">
-            <Button x:Name="NewUser"  BorderBrush="#FF45474A" Foreground="White" Content="_New_User" Height="25" Width="Auto" HorizontalAlignment="Stretch" Click="CreateUser">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint=".5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="#FF45474A" Offset="1"/>
-                        <GradientStop Color="#FF5C2599" Offset="0.9"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
+            <StackPanel x:Name="UserTable" Background="#FF393939" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0">
+                <Button x:Name="NewUser"  BorderBrush="#FF45474A" Style="{StaticResource SquareButtonTemplate}" Foreground="#FFF7F9CA" Content="New User" Height="25" Width="Auto"
+                             MouseEnter="HighlightButton" MouseLeave="UnHighlightButton" HorizontalAlignment="Stretch" Click="CreateUser">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint=".5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF45474A" Offset="1"/>
+                            <GradientStop Color="#FF2E144B" Offset="0.9"/>
+                           </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
             <!--<StackPanel Orientation="Horizontal" Height="Auto">
 
                 <ListBox Width="150" Background="Beige" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -61,7 +62,7 @@
 
                 </StackPanel>
             
-        </StackPanel>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Window>

@@ -10,12 +10,30 @@ namespace BetterNotesGUI {
         private UserManagement parentWindow;
         public UserDialog(UserManagement parentWindow) {
             InitializeComponent();
+            Back.Background = GlobalVars.MainBack;
+            UserNameG.Foreground = GlobalVars.MainText;
+            UserNameG.BorderThickness = new Thickness(0);
+            EmailAddressG.Foreground = GlobalVars.MainText;
+            EmailAddressG.BorderThickness = new Thickness(0);
+            CarrierG.Background = GlobalVars.MainText;
+            CarrierG.BorderThickness = new Thickness(0);
+            PhoneNumberG.Background = GlobalVars.MainText;
+            PhoneNumberG.BorderThickness = new Thickness(0);
             FillCarriers();
             this.parentWindow = parentWindow;
             newUser = true;
         }
         public UserDialog(User user, UserManagement parentWindow) {
             InitializeComponent();
+            Back.Background = GlobalVars.MainBack;
+            UserNameG.Foreground = GlobalVars.MainText;
+            UserNameG.BorderThickness = new Thickness(0);
+            EmailAddressG.Foreground = GlobalVars.MainText;
+            EmailAddressG.BorderThickness = new Thickness(0);
+            CarrierG.Foreground = GlobalVars.MainText;
+            CarrierG.BorderThickness = new Thickness(0);
+            PhoneNumberG.Foreground = GlobalVars.MainText;
+            PhoneNumberG.BorderThickness = new Thickness(0);
             FillCarriers();
             this.parentWindow = parentWindow;
             newUser = false;

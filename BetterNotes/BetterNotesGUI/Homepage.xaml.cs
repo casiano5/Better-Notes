@@ -14,6 +14,9 @@ namespace BetterNotesGUI {
 
         public Homepage() {
             InitializeComponent();
+            Back.Background = GlobalVars.MainBack;
+            BackRight.Background = GlobalVars.MainBack;
+            RecentNotesGrid.Background = GlobalVars.MainPBack;
             if (!WindowExists()) _ = new MinimizedView();
             GenerateRecentNotes();
             this.Show();

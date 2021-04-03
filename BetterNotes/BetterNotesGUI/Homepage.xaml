@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
         Title="Better Notes" Icon="BetterNotes.ico" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" ResizeMode="NoResize">
-    <Grid Background="#FF45474A" ShowGridLines="False">
+    <Grid x:Name="Back" ShowGridLines="False">
 
-        <Grid x:Name="RecentNotesGrid" Background="#FF393939" Width="340" Height="470" ShowGridLines="False" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Grid x:Name="RecentNotesGrid" Width="340" Height="470" ShowGridLines="False" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="300"/>
@@ -54,7 +54,7 @@
         </Grid>
 
 
-        <Grid Background="#FF45474A" Width="440" Height="470" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <Grid x:Name="BackRight" Width="440" Height="470" ShowGridLines="False" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>

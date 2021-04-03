@@ -11,7 +11,16 @@ namespace BetterNotesGUI
         public UserManagement()
         {
             InitializeComponent();
+            Back.Background = GlobalVars.MainBack;
             FillUsers();
+        }
+        private void UnHighlightButton(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = GlobalVars.ManageUnHighLight;
+        }
+        private void HighlightButton(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = GlobalVars.ButtonUnHighLight;
         }
         public void FillUsers()
         {
