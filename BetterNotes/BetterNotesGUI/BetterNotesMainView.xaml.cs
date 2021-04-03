@@ -217,6 +217,7 @@ namespace BetterNotesGUI {
                 Width = Double.NaN,
                 Content = EmailToSend,
                 BorderThickness = new Thickness(0),
+                Margin = new Thickness(0,10,0,10),
                 Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF7F9CA")
             };
             PhoneToSend = new TextBox {
@@ -231,6 +232,7 @@ namespace BetterNotesGUI {
                 Header = "Phone",
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 10, 0, 10),
                 Height = Double.NaN,
                 Width = Double.NaN,
                 Content = PhoneToSend,
@@ -246,6 +248,7 @@ namespace BetterNotesGUI {
                 Header = "Carrier",
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(0, 10, 0, 10),
                 Height = Double.NaN,
                 Width = Double.NaN,
                 BorderThickness = new Thickness(0),

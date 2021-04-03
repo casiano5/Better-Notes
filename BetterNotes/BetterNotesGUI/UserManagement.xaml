@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="User Management" Icon="BetterNotes.ico" MaxHeight="450" Width="720"
+        Title="User Management" Icon="BetterNotes.ico" MaxHeight="720" Width="720"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight">
     <Grid x:Name="Back" ShowGridLines="False">

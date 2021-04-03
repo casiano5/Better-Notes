@@ -16,7 +16,7 @@
             <GroupBox x:Name="UserComboBoxG" Header="Note Author" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" BorderThickness="0">
                 <ComboBox x:Name="UserComboBox" HorizontalAlignment="Stretch" SelectionChanged="FillUserInPhoneEmail"/>
             </GroupBox>
-                <GroupBox x:Name="NoteTypeG" Header="Note Type" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto"   BorderThickness="0" >
+                <GroupBox x:Name="NoteTypeG" Header="Note Type" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" BorderThickness="0" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="Transparent">
                     <RadioButton x:Name="isNote" Content="Note" VerticalAlignment="Center" Margin="10" Checked="IsNote"/>
                     <RadioButton x:Name="isReminder" Content="Reminder" VerticalAlignment="Center" Margin="10" Checked="IsReminder"/>
@@ -25,13 +25,13 @@
             <GroupBox x:Name="TimeToRemindBox" Header="When To Remind" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Hidden">
                 <xctk:DateTimePicker x:Name="TimeToRemind" Format="Custom" FormatString="yyyy-MM-dd HH:mm"/>
             </GroupBox>
-            <GroupBox x:Name="ReminderTypeBox" Header="What Kind of Reminder To Send" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Hidden" >
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="Transparent">
-                    <CheckBox x:Name="ToastNotification" Content="Windows Notification" HorizontalAlignment="Left" Margin="10"/>
-                    <CheckBox x:Name="EmailNotification" Content="Email" HorizontalAlignment="Left" Margin="10" Checked="SendEmail" Unchecked="DontSendEmail"/>
-                    <CheckBox x:Name="PhoneNotification" Content="Text Message" HorizontalAlignment="Left" Margin="10" Checked="SendPhone" Unchecked="DontSendPhone"/>
-                </StackPanel>
-            </GroupBox>
+                <GroupBox x:Name="ReminderTypeBox" Header="What Kind of Reminder To Send" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Hidden"  Margin="0,10,0,10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="Transparent" >
+                        <CheckBox x:Name="ToastNotification" Content="Windows Notification" HorizontalAlignment="Left"  Margin="5,10,5,5"/>
+                        <CheckBox x:Name="EmailNotification" Content="Email" HorizontalAlignment="Left" Checked="SendEmail" Unchecked="DontSendEmail" Margin="5,10,5,5"/>
+                        <CheckBox x:Name="PhoneNotification" Content="Text Message" HorizontalAlignment="Left" Margin="5,10,5,5" Checked="SendPhone" Unchecked="DontSendPhone"/>
+                    </StackPanel>
+                </GroupBox>
             <!-- created programatically here for referece, do not uncomment or remove.
             <GroupBox x:Name="EmailRemindBox" Header="Email to Send Reminder" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto" Visibility="Hidden">
                 <TextBox x:Name="EmailToSend" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="auto" Width="auto"/>

@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
-        Title="Notification Management" Icon="BetterNotes.ico" SizeToContent="Height" Width="350" ResizeMode="NoResize">
+        Title="Notification Management" Icon="BetterNotes.ico" MaxHeight="720" SizeToContent="Height" Width="350" ResizeMode="NoResize">
     <Grid x:Name="Back">
-        <StackPanel x:Name="NotificationListPanel" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
-            <!-- created programatically here for referece, do not uncomment or remove.
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="NotificationListPanel" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5">
+                <!-- created programatically here for referece, do not uncomment or remove.
         <GroupBox Header="SomeNoteName" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Width="auto">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
@@ -28,6 +29,7 @@
             </StackPanel>
         </GroupBox>
         -->
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>

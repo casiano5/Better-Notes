@@ -31,6 +31,7 @@ namespace BetterNotesGUI {
             Header = "Email to Send Reminder",
             Foreground = GlobalVars.MainText,
             BorderThickness = new Thickness(0),
+            Margin = new Thickness(0, 10, 0, 10),
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Center,
             Height = Double.NaN,
@@ -51,6 +52,7 @@ namespace BetterNotesGUI {
             Name = "PhoneRemindBox",
             Header = "Phone to Send Reminder",
             BorderThickness = new Thickness(0),
+            Margin = new Thickness(0,10,0,10),
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Center,
             Height = Double.NaN,
@@ -66,6 +68,7 @@ namespace BetterNotesGUI {
             Name = "CarrierBox",
             Header = "Carrier",
             BorderThickness = new Thickness(0),
+            Margin = new Thickness(0, 10, 0, 10),
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Center,
             Height = Double.NaN,
@@ -99,7 +102,9 @@ namespace BetterNotesGUI {
             isNote.Foreground = GlobalVars.MainText;
             isReminder.Foreground = GlobalVars.MainText;
             TimeToRemindBox.Foreground = GlobalVars.MainText;
+            TimeToRemindBox.BorderThickness = new Thickness(0);
             ReminderTypeBox.Foreground = GlobalVars.MainText;
+            ReminderTypeBox.BorderThickness = new Thickness(0);
             ToastNotification.Foreground = GlobalVars.MainText;
             EmailNotification.Foreground = GlobalVars.MainText;
             PhoneNotification.Foreground = GlobalVars.MainText;
