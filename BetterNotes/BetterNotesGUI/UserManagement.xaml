@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:BetterNotesGUI"
         mc:Ignorable="d"
         Title="User Management" Icon="BetterNotes.ico" Height="450" Width="800"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        SizeToContent="Width">
     <Grid x:Name="Back" ShowGridLines="False">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="UserTable" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0">
