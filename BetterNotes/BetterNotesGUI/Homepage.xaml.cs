@@ -35,6 +35,16 @@ namespace BetterNotesGUI {
             return false;
         }
         private void GenerateRecentNotes() {
+            RecentNotesGrid.Children.Clear();
+            TextBlock recentNoteBlock = new TextBlock {
+                Text = "Recent Notes",
+                Margin = new Thickness(0,0,0,0),
+                Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFD4D4D4")
+            };
+            RecentNotesGrid.Children.Add(recentNoteBlock);
+            Grid.SetColumn(recentNoteBlock, 1);
+            Grid.SetColumnSpan(recentNoteBlock, 2);
+            Grid.SetRow(recentNoteBlock, 1);
             List<string[]> RecentNotesList = new List<string[]>();
             using (var reader = new StreamReader(GlobalVars.BnotRecentNoteCsv)) {
                 while (!reader.EndOfStream) {
@@ -85,9 +95,25 @@ namespace BetterNotesGUI {
             return list;
         }
         private void OpenNotes(object sender, RoutedEventArgs e, string filePath) {
-            BetterNotesMainView bnotView = new BetterNotesMainView(new Note(filePath));
-            bnotView.Show();
-            this.Close();
+            if (Directory.Exists(filePath)) {
+                BetterNotesMainView bnotView = new BetterNotesMainView(new Note(filePath));
+                bnotView.Show();
+                this.Close();
+            }
+            else {
+                if (MessageBox.Show("File no longer exists, remove entry?", "Remove entry?", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes) {
+                    string recentCsv = "";
+                    using (var reader = new StreamReader(GlobalVars.BnotRecentNoteCsv)) {
+                        while (!reader.EndOfStream) {
+                            string line = reader.ReadLine();
+                            if (!line.Split(',')[3].Equals(filePath)) recentCsv += line + Environment.NewLine;
+                        }
+                        reader.Close();
+                    }
+                    File.WriteAllText(GlobalVars.BnotRecentNoteCsv, recentCsv);
+                    GenerateRecentNotes();
+                }
+            }
         }
         private void HighlightButton(object sender, RoutedEventArgs e) {
             (sender as Button).Background = GlobalVars.ButtonHighLight;
