@@ -29,6 +29,7 @@ namespace BetterNotesGUI {
         public BetterNotesMainView(Note openNote) {
             this.openNote = openNote;
             InitializeComponent();
+            StopRecord.IsEnabled = false;
             Back.Background = GlobalVars.MainBack;
             ReminderStack.Background = GlobalVars.MainPBack;
             InsertMedia.Background = GlobalVars.MainPBack;
@@ -484,6 +485,8 @@ namespace BetterNotesGUI {
         private WaveFileWriter RecordedAudioWriter;
         private void StartRecordStt(object sender, RoutedEventArgs e) {
             if (File.Exists(openNote.FilePath + "\\speech\\STT.wav")) File.Delete(openNote.FilePath + "\\speech\\STT.wav");
+            RecordSpeech.IsEnabled = false;
+            StopRecord.IsEnabled = true;
             waveIn = new WaveInEvent();
             RecordedAudioWriter = new WaveFileWriter(openNote.FilePath + "\\speech\\STT.wav", waveIn.WaveFormat);
             waveIn.StartRecording();
@@ -493,6 +496,8 @@ namespace BetterNotesGUI {
             waveIn.RecordingStopped += (s, a) => {};
         }
         private void StopRecordStt(object sender, RoutedEventArgs e) {
+            RecordSpeech.IsEnabled = true;
+            StopRecord.IsEnabled = false;
             waveIn.StopRecording();
             RecordedAudioWriter?.Dispose();
             RecordedAudioWriter = null;
