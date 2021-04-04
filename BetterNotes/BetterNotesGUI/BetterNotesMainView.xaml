@@ -204,7 +204,7 @@
                         <!--Speech to Text-->
                         <TabItem x:Name="Speech_Text" Header="Speech-To-Text" FontSize="13" TabIndex="3" Style="{StaticResource SquareTabTemplate}">
                             <StackPanel>
-                                <TextBox x:Name="TransText" Grid.Row="1" Margin="0,5,0,5" Padding="10"
+                                <TextBox x:Name="TransText" Grid.Row="1" Margin="0,5,0,5" Padding="10" TextWrapping="Wrap"
                                          Background="#FFF8F9E6" IsReadOnly="True"/>
                                 <StackPanel x:Name="SpeechButtons" Width="Auto" VerticalAlignment="Center" >
                                     <Button x:Name="RecordSpeech" Height="25" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}"
