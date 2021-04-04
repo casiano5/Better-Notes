@@ -148,8 +148,8 @@
                                 <TextBox x:Name="VideoSearchBox" Grid.Column="1" Height="20" SpellCheck.IsEnabled="True" Width="Auto" Margin="0,0,0,0" Grid.ColumnSpan="2"/>
                                 <Button x:Name="SearchVideo" Grid.Row="0" Grid.Column="3" Height="20" Width="20" Margin="0,0,0,0" Background="#5C2599"
                                         Click="SearchVideoClick"/>
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <StackPanel x:Name="InsertVideoPanel" Grid.Row="1" Grid.ColumnSpan="4">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="4">
+                                    <StackPanel x:Name="InsertVideoPanel" >
                                     </StackPanel>
                                 </ScrollViewer>
                                 <Button x:Name="VideoInsertPrevious" Content="Previous" Width="Auto" Height="20" 
@@ -204,7 +204,7 @@
                         <!--Speech to Text-->
                         <TabItem x:Name="Speech_Text" Header="Speech-To-Text" FontSize="13" TabIndex="3" Style="{StaticResource SquareTabTemplate}">
                             <StackPanel>
-                                <TextBox x:Name="TransText" Grid.Row="1" Margin="0,5,0,5" Padding="70"
+                                <TextBox x:Name="TransText" Grid.Row="1" Margin="0,5,0,5" Padding="10"
                                          Background="#FFF8F9E6" IsReadOnly="True"/>
                                 <StackPanel x:Name="SpeechButtons" Width="Auto" VerticalAlignment="Center" >
                                     <Button x:Name="RecordSpeech" Height="25" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}"
