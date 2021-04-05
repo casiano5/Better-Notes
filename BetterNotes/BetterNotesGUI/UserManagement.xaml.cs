@@ -106,7 +106,7 @@ namespace BetterNotesGUI
                 {
                     Name = "Dbutton" + i,
                     Content = "Delete",
-                    Margin = new Thickness(3, 2, 3, 0),
+                    Margin = new Thickness(0, 2, 20, 0),
                     // HorizontalAlignment = HorizontalAlignment.Right,
                     FlowDirection = FlowDirection.RightToLeft
                 };
@@ -115,7 +115,8 @@ namespace BetterNotesGUI
                 {
                     Name = "Ubutton" + i,
                     Content = "Update",
-                    Margin = new Thickness(0, 2, 20, 0),
+                    
+                    Margin = new Thickness(3, 2, 3, 0),
                     // HorizontalAlignment = HorizontalAlignment.Right,
                     FlowDirection = FlowDirection.RightToLeft
                 };
@@ -127,8 +128,8 @@ namespace BetterNotesGUI
                     Orientation = Orientation.Horizontal
                 };
 
-                ButtonPanel.Children.Add(delete);
                 ButtonPanel.Children.Add(update);
+                ButtonPanel.Children.Add(delete);
                 UserB.Items.Add(ButtonPanel);
                 UserN.Items.Add(new TextBlock
                 {
