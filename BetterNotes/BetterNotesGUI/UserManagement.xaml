@@ -11,12 +11,12 @@
     <Grid x:Name="Back" ShowGridLines="False">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="UserTable" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,20,10,5">
-                <Button x:Name="NewUser"  BorderBrush="#FF45474A" Style="{StaticResource SquareButtonTemplate}" Foreground="#FFF7F9CA" Content="New User" Height="25" Width="Auto"
+                <Button x:Name="NewUser" BorderBrush="#FF45474A" Style="{StaticResource SquareButtonTemplate}" Foreground="#FFF7F9CA" Content="New User" Height="25" Width="Auto"
                              MouseEnter="HighlightButton" MouseLeave="UnHighlightButton" HorizontalAlignment="Stretch" Click="CreateUser">
                     <Button.Background>
                         <LinearGradientBrush EndPoint=".5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF45474A" Offset="1"/>
-                            <GradientStop Color="#5C2599" Offset="0.9"/>
+                            <GradientStop Color="#FF696969" Offset="0.9"/>
                            </LinearGradientBrush>
                     </Button.Background>
                 </Button>

@@ -16,7 +16,7 @@ namespace BetterNotes {
         //Button highlighting
         public readonly static SolidColorBrush ButtonHighLight = (SolidColorBrush) new BrushConverter().ConvertFromString("#50612787");
         public readonly static SolidColorBrush ButtonUnHighLight = (SolidColorBrush) new BrushConverter().ConvertFromString("#10AAB1BB");
-        public readonly static SolidColorBrush ManageUnHighLight = (SolidColorBrush)new BrushConverter().ConvertFromString("#5C2599");//colored button unhigliging
+        public readonly static SolidColorBrush ManageUnHighLight = (SolidColorBrush)new BrushConverter().ConvertFromString("#FF696969"); //colored button unhigliging
         public readonly static SolidColorBrush MainBack = (SolidColorBrush)new BrushConverter().ConvertFromString("#FF45474A");//Main Background color
         public readonly static SolidColorBrush MainText = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFF7F9CA");//Main Text color
         public readonly static SolidColorBrush MainPBack = (SolidColorBrush)new BrushConverter().ConvertFromString("#FF393939");//Main Panel Background color(remind panel, recent note panel, Resource Panel)
