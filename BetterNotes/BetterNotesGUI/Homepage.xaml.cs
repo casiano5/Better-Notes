@@ -95,7 +95,7 @@ namespace BetterNotesGUI {
             return list;
         }
         private void OpenNotes(object sender, RoutedEventArgs e, string filePath) {
-            if (Directory.Exists(filePath)) {
+            if (File.Exists(filePath)) {
                 BetterNotesMainView bnotView = new BetterNotesMainView(new Note(filePath));
                 bnotView.Show();
                 this.Close();
