@@ -10,7 +10,6 @@ namespace BetterNotesGUI {
     public partial class NotificationManagement : Window {
         private List<List<string>> notificationList = new List<List<string>>();
         public NotificationManagement() {
-           
             InitializeComponent();
             Back.Background = GlobalVars.MainBack;
             FillNotifications();
@@ -73,7 +72,6 @@ namespace BetterNotesGUI {
                 parentStack.Children.Add(contentStack);
                 GroupBox groupBox = new GroupBox {
                     Header = tempNotificationList[i][1],
-                    //BorderBrush = GlobalVars.ButtonUnHighLight,
                     Foreground= GlobalVars.MainText,
                     BorderThickness = new Thickness(0.2),
                     HorizontalAlignment = HorizontalAlignment.Stretch,

@@ -60,29 +60,9 @@ namespace BetterNotesGUI {
             homepageView.Show();
             this.Close();
         }
-        private void MenuItem_Click(object sender, RoutedEventArgs e) {
+        private void OpenUserManagement(object sender, RoutedEventArgs e) {
             UserManagement manageUserWindow = new UserManagement();
             manageUserWindow.Show();
-        }
-        private void UnHighlightButton(object sender, RoutedEventArgs e)
-        {
-            (sender as Button).Background = GlobalVars.ManageUnHighLight;
-        }
-        private void UnHighlightButtonStop(object sender, RoutedEventArgs e)
-        {
-            (sender as Button).Background = Brushes.Red;
-        }
-        private void HighlightButton(object sender, RoutedEventArgs e)
-        {
-            (sender as Button).Background = GlobalVars.ButtonUnHighLight;
-        }
-        private void HighlightButtonD(object sender, RoutedEventArgs e)
-        {
-            (sender as Button).Background = GlobalVars.ButtonHighLight;
-        }
-        private void UnHighlightButtonD(object sender, RoutedEventArgs e)
-        {
-            (sender as Button).Background = GlobalVars.ButtonUnHighLight;
         }
         private void RemindPanelShowHide(object sender, RoutedEventArgs e) {
             if (ReminderGrid.ColumnDefinitions[0].ActualWidth == 0) {
@@ -169,6 +149,21 @@ namespace BetterNotesGUI {
                 });
             }
         }
+        private void UnHighlightButton(object sender, RoutedEventArgs e) {
+            (sender as Button).Background = GlobalVars.ManageUnHighLight;
+        }
+        private void UnHighlightButtonStop(object sender, RoutedEventArgs e) {
+            (sender as Button).Background = Brushes.Red;
+        }
+        private void HighlightButton(object sender, RoutedEventArgs e) {
+            (sender as Button).Background = GlobalVars.ButtonUnHighLight;
+        }
+        private void HighlightButtonD(object sender, RoutedEventArgs e) {
+            (sender as Button).Background = GlobalVars.ButtonHighLight;
+        }
+        private void UnHighlightButtonD(object sender, RoutedEventArgs e) {
+            (sender as Button).Background = GlobalVars.ButtonUnHighLight;
+        }
 
         //Error Check
         private void TextChange(object sender, RoutedEventArgs e) {
@@ -187,22 +182,6 @@ namespace BetterNotesGUI {
         }
 
         //Integration
-
-        //Convert To PDF
-        private void ConvertToPDF(object sender, RoutedEventArgs e) {
-            FlowDocument tempFlow = new FlowDocument();
-            AddDocument(RichNote.Document, tempFlow);
-            RichTextBox tempRTB = new RichTextBox(tempFlow);
-            ConvertToPdf.Convert(tempRTB);
-        }
-        private static void AddDocument(FlowDocument from, FlowDocument to) {
-            TextRange range = new TextRange(from.ContentStart, from.ContentEnd);
-            MemoryStream stream = new MemoryStream();
-            System.Windows.Markup.XamlWriter.Save(range, stream);
-            range.Save(stream, DataFormats.XamlPackage);
-            TextRange range2 = new TextRange(to.ContentEnd, to.ContentEnd);
-            range2.Load(stream, DataFormats.XamlPackage);
-        }
 
         //Note operations
         private void NewNote(object sender, RoutedEventArgs e) {
@@ -427,6 +406,22 @@ namespace BetterNotesGUI {
             return true;
         }
 
+        //Convert To PDF
+        private void ConvertToPDF(object sender, RoutedEventArgs e) {
+            FlowDocument tempFlow = new FlowDocument();
+            AddDocument(RichNote.Document, tempFlow);
+            RichTextBox tempRTB = new RichTextBox(tempFlow);
+            ConvertToPdf.Convert(tempRTB);
+        }
+        private static void AddDocument(FlowDocument from, FlowDocument to) {
+            TextRange range = new TextRange(from.ContentStart, from.ContentEnd);
+            MemoryStream stream = new MemoryStream();
+            System.Windows.Markup.XamlWriter.Save(range, stream);
+            range.Save(stream, DataFormats.XamlPackage);
+            TextRange range2 = new TextRange(to.ContentEnd, to.ContentEnd);
+            range2.Load(stream, DataFormats.XamlPackage);
+        }
+
         //ImageInsert
         private List<System.Drawing.Image> imageList;
         private List<string> imageLinks;
@@ -586,6 +581,5 @@ namespace BetterNotesGUI {
             waveIn.Dispose();
             TransText.Text = SpeechToText.SpeechToTextFromFile(openNote.FilePath + "\\speech\\STT.wav");
         }
-        
     }
 }
