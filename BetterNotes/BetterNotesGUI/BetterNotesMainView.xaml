@@ -58,7 +58,7 @@
                 <!--Reminder Panel-->
                 <Grid x:Name="ReminderGrid">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0"/>
                         <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
                     <Button x:Name="ExapandMind" HorizontalAlignment="Left" Width="10" Grid.Column="1" Background="#5C2599" Height="40" Click="RemindPanelShowHide"/>
@@ -117,9 +117,9 @@
                 <!--Resource Panel-->
                 <Grid x:Name="ResourceGrid" Grid.Column="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0"/>
-                        <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="0"/>
                     </Grid.ColumnDefinitions>
 
                     <Button x:Name="ExapandSource" HorizontalAlignment="Right" Width="10" Grid.Column="1" Height="40" Background="#5C2599" Click="ResourcePanelShowHide"/>
