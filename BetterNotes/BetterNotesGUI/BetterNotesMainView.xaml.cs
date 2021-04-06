@@ -16,6 +16,8 @@ using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using RichTextBox = System.Windows.Controls.RichTextBox;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
+using System.Timers;
+using Timer = System.Timers.Timer;
 
 //TODO: Connect the buttons
 
@@ -82,6 +84,92 @@ namespace BetterNotesGUI {
         {
             (sender as Button).Background = GlobalVars.ButtonUnHighLight;
         }
+        private void RemindPanelShowHide(object sender, RoutedEventArgs e) {
+            if (ReminderGrid.ColumnDefinitions[0].ActualWidth == 0) {
+                double actualSize = bnotGrid.ColumnDefinitions[0].ActualWidth-10;
+                Timer timer = new Timer(1);
+                timer.Interval = 1;
+                timer.Enabled = true;
+                timer.Elapsed += (s, a) => ShowRemindPanel(s, a, actualSize);
+            }
+            else {
+                Timer timer = new Timer(1);
+                timer.Interval = 1;
+                timer.Enabled = true;
+                timer.Elapsed += new ElapsedEventHandler(HideRemindPanel);
+            }
+        }
+        private void HideRemindPanel(object sender, ElapsedEventArgs e) {
+            if ((int) ReminderGrid.ColumnDefinitions[0].ActualWidth > 9) {
+                Dispatcher.Invoke(() => {
+                    ReminderGrid.ColumnDefinitions[0].Width = new GridLength((int) ReminderGrid.ColumnDefinitions[0].ActualWidth - 10);
+                });
+            }
+            else {
+                (sender as Timer).Enabled = false;
+                Dispatcher.Invoke(() => {
+                    ReminderGrid.ColumnDefinitions[0].Width = new GridLength(0);
+                });
+            }
+        }
+        private void ShowRemindPanel(object sender, ElapsedEventArgs e, double fullSize) {
+            if ((int)ReminderGrid.ColumnDefinitions[0].ActualWidth < fullSize - 9) {
+                Dispatcher.Invoke(() => {
+                    ReminderGrid.ColumnDefinitions[0].Width = new GridLength((int)ReminderGrid.ColumnDefinitions[0].ActualWidth + 10);
+                });
+            }
+            else {
+                (sender as Timer).Enabled = false;
+                Dispatcher.Invoke(() => {
+                    ReminderGrid.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                });
+            }
+        }
+        private void ResourcePanelShowHide(object sender, RoutedEventArgs e) {
+            if (ResourceGrid.ColumnDefinitions[2].ActualWidth == 0) {
+                double actualSize = bnotGrid.ColumnDefinitions[2].ActualWidth - 10;
+                Timer timer = new Timer(1);
+                timer.Interval = 1;
+                timer.Enabled = true;
+                timer.Elapsed += (s, a) => ShowResourcePanel(s, a, actualSize);
+            }
+            else {
+                Timer timer = new Timer(1);
+                timer.Interval = 10;
+                timer.Enabled = true;
+                timer.Elapsed += new ElapsedEventHandler(HideResourcePanel);
+            }
+        }
+        private void HideResourcePanel(object sender, ElapsedEventArgs e) {
+            if ((int)ResourceGrid.ColumnDefinitions[2].ActualWidth > 9) {
+                Dispatcher.Invoke(() => {
+                    ResourceGrid.ColumnDefinitions[2].Width = new GridLength((int)ResourceGrid.ColumnDefinitions[2].ActualWidth - 10);
+                    ResourceGrid.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                });
+            }
+            else {
+                (sender as Timer).Enabled = false;
+                Dispatcher.Invoke(() => {
+                    ResourceGrid.ColumnDefinitions[2].Width = new GridLength(0);
+                    ResourceGrid.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
+                });
+            }
+        }
+        private void ShowResourcePanel(object sender, ElapsedEventArgs e, double fullSize) {
+            if ((int)ResourceGrid.ColumnDefinitions[2].ActualWidth < fullSize - 9) {
+                Dispatcher.Invoke(() => {
+                    ResourceGrid.ColumnDefinitions[2].Width = new GridLength(ResourceGrid.ColumnDefinitions[2].ActualWidth + 10);
+                });
+            }
+            else {
+                (sender as Timer).Enabled = false;
+                Dispatcher.Invoke(() => {
+                    ResourceGrid.ColumnDefinitions[2].Width = new GridLength(1, GridUnitType.Star);
+                    ResourceGrid.ColumnDefinitions[0].Width = new GridLength(0);
+                });
+            }
+        }
+
         //Error Check
         private void TextChange(object sender, RoutedEventArgs e) {
             this.saved = false;
@@ -194,12 +282,6 @@ namespace BetterNotesGUI {
                 if (openNote.RemindPhone.Contains("TMO")) CarrierToSend.SelectedItem = "T-Mobile";
                 PhoneToSend.Text = openNote.RemindPhone.Substring(3);
             }
-        }
-        private void ShowRemindPanel(object sender, RoutedEventArgs e) {
-            ParentPanel.Visibility = Visibility.Visible;
-        }
-        private void HideRemindPanel(object sender, RoutedEventArgs e) {
-            ParentPanel.Visibility = Visibility.Hidden;
         }
         private void InitializeReminderElements() {
             EmailToSend = new TextBox {

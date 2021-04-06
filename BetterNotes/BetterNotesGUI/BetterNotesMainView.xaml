@@ -42,7 +42,7 @@
 
 
         <DockPanel Grid.Row="1" Grid.RowSpan="2">
-            <Grid DockPanel.Dock="Top" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" 
+            <Grid x:Name="bnotGrid"  DockPanel.Dock="Top" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" 
               VerticalAlignment="Stretch">
                 <!-- <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
@@ -50,23 +50,20 @@
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>-->
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="6*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="30*"/>
                 </Grid.ColumnDefinitions>
 
                 <!--Reminder Panel-->
-                <Grid>
+                <Grid x:Name="ReminderGrid">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90*"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
-
-                    <GridSplitter Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch"
-                                  Background="Black" ShowsPreview="true" Width="3"/>
-                    <Button x:Name="ExapandMind" HorizontalAlignment="Left" Width="10" Grid.Column="1" Background="#5C2599" Height="40"/>
+                    <Button x:Name="ExapandMind" HorizontalAlignment="Left" Width="10" Grid.Column="1" Background="#5C2599" Height="40" Click="RemindPanelShowHide"/>
                     <StackPanel x:Name="ReminderStack" Grid.ColumnSpan="1" Grid.RowSpan="3" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="0,0,5,0">
-                        <CheckBox x:Name="SetReminder" Content="Set Reminder?" HorizontalAlignment="Stretch" Margin="0,5,0,5" Checked="ShowRemindPanel" Unchecked="HideRemindPanel" Foreground="#FFF7F9CA"/>
+                        <CheckBox x:Name="SetReminder" Content="Set Reminder?" HorizontalAlignment="Stretch" Margin="0,5,0,5" Foreground="#FFF7F9CA"/>
                         <StackPanel x:Name="ParentPanel" Orientation="Vertical" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="Hidden">
                             <GroupBox Header="Note Author" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Margin="0,10,0,10" Width="auto" BorderThickness="0" Foreground="#FFF7F9CA">
                                 <ComboBox x:Name="UserComboBox" HorizontalAlignment="Stretch" SelectionChanged="FillUserInPhoneEmail"/>
@@ -118,16 +115,15 @@
 
 
                 <!--Resource Panel-->
-                <Grid Grid.Column="2">
+                <Grid x:Name="ResourceGrid" Grid.Column="2">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0"/>
                         <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="ExapandSource" HorizontalAlignment="Right" Width="10" Grid.Column="0" Height="40" Background="#5C2599"/>
-                    <GridSplitter Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                              Background="Black" ShowsPreview="true" Width="3" ResizeDirection="Columns"/>
-                    <TabControl x:Name="InsertMedia" Grid.Column="1" Margin="5,0,0,0">
+                    <Button x:Name="ExapandSource" HorizontalAlignment="Right" Width="10" Grid.Column="1" Height="40" Background="#5C2599" Click="ResourcePanelShowHide"/>
+                    <TabControl x:Name="InsertMedia" Grid.Column="2" Margin="5,0,0,0">
                         <TabItem x:Name="InsertVideo" FontSize="13" Header="Insert Video" TabIndex="0" Style="{StaticResource SquareTabTemplate}" >
                             <!--Possible SearchBox, needs the C# implementation-->
                             <Grid>
