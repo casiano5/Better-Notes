@@ -86,7 +86,7 @@ namespace BetterNotesGUI {
         }
         private void RemindPanelShowHide(object sender, RoutedEventArgs e) {
             if (ReminderGrid.ColumnDefinitions[0].ActualWidth == 0) {
-                double actualSize = bnotGrid.ColumnDefinitions[0].ActualWidth-10;
+                double actualSize = bnotGrid.ColumnDefinitions[0].ActualWidth - ReminderGrid.ColumnDefinitions[1].ActualWidth;
                 Timer timer = new Timer(1);
                 timer.Interval = 1;
                 timer.Enabled = true;
@@ -127,7 +127,7 @@ namespace BetterNotesGUI {
         }
         private void ResourcePanelShowHide(object sender, RoutedEventArgs e) {
             if (ResourceGrid.ColumnDefinitions[2].ActualWidth == 0) {
-                double actualSize = bnotGrid.ColumnDefinitions[2].ActualWidth - 10;
+                double actualSize = bnotGrid.ColumnDefinitions[2].ActualWidth - ResourceGrid.ColumnDefinitions[1].ActualWidth;
                 Timer timer = new Timer(1);
                 timer.Interval = 1;
                 timer.Enabled = true;
