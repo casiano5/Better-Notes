@@ -19,8 +19,6 @@ using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using System.Timers;
 using Timer = System.Timers.Timer;
 
-//TODO: Connect the buttons
-
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
         Note openNote;
