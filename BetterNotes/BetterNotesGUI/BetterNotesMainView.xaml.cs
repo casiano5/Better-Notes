@@ -62,6 +62,12 @@ namespace BetterNotesGUI {
             UserManagement manageUserWindow = new UserManagement();
             manageUserWindow.Show();
         }
+        private void SetReminderCheck(object sender, RoutedEventArgs e) {
+            ParentPanel.Visibility = Visibility.Visible;
+        }
+        private void SetReminderUnCheck(object sender, RoutedEventArgs e) {
+            ParentPanel.Visibility = Visibility.Hidden;
+        }
         private void RemindPanelShowHide(object sender, RoutedEventArgs e) {
             if (ReminderGrid.ColumnDefinitions[0].ActualWidth == 0) {
                 double actualSize = bnotGrid.ColumnDefinitions[0].ActualWidth - ReminderGrid.ColumnDefinitions[1].ActualWidth;
