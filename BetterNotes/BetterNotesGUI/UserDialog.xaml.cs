@@ -15,9 +15,9 @@ namespace BetterNotesGUI {
             UserNameG.BorderThickness = new Thickness(0);
             EmailAddressG.Foreground = GlobalVars.MainText;
             EmailAddressG.BorderThickness = new Thickness(0);
-            CarrierG.Background = GlobalVars.MainText;
+            CarrierG.Foreground = GlobalVars.MainText;
             CarrierG.BorderThickness = new Thickness(0);
-            PhoneNumberG.Background = GlobalVars.MainText;
+            PhoneNumberG.Foreground = GlobalVars.MainText;
             PhoneNumberG.BorderThickness = new Thickness(0);
             FillCarriers();
             this.parentWindow = parentWindow;

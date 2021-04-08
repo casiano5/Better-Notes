@@ -18,6 +18,8 @@ using RichTextBox = System.Windows.Controls.RichTextBox;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using System.Timers;
 using Timer = System.Timers.Timer;
+using System.Drawing;
+using System.Windows.Interop;
 
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
@@ -38,6 +40,7 @@ namespace BetterNotesGUI {
             LoadXamlPackage(openNote.FilePath + "\\note\\note");
             InitializeReminderElements();
             if (openNote.IsReminder) FillReminderInfo();
+            ExapandSource.Content = "<";
         }
         private void LoadXamlPackage(string _fileName) {
             TextRange range;
@@ -70,13 +73,16 @@ namespace BetterNotesGUI {
         }
         private void RemindPanelShowHide(object sender, RoutedEventArgs e) {
             if (ReminderGrid.ColumnDefinitions[0].ActualWidth == 0) {
+                ExapandMind.Content = "<";
                 double actualSize = bnotGrid.ColumnDefinitions[0].ActualWidth - ReminderGrid.ColumnDefinitions[1].ActualWidth;
                 Timer timer = new Timer(1);
                 timer.Interval = 1;
                 timer.Enabled = true;
                 timer.Elapsed += (s, a) => ShowRemindPanel(s, a, actualSize);
             }
-            else {
+            else
+            {
+                ExapandMind.Content = ">";
                 Timer timer = new Timer(1);
                 timer.Interval = 1;
                 timer.Enabled = true;
@@ -111,13 +117,16 @@ namespace BetterNotesGUI {
         }
         private void ResourcePanelShowHide(object sender, RoutedEventArgs e) {
             if (ResourceGrid.ColumnDefinitions[2].ActualWidth == 0) {
+                ExapandSource.Content = ">";
                 double actualSize = bnotGrid.ColumnDefinitions[2].ActualWidth - ResourceGrid.ColumnDefinitions[1].ActualWidth;
                 Timer timer = new Timer(1);
                 timer.Interval = 1;
                 timer.Enabled = true;
                 timer.Elapsed += (s, a) => ShowResourcePanel(s, a, actualSize);
             }
-            else {
+            else
+            {
+                ExapandSource.Content = "<";
                 Timer timer = new Timer(1);
                 timer.Interval = 10;
                 timer.Enabled = true;
@@ -153,14 +162,31 @@ namespace BetterNotesGUI {
                 });
             }
         }
-        private void UnHighlightButton(object sender, RoutedEventArgs e) {
+
+        private void UnHighlightButton(object sender, RoutedEventArgs e)
+        {
             (sender as Button).Background = GlobalVars.ManageUnHighLight;
         }
-        private void UnHighlightButtonStop(object sender, RoutedEventArgs e) {
-            (sender as Button).Background = Brushes.Red;
+        private void UnHighlightButtonPlay(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Content = FindResource("Play");
         }
-        private void HighlightButton(object sender, RoutedEventArgs e) {
+
+
+        private void UnHighlightButtonStop(object sender, RoutedEventArgs e) {
+            (sender as Button).Content = FindResource("Stop");
+        }
+        private void HighlightButton(object sender, RoutedEventArgs e)
+        {
             (sender as Button).Background = GlobalVars.ButtonUnHighLight;
+        }
+        private void HighlightButtonPlay(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Content = FindResource("PlayHighlight");
+        }
+        private void HighlightButtonStop(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Content = FindResource("StopHighlight");
         }
         private void HighlightButtonD(object sender, RoutedEventArgs e) {
             (sender as Button).Background = GlobalVars.ButtonHighLight;

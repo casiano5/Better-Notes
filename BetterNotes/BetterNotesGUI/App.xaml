@@ -4,6 +4,22 @@
              xmlns:local="clr-namespace:BetterNotesGUI"
              StartupUri="Homepage.xaml">
     <Application.Resources>
+        <Style x:Key="LittleRoundButtonTemplate" TargetType="Button">
+            <Setter Property="Background" Value="#FF2F1C46" />
+            <Setter Property="Foreground" Value="#FFF7F9CA" />
+            <Setter Property="BorderBrush" Value="#FF2F1C46" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="RoundButtonTemplate" TargetType="Button">
             <Setter Property="Background" Value="#10AAB1BB" />
             <Setter Property="Foreground" Value="#FFE0F500" />

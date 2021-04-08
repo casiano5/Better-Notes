@@ -185,7 +185,8 @@
     <Resource Include="Resources\Play.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Record.png" />
+    <Resource Include="Resources\PlayHighlight.png" />
+    <Resource Include="Resources\StopHighlight.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

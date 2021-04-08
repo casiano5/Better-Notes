@@ -7,10 +7,18 @@
         xmlns:local="clr-namespace:BetterNotesGUI"
         
         mc:Ignorable="d"
-        Title="Better Notes" Icon="BetterNotes.ico" Name="MainWindowResolution" Width="800" Height="500" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" Closing="OnCloseNote">
+        Title="Better Notes" Icon="BetterNotes.ico" Name="MainWindowResolution" Width="1120" Height="720" FontSize="16" FontFamily="UD Digi Kyokasho NK-B" Closing="OnCloseNote">
+        
     <!-- Width= "{Binding ElementName=MainWindowResolution, Path=Width}" -->
     <!-- <TextBox Height={Binding RelativeSource={RelativeSource FindAncestor, 
            AncestorType={x:Type Window}}, Path=Height} /> -->
+
+    <Window.Resources>
+        <Image x:Key="Play" Source="Resources/Play.png" Height="25" Width="25"/>
+        <Image x:Key="Stop" Source="Resources/Stop.png" Height="25" Width="25"/>
+        <Image x:Key="PlayHighlight" Source="Resources/PlayHighlight.png" Height="25" Width="25"/>
+        <Image x:Key="StopHighlight" Source="Resources/StopHighlight.png" Height="50" Width="25"/>
+    </Window.Resources>
 
     <Grid x:Name="Back" ShowGridLines="False">
 
@@ -23,19 +31,19 @@
         <!--Menu Bar-->
         <DockPanel>
             <Menu x:Name="Menubar" DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  Height="20" Width="Auto" Background="#FFF7F9CA"
-                  Foreground="#5C2599" FontWeight="Bold">
+                  Height="20" Width="Auto" Background="#FF393939"
+                  Foreground="#FFF7F9CA" FontWeight="Bold">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_New" Click="NewNote"/>
-                    <MenuItem Header="_Open" Click="OpenExistingNote"/>
-                    <MenuItem Header="_Save" Click="SaveCurrentNote"/>
-                    <MenuItem Header="_Export (PDF)" Click="ConvertToPDF"/>
-                    <MenuItem Header="_Delete" Click="DeleteCurrentNote"/>
-                    <MenuItem Header="_Exit" Click="ExitToOpen"/>
+                    <MenuItem Header="_New" Click="NewNote" Background="#FF45474A"/>
+                    <MenuItem Header="_Open" Click="OpenExistingNote" Background="#FF45474A"/>
+                    <MenuItem Header="_Save" Click="SaveCurrentNote" Background="#FF45474A"/>
+                    <MenuItem Header="_Export (PDF)" Click="ConvertToPDF" Background="#FF45474A"/>
+                    <MenuItem Header="_Delete" Click="DeleteCurrentNote" Background="#FF45474A"/>
+                    <MenuItem Header="_Exit" Click="ExitToOpen" Background="#FF45474A"/>
                 </MenuItem>
                 <MenuItem Header="_User" Click="OpenUserManagement">
-                    <MenuItem Header="Manage Users"/>
-                    <MenuItem Header="Preferences"/>
+                    <MenuItem Header="Manage Users" Background="#FF45474A"/>
+                    <!--<MenuItem Header="Preferences" Background="#FF45474A"/> -->
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -54,14 +62,22 @@
                     <ColumnDefinition Width="60*"/>
                     <ColumnDefinition Width="30*"/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
 
+                <TextBlock Width="100" Height="50" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Foreground="#FFF7F9CA" TextAlignment="Center"><Run Text="Reminder"/><LineBreak/><Run Text="Panel"/></TextBlock>
+                <TextBlock Width="100" Height="50" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Foreground="#FFF7F9CA" TextAlignment="Center"><Run Text="Resource"/><LineBreak/><Run Text="Panel"/></TextBlock>
                 <!--Reminder Panel-->
-                <Grid x:Name="ReminderGrid">
+                <Grid x:Name="ReminderGrid" Grid.RowSpan="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0"/>
-                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="15"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="ExapandMind" HorizontalAlignment="Left" Width="10" Grid.Column="1" Background="#5C2599" Height="40" Click="RemindPanelShowHide"/>
+
+                    <Button x:Name="ExapandMind" Content=">" FontSize="8" HorizontalAlignment="Left" Width="15" Height="Auto" Grid.Column="1" Style="{StaticResource LittleRoundButtonTemplate}" Click="RemindPanelShowHide"/>
                     <StackPanel x:Name="ReminderStack" Grid.ColumnSpan="1" Grid.RowSpan="3" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="0,0,5,0">
                         <CheckBox x:Name="SetReminder" Content="Set Reminder?" HorizontalAlignment="Stretch" Margin="0,5,0,5" Foreground="#FFF7F9CA" Checked="SetReminderCheck" Unchecked="SetReminderUnCheck"/>
                         <StackPanel x:Name="ParentPanel" Orientation="Vertical" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="Hidden">
@@ -115,14 +131,14 @@
 
 
                 <!--Resource Panel-->
-                <Grid x:Name="ResourceGrid" Grid.Column="2">
+                <Grid x:Name="ResourceGrid" Grid.Column="2" Grid.RowSpan="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="15"/>
                         <ColumnDefinition Width="0"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="ExapandSource" HorizontalAlignment="Right" Width="10" Grid.Column="1" Height="40" Background="#5C2599" Click="ResourcePanelShowHide"/>
+                    <Button x:Name="ExapandSource" Content=">" FontSize="8" HorizontalAlignment="Right" Width="15" Height="Auto" Grid.Column="1" Style="{StaticResource LittleRoundButtonTemplate}" Click="ResourcePanelShowHide"/>
                     <TabControl x:Name="InsertMedia" Grid.Column="2" Margin="5,0,0,0">
                         <TabItem x:Name="InsertVideo" FontSize="13" Header="Insert Video" TabIndex="0" Style="{StaticResource SquareTabTemplate}" >
                             <!--Possible SearchBox, needs the C# implementation-->
@@ -194,12 +210,12 @@
                                     <Button x:Name="GenerateSpeech" Height="25" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}" MouseEnter="HighlightButtonD" MouseLeave="UnHighlightButtonD" Content="Generate" Foreground="#FFF7F9CA" Background="#FF45474A" Click="GenerateWavFile"/>
                                     
                                     <StackPanel Width="Auto" Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button x:Name="PlayText" VerticalAlignment="Center" Width="25" Height="25" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}" MouseEnter="HighlightButton"  MouseLeave="UnHighlightButton" Foreground="#FFF7F9CA" Click="PlayTts" Visibility="Hidden">
+                                        <Button x:Name="PlayText" VerticalAlignment="Center" Width="40" Height="40" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}" MouseEnter="HighlightButtonPlay"  MouseLeave="UnHighlightButtonPlay" Foreground="#FFF7F9CA" Click="PlayTts" Visibility="Hidden">
                                             <Button.Background>
                                                 <ImageBrush ImageSource="Resources/Play.png"/>
                                             </Button.Background>
                                         </Button>
-                                        <Button x:Name="StopPlay" Width="25" Height="25" Margin="5,5,5,5"  Style="{StaticResource SquareButtonTemplate}" MouseEnter="HighlightButton" MouseLeave="UnHighlightButtonStop" Foreground="#FFF7F9CA" Click="StopTts" Visibility="Hidden">
+                                        <Button x:Name="StopPlay" Width="40" Height="40" Margin="5,5,5,5"  Style="{StaticResource SquareButtonTemplate}" MouseEnter="HighlightButtonStop" MouseLeave="UnHighlightButtonStop" Foreground="#FFF7F9CA" Click="StopTts" Visibility="Hidden">
                                             <Button.Background>
                                                 <ImageBrush ImageSource="Resources/Stop.png"/>
                                             </Button.Background>
