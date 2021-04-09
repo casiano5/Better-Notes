@@ -462,6 +462,7 @@ namespace BetterNotesGUI {
                 ImageSearchBox.Text = RichNote.Selection.Text;
                 Dispatcher.BeginInvoke((Action)(() => InsertMedia.SelectedIndex = 1));
                 SearchImageClick(sender, new RoutedEventArgs());
+                ResourcePanelShowHide(sender, new RoutedEventArgs());
             }
             else {MessageBox.Show("Please select some text for inline features", "Oops", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
         }
@@ -535,6 +536,7 @@ namespace BetterNotesGUI {
                 VideoSearchBox.Text = RichNote.Selection.Text;
                 Dispatcher.BeginInvoke((Action)(() => InsertMedia.SelectedIndex = 0));
                 SearchVideoClick(sender, new RoutedEventArgs());
+                ResourcePanelShowHide(sender, new RoutedEventArgs());
             }
             else { MessageBox.Show("Please select some text for inline features", "Oops", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
         }
@@ -565,6 +567,7 @@ namespace BetterNotesGUI {
                 TextTrans.Text = RichNote.Selection.Text;
                 Dispatcher.BeginInvoke((Action)(() => InsertMedia.SelectedIndex = 2));
                 GenerateWavFile(sender, new RoutedEventArgs());
+                ResourcePanelShowHide(sender, new RoutedEventArgs());
             }
             else { MessageBox.Show("Please select some text for inline features", "Oops", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
         }

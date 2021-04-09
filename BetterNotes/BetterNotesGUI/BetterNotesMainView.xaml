@@ -123,7 +123,7 @@
                                 <MenuItem Command="ApplicationCommands.Paste"/>
                                 <MenuItem Header="Text To Speech" Click="ContextMenuTts"/>
                                 <MenuItem Header="Image Insert" Click="ContextMenuImage"/>
-                                <MenuItem Header="Video Insert (coming soon)"/>
+                                <MenuItem Header="Video Insert (coming soon)" IsEnabled="False"/>
                             </ContextMenu>
                         </RichTextBox.ContextMenu>
                     </RichTextBox>
