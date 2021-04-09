@@ -489,18 +489,20 @@ namespace BetterNotesGUI {
             ImageInsertPrevious.IsEnabled = (imageIndex != 0);
             ImageInsertNext.IsEnabled = !(imageIndex + 3 > imageLinks.Count);
             InsertImagePanel.Children.Clear();
+            List<Button> btnList = new List<Button>();
             for (int i = imageIndex; i < imageIndex + 3 && i < imageLinks.Count && i >= 0; i++) {
-                Button imageButton = new Button {
-                    Content = new System.Windows.Controls.Image {
-                        Source = new BitmapImage(new Uri(imageLinks[i]))
-                    },
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    Margin = new Thickness(5)
-                };
+                btnList.Add(new Button {
+                        Content = new System.Windows.Controls.Image {
+                            Source = new BitmapImage(new Uri(imageLinks[i]))
+                        },
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        Margin = new Thickness(5)
+                    }
+                );
                 int index = i;
-                imageButton.Click += new RoutedEventHandler((s, e) => InsertImageToRTB(s, e, index));
-                InsertImagePanel.Children.Add(imageButton);
+                btnList[i-imageIndex].Click += (s, e) => InsertImageToRtb(s, e, index);
             }
+            foreach (Button button in btnList) InsertImagePanel.Children.Add(button);
         }
         private void PlaceImagesPlus(object sender, RoutedEventArgs e) {
             imageIndex += 3;
@@ -510,18 +512,16 @@ namespace BetterNotesGUI {
             imageIndex -= 3;
             PlaceImages();
         }
-        private void InsertImageToRTB(object sender, RoutedEventArgs e, int index) {
-            for (int i = 0; i < Int32.MaxValue; i++) {
-                if (!File.Exists(openNote.FilePath + "\\img\\" + i + ".png")) {
-                    imageList[index].Save(openNote.FilePath + "\\img\\" + i + ".png");
-                    Paragraph imageParagraph = new Paragraph();
-                    imageParagraph.Inlines.Add(new System.Windows.Controls.Image {
-                        Source = new BitmapImage(new Uri(imageLinks[i])),
-                        Width = 200
-                    });
-                    RichNote.Document.Blocks.Add(imageParagraph);
-                    return;
-                }
+        private void InsertImageToRtb(object sender, RoutedEventArgs e, int index) {
+            if (!File.Exists(openNote.FilePath + "\\img\\" + index + ".png")) {
+                imageList[index].Save(openNote.FilePath + "\\img\\" + index + ".png");
+                Paragraph imageParagraph = new Paragraph();
+                imageParagraph.Inlines.Add(new System.Windows.Controls.Image {
+                    Source = new BitmapImage(new Uri(imageLinks[index])),
+                    Width = 200
+                });
+                RichNote.Document.Blocks.Add(imageParagraph);
+                return;
             }
 
         }
