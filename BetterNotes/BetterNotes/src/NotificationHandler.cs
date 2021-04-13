@@ -54,11 +54,13 @@ namespace BetterNotes {
             }
         }
         public void SendNotification(object sender, ElapsedEventArgs e) {
+            timer.Stop();
             if (!(emailContact.Equals("null") || emailContact.Equals("") || emailContact == null)) NotesReminder.SendPhoneEmailNotification(emailContact, this.name, this.reminderBody);
             if (!(phoneContact.Equals("null") || phoneContact.Equals("") || phoneContact == null)) NotesReminder.SendPhoneEmailNotification(phoneContact, this.name, this.reminderBody);
             if (sendToast) NotesReminder.SendWindowsToastNotification(this.name, this.reminderBody);
             DeleteReminderMetadata();
             NotificationHandler.RefreshList();
+            timer.Close();
         }
         public void DeleteReminderMetadata() {
             string remindCsv = "";
