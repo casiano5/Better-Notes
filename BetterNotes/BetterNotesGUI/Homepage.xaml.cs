@@ -21,7 +21,7 @@ namespace BetterNotesGUI {
             GenerateRecentNotes();
             this.Show();
             long fileLen = new FileInfo(GlobalVars.BnotUsersCsv).Length;
-            if (fileLen == 0 || (fileLen == 3 && File.ReadAllBytes("file").SequenceEqual(new byte[] { 239, 187, 191 }))) {
+            if (fileLen == 0 || (fileLen == 3 && File.ReadAllBytes(GlobalVars.BnotUsersCsv).SequenceEqual(new byte[] { 239, 187, 191 }))) {
                 FirstLaunch();
             }
         }
