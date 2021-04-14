@@ -67,6 +67,7 @@ namespace BetterNotesGUI {
         }
         private void SetReminderCheck(object sender, RoutedEventArgs e) {
             ParentPanel.Visibility = Visibility.Visible;
+            UserComboBox.SelectedItem = openNote.CreateUser.Name;
         }
         private void SetReminderUnCheck(object sender, RoutedEventArgs e) {
             ParentPanel.Visibility = Visibility.Hidden;
