@@ -20,6 +20,7 @@ using System.Timers;
 using Timer = System.Timers.Timer;
 using System.Drawing;
 using System.Windows.Interop;
+using Brushes = System.Drawing.Brushes;
 
 namespace BetterNotesGUI {
     public partial class BetterNotesMainView : Window {
@@ -172,8 +173,14 @@ namespace BetterNotesGUI {
         {
             (sender as Button).Content = FindResource("Play");
         }
-
-
+        private void UnHighlightButtonStopSTT(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFFF0000");
+        }
+        private void HighlightButtonStopSTT(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#FFFF7290");
+        }
         private void UnHighlightButtonStop(object sender, RoutedEventArgs e) {
             (sender as Button).Content = FindResource("Stop");
         }

@@ -14,10 +14,10 @@
            AncestorType={x:Type Window}}, Path=Height} /> -->
 
     <Window.Resources>
-        <Image x:Key="Play" Source="Resources/Play.png" Height="25" Width="25"/>
-        <Image x:Key="Stop" Source="Resources/Stop.png" Height="25" Width="25"/>
-        <Image x:Key="PlayHighlight" Source="Resources/PlayHighlight.png" Height="25" Width="25"/>
-        <Image x:Key="StopHighlight" Source="Resources/StopHighlight.png" Height="50" Width="25"/>
+        <Image x:Key="Play" Source="Resources/Play.png" Height="40" Width="40"/>
+        <Image x:Key="Stop" Source="Resources/Stop.png" Height="40" Width="40"/>
+        <Image x:Key="PlayHighlight" Source="Resources/PlayHighlight.png" Height="40" Width="40"/>
+        <Image x:Key="StopHighlight" Source="Resources/StopHighlight.png" Height="40" Width="40"/>
     </Window.Resources>
 
     <Grid x:Name="Back" ShowGridLines="False">
@@ -234,7 +234,7 @@
                                             MouseEnter="HighlightButtonD" MouseLeave="UnHighlightButtonD"
                                             Content="Record" Foreground="#FFF7F9CA" Background="#FF45474A" Click="StartRecordStt"/>
                                     <Button x:Name="StopRecord" Height="25" Content="Stop" Margin="5,5,5,5" Style="{StaticResource SquareButtonTemplate}"
-                                            MouseEnter="HighlightButton" MouseLeave="UnHighlightButtonStop"
+                                            MouseEnter="HighlightButtonStopSTT" MouseLeave="UnHighlightButtonStopSTT"
                                             Background="Red" Foreground="#FFF7F9CA" Click="StopRecordStt"/>
                                 </StackPanel>
 

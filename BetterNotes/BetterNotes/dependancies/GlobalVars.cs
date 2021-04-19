@@ -14,7 +14,7 @@ namespace BetterNotes {
         public readonly static string BnotUsersCsv = BnotWorkDir + "\\Users.properties";
 
         //Button highlighting
-        public readonly static SolidColorBrush ButtonHighLight = (SolidColorBrush) new BrushConverter().ConvertFromString("#50612787");
+        public readonly static SolidColorBrush ButtonHighLight = (SolidColorBrush)new BrushConverter().ConvertFromString("#50612787");
         public readonly static SolidColorBrush ButtonUnHighLight = (SolidColorBrush) new BrushConverter().ConvertFromString("#10AAB1BB");
         public readonly static SolidColorBrush ManageUnHighLight = (SolidColorBrush)new BrushConverter().ConvertFromString("#FF696969"); //colored button unhigliging
         public readonly static SolidColorBrush MainBack = (SolidColorBrush)new BrushConverter().ConvertFromString("#FF45474A");//Main Background color
