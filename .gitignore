@@ -2,13 +2,13 @@
 **.suo
 **.cache
 
-BetterNotes/BetterNotes/BetterNotes.csproj.user
-BetterNotes/BetterNotes/BetterNotes.sln.DotSettings.user
-BetterNotes/BetterNotesGUI/BetterNotesGUI.csproj.user
-BetterNotes/BetterNotesGUI/BetterNotesGUI.sln.DotSettings.user
+src/BetterNotes/BetterNotes/BetterNotes.csproj.user
+src/BetterNotes/BetterNotes/BetterNotes.sln.DotSettings.user
+src/BetterNotes/BetterNotesGUI/BetterNotesGUI.csproj.user
+src/BetterNotes/BetterNotesGUI/BetterNotesGUI.sln.DotSettings.user
 
-BetterNotes/.vs/**
-BetterNotes/BetterNotes/bin/**
-BetterNotes/BetterNotes/obj/**
-BetterNotes/BetterNotesGUI/bin/**
-BetterNotes/BetterNotesGUI/obj/**
+src/BetterNotes/.vs/**
+src/BetterNotes/BetterNotes/bin/**
+src/BetterNotes/BetterNotes/obj/**
+src/BetterNotes/BetterNotesGUI/bin/**
+src/BetterNotes/BetterNotesGUI/obj/**
